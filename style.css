@@ -10,9 +10,8 @@ body {
     margin: 5%;
     padding: 5% 5% 5% 5%;
 }
-
 p {
-    font-family: "Courier New";
+    font-family: 'Work Sans', sans-serif;
     font-size: 20px;
     color: #CCCCCC;
 }
@@ -20,7 +19,7 @@ p {
 
 h1 {
     color: #CCCCCC;
-    font-family: "Courier New";
+    font-family: 'Work Sans', sans-serif;
     font-weight: 100;
     font-size: 30px;
     /*margin: 0;
