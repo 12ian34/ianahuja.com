@@ -10,10 +10,18 @@ body {
     margin: 5%;
     padding: 5% 5% 5% 5%;
 }
+
 p {
     font-family: 'Work Sans', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     color: #CCCCCC;
+    line-height: 1.3em;
+}
+
+@media screen and (max-width: 700px) {
+    p {
+        font-size: 12px;
+    }
 }
 
 
@@ -21,7 +29,7 @@ h1 {
     color: #CCCCCC;
     font-family: 'Work Sans', sans-serif;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 10vw;
     /*margin: 0;
     padding: 0;
     text-align: center;
@@ -62,5 +70,3 @@ a.active,
     color: #00FF34;
     background-color: rgba(40, 40, 40, 0.7);
 }
-
-
