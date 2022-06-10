@@ -1,5 +1,3 @@
-/* body */
-
 html {
     margin: 0;
     padding: 0;
@@ -9,39 +7,33 @@ body {
     background-color: #010101 !important;
     margin: 5%;
     padding: 5% 5% 5% 5%;
+    font-size: 100%;
+}
+
+h1 {
+    font-size: clamp(1.8em, 4.5vw, 2.7em);
+    color: #CCCCCC;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+    position: relative;
 }
 
 p {
+    font-size: clamp(1.2em, 3vw, 1.8em);
     font-family: 'Work Sans', sans-serif;
-    font-size: 18px;
     color: #CCCCCC;
     line-height: 1.3em;
-}
-
-@media screen and (max-width: 800px) {
-    p {
-        font-size: 12px;
-    }
-
-    h1 {
-        font-size: 50vw;
-    }
-}
-
-
-h1 {
-    color: #CCCCCC;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 100;
-    font-size: 30px;
-    /*margin: 0;
-    padding: 0;
     text-align: center;
-    position: absolute;
-    display: inline-block;*/
 }
 
-/* links */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: clamp(7.5em, 18vw, 18vw);
+    max-height: 200px;
+    max-width: 172px;
+}
 
 a:link,
 .nav-top a:link {
