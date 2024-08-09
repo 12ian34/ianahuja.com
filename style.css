@@ -18,10 +18,6 @@ h1 {
     position: relative;
 }
 
-div .reachout {
-    line-height: 0.9em;
-}
-
 p {
     font-size: clamp(1.2em, 3vw, 1.2em);
     font-family: 'Work Sans', sans-serif;
