@@ -35,7 +35,15 @@ p {
     max-width: 172px;
 }
 
-a:link,
+hr.small {
+    width: 30%;
+}
+
+hr.medium {
+    width: 60%;
+}
+
+a:link, 
 .nav-top a:link {
     /* unvisited */
     color: #94f3a6;
