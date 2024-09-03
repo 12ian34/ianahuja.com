@@ -66,7 +66,7 @@ a:hover,
 a:active,
 .nav-top a:active {
     /* click and hold */
-    color: #95FF00;
+    color: #EB21EE;
     text-decoration: underline;
 }
 
@@ -162,4 +162,16 @@ textarea {
 
 .nowrap {
     white-space: nowrap;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+    background: #000;
+}
+
+.video iframe {
+    aspect-ratio: 16 / 9;
+    max-width: 30em;
+    width: 100%;
 }
