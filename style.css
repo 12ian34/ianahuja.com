@@ -37,22 +37,23 @@ p {
 
 hr.small {
     width: 30%;
+    opacity: 0.5
 }
 
 hr.medium {
     width: 60%;
 }
 
-a:link, 
+a:link,
 .nav-top a:link {
     /* unvisited */
-    color: #94f3a6;
+    color: #94F3A6;
     text-decoration: none;
 }
 
 a:visited,
 .nav-top a:visited {
-    color: #217e2d;
+    color: #217E2D;
     text-decoration: line-through;
 }
 
@@ -65,12 +66,75 @@ a:hover,
 a:active,
 .nav-top a:active {
     /* click and hold */
-    color: #95ff00;
+    color: #95FF00;
     text-decoration: underline;
 }
 
 a.active,
 .nav-top a.active {
-    color: #00FF34;
-    background-color: rgba(40, 40, 40, 0.7);
+    color: #79CF09;
+    background-color: rgba(87, 104, 88, 0.4);
+}
+
+.nav-top {
+    overflow: hidden;
+    border-bottom: 0.2em solid rgb(203, 203, 203);
+}
+
+.nav-top a {
+    display: block;
+    color: #CCCCCC;
+    text-align: center;
+    padding: 0.2em 0.5em;
+    text-decoration: none;
+    line-height: 1.3em;
+    font-size: clamp(1.2em, 3vw, 1.2em);
+    font-family: 'Work Sans', sans-serif;
+    float: left;
+    /* width: 130px; */
+}
+
+input[type=text], input[type=submit], textarea {
+    display: block;
+    margin: 0 auto;
+    padding: 0.5em 0.5em;
+    background-color: #010101;
+
+}
+
+input[type=text], input[type=submit] {
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(0.5em, 3vw, 1.2em);
+    width: clamp(12em, 18vw, 18vw);
+    text-align: center;
+    border: none;
+}
+
+input[type=text] {
+    border-bottom: 0.1em solid #79CF09;
+    color: #CCCCCC;
+}
+
+input[type=submit] {
+    background-color: #548C0C;
+    color: #FFFFFF
+}
+
+input[type=submit]:active {
+    background-color: #EB21EE;
+    text-decoration: underline;
+}
+
+textarea, ::placeholder {
+    opacity: 0.7;
+    color: #CCCCCC;
+}
+
+textarea {
+    width: clamp(20em, 18vw, 18vw);
+    font-size: clamp(0.5em, 3vw, 1.2em);
+    font-family: 'Work Sans', sans-serif;
+    box-sizing: border-box;
+    border: 0.1em solid #CCCCCC;
 }
