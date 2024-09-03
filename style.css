@@ -5,7 +5,7 @@ html {
 
 body {
     background-color: #010101 !important;
-    margin: 5%;
+    margin: 10%;
     padding: 5% 5% 5% 5%;
     font-size: 100%;
 }
@@ -78,11 +78,17 @@ a.active,
 
 .nav-top {
     overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    max-width: clamp(30vw, 50vw, 50vw);
     border-bottom: 0.2em solid rgb(203, 203, 203);
+    /* display: block; */
 }
 
 .nav-top a {
-    display: block;
     color: #CCCCCC;
     text-align: center;
     padding: 0.2em 0.5em;
