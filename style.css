@@ -1,13 +1,19 @@
 html {
     margin: 0;
     padding: 0;
+    height: 100%
 }
 
 body {
     background-color: #010101 !important;
+    background-image: url("files/triptick002.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     /* margin: 10%; */
-    padding: 0% 5% 5% 5%;
-    font-size: 100%;
+    /* padding: 0% 5% 5% 5%; */
+    /* font-size: 100%; */
 }
 
 h1 {
