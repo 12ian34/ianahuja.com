@@ -1,5 +1,5 @@
 
 media:
-  input: files/media
-  output: /files/media
+  input: files/
+  output: /files/
   
