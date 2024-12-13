@@ -1,3 +1,4 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://ianahuja.com/blog'
+languageCode = 'en-gb'
+title = 'words'
+publishDir = "../build/blog"
