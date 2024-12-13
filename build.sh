@@ -1,19 +1,21 @@
 #!/bin/bash
 
-# Step 1: Build the Hugo blog
-echo "Building the Hugo blog..."
-hugo -s blog/
+set -e  # Exit immediately if a command exits with a non-zero status.
 
-# Step 2: Create the build directory if it doesn't exist
-mkdir -p build
+# Step 1: Clean up the build directory to prevent recursion
+echo "Cleaning up the build directory..."
+rm -rfv build/
+
+# Step 2: Build the Hugo blog
+echo "Building the Hugo blog..."
+hugo -s blog/ -d ../build/blog
 
 # Step 3: Copy main site files to the build directory
 echo "Copying main site files..."
-cp -r * build/
-rm -rf build/blog # Remove any previous blog output from the root copy
+mkdir -p build
+shopt -s extglob  # Enable extended pattern matching
+cp -rv !(build|blog) build/  # Exclude build and blog folders from being copied
 
-# Step 4: Ensure blog files remain in the correct folder
-mv build/blog/* build/blog/
-
+# Step 4: Final structure check
 echo "Build process complete. Final structure in 'build' directory:"
-ls -ltRh build/
+ls -ltRv build/

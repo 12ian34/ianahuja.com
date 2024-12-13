@@ -9,3 +9,5 @@ hugo_stats.json
 
 # Temporary lock file while building
 blog/.hugo_build.lock
+# Local Netlify folder
+.netlify
