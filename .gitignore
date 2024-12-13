@@ -1,4 +1,11 @@
 _site/
 .sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+
+# Generated files by hugo
+blog/public/
+blog/resources/_gen/
+blog/assets/jsconfig.json
+hugo_stats.json
+
+# Temporary lock file while building
+blog/.hugo_build.lock
