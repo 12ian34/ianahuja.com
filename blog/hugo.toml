@@ -1,4 +1,0 @@
-baseURL = 'https://ianahuja.com/blog'
-languageCode = 'en-gb'
-title = 'words'
-publishDir = "../build/blog"
