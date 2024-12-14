@@ -11,21 +11,31 @@ So I'm hosting the former during summer and the latter during winter.
 
 ---
 
-### Past Events
-- 🏕️ **[Picnic]** Sat 20 Jul 2024  
-- 🏕️ **[Picnic]** Sat 31 Aug 2024  
+past
+- 🏕️ [picnic] - Sat 20 Jul 2024  
+- 🏕️ [picnic] - Sat 31 Aug 2024  
 
 ---
 
-### Future Events
-- 🍽️ **[Supper Club]** 15 Dec 2024 (2 spaces available)  
-- 🍽️ **[Supper Club]** Jan 2024 (exact date TBA)
+future
+- 🍽️  [supper club] - 15 Dec 2024 (2 spaces available)  
+- 🍽️  [supper club] - Jan 2024 (exact date TBA)
 
 ---
 
-### Interested in Joining?
-Fill out the form below to submit your interest:  
+interested?
 
+<form name="contact" method="POST" data-netlify="true">
+    <input type="text" name="name" placeholder="name"/>
+    <br>
+    <input type="email" name="email" placeholder="email"/>
+    <br>
+    <textarea name="message" placeholder="yo I'm interested in joining your supper club :)"></textarea>
+    <br>
+    <button type="submit">submit</button>
+</form>
+
+<!-- 
 <form action="https://api.staticforms.xyz/submit" method="post">
     <input type="text" name="name" placeholder="Type your name" />
     <br>
@@ -38,4 +48,4 @@ Fill out the form below to submit your interest:
     <input type="hidden" name="subject" value="Supper Club Interest!" />
     <input type="submit" value="Submit Your Interest" />
     <input type="hidden" name="redirectTo" value="https://ianahuja.com/supperclubs">
-</form>
+</form> -->

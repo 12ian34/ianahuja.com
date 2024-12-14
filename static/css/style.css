@@ -24,10 +24,14 @@ main {
     margin: 20px 0;      /* Adds spacing */
 }
 
+h1, h2, h3, h4, h5, h6, p, ul, li {
+    font-family: 'Work Sans', sans-serif;
+    color: #CCCCCC;
+}
+
 h1 {
     font-size: clamp(1.8em, 4.5vw, 2.7em);
     color: #CCCCCC;
-    font-family: 'Work Sans', sans-serif;
     text-align: center;
     position: relative;
 }
@@ -35,24 +39,20 @@ h1 {
 h3 {
     font-size: clamp(1.2em, 3vw, 1.2e);
     color: #CCCCCC;
-    font-family: 'Work Sans', sans-serif;
-    /* text-align: center; */
     position: relative;
 }
 
 p {
     font-size: clamp(1.2em, 3vw, 1.2em);
-    font-family: 'Work Sans', sans-serif;
     color: #CCCCCC;
     line-height: 1.3em;
-    /* text-align: center; */
 }
 
 ul {
-    text-align: center; /* Center-aligns the list as a block */
-    padding: 0;         /* Removes default padding */
-    margin: 0 auto;     /* Centers the list within its container */
-    display: inline-block; /* Allows centering of the entire list */
+    text-align: center;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 li {
@@ -60,8 +60,8 @@ li {
     font-family: 'Work Sans', sans-serif;
     color: #CCCCCC;
     line-height: 1.3em;
-    list-style-type: none; /* Removes bullets */
-    text-align: left;      /* Aligns text within each list item */
+    list-style-type: none;
+    text-align: left;
 }
 
 hr {
@@ -135,50 +135,39 @@ a.active,
     /* width: 130px; */
 }
 
-input[type=text], input[type=submit], textarea {
+input[type=text], button[type=submit], input[type=email], textarea {
     display: block;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 0.5em 0.5em;
-    background-color: #010101;
-    opacity: 0.6;
-}
-
-input[type=text], input[type=submit] {
+    background-color: #3d3d3d;
+    /* opacity: 0.6; */
     box-sizing: border-box;
     font-family: 'Work Sans', sans-serif;
     font-size: 1.2em;
     width: clamp(12em, 18vw, 18vw);
-    text-align: center;
     border: none;
-}
-
-input[type=text] {
     border-bottom: 0.1em solid #79CF09;
     color: #CCCCCC;
 }
 
-input[type=submit] {
+button[type=submit] {
     background-color: #548C0C;
     color: #FFFFFF
 }
 
-input[type=submit]:active {
+button[type=submit]:active {
     background-color: #EB21EE;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 textarea, ::placeholder {
-    color: #CCCCCC;
+    color: #ffffff;
 }
 
 textarea {
     width: 18em;
     font-size: 1.2em;
-    font-family: 'Work Sans', sans-serif;
-    box-sizing: border-box;
     border: 0.1em solid #CCCCCC;
-    background-color: #010101;
-    opacity: 0.5;
 }
 
 @media (max-width: 768px) {

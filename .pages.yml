@@ -10,5 +10,5 @@ content:
       - { label: "Tags", name: "tags", type: "select"}
       - { label: "Body", name: "body", type: "rich-text" }
 media:
-  input: "static/images" # Where media files are stored
-  output: "/images" # Public path to media files
+  input: "static/images"
+  output: "/images"
