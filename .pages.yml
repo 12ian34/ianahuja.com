@@ -1,39 +1,14 @@
 content:
-  - label: "Blog Posts"
+  - type: collection
+    label: "Blog Posts"
     name: "blog"
-    folder: "content/blog"
-    create: true
-    slug: "{{slug}}" # Automatically generate slugs
+    path: "content/blog"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Tags", name: "tags", widget: "list", default: [] }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  - label: "Pages"
-    name: "pages"
-    files:
-      - label: "Home Page"
-        name: "home"
-        file: "content/_index.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Body", name: "body", widget: "markdown" }
-
-      - label: "Supper Clubs"
-        name: "supperclubs"
-        file: "content/supperclubs.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Body", name: "body", widget: "markdown" }
-
-backend:
-  type: "git-gateway"
-  branch: "main"
-  repo: "yourusername/your-repo-name" # Replace with your repo
+      - { label: "Title", name: "title", type: "string" }
+      - { label: "Publish Date", name: "date", type: "date" }
+      - { label: "Description", name: "description", type: "string" }
+      - { label: "Tags", name: "tags", type: "select"}
+      - { label: "Body", name: "body", type: "rich-text" }
 media:
   input: "static/images" # Where media files are stored
   output: "/images" # Public path to media files
