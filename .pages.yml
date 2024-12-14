@@ -1,0 +1,39 @@
+collections:
+  - label: "Blog Posts"
+    name: "blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}" # Automatically generate slugs
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "content/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Supper Clubs"
+        name: "supperclubs"
+        file: "content/supperclubs.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+backend:
+  type: "git-gateway"
+  branch: "main"
+  repo: "yourusername/your-repo-name" # Replace with your repo
+media:
+  folder: "static/images/uploads" # Where media files are stored
+  publicFolder: "/images/uploads" # Public path to media files
