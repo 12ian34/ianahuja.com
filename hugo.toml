@@ -1,0 +1,20 @@
+languageCode = 'en-gb'
+title = 'Ian Ahuja'
+disableKinds = ['taxonomy', 'term']
+intro = true
+headline = "My headline"
+description = "My description"
+baseURL = "http://localhost:1313/"
+contentDir = "content"
+github = "https://github.com/XXX"
+twitter = "https://twitter.com/XXX"
+email = "XXX@example.com"
+opengraph = true
+shareTwitter = true
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+[params]
+  blog_title = "words"
+[permalinks]
+  blog = "/blog/:year/:month/:slug/"

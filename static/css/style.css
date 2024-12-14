@@ -1,18 +1,27 @@
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%
-}
-
-body {
+html, body {
     background-color: #0f1210 !important;
     height: 100%;
+    margin: 0;
+    padding: 0;
     background-position: center;
     background-repeat: no-repeat;
+    /* max-width: 80%; */
     background-size: cover;
     /* margin: 10%; */
     /* padding: 0% 5% 5% 5%; */
     /* font-size: 100%; */
+}
+
+main {
+    max-width: 600px; /* Restrict the maximum width of the content */
+    margin: 0 auto;    /* Center the container horizontally */
+    padding: 0 20px;   /* Add padding for spacing on smaller screens */
+    box-sizing: border-box; /* Ensure padding doesn’t overflow the container */
+}
+
+.centered-content {
+    text-align: center; /* Centers the entire block */
+    margin: 20px 0;      /* Adds spacing */
 }
 
 h1 {
@@ -23,30 +32,43 @@ h1 {
     position: relative;
 }
 
+h3 {
+    font-size: clamp(1.2em, 3vw, 1.2e);
+    color: #CCCCCC;
+    font-family: 'Work Sans', sans-serif;
+    /* text-align: center; */
+    position: relative;
+}
+
 p {
     font-size: clamp(1.2em, 3vw, 1.2em);
     font-family: 'Work Sans', sans-serif;
     color: #CCCCCC;
     line-height: 1.3em;
-    text-align: center;
+    /* text-align: center; */
 }
 
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: clamp(7.5em, 18vw, 18vw);
-    max-height: 200px;
-    max-width: 172px;
+ul {
+    text-align: center; /* Center-aligns the list as a block */
+    padding: 0;         /* Removes default padding */
+    margin: 0 auto;     /* Centers the list within its container */
+    display: inline-block; /* Allows centering of the entire list */
 }
 
-hr.small {
-    width: 30%;
-    opacity: 0.5
+li {
+    font-size: clamp(1.2em, 3vw, 1.2em);
+    font-family: 'Work Sans', sans-serif;
+    color: #CCCCCC;
+    line-height: 1.3em;
+    list-style-type: none; /* Removes bullets */
+    text-align: left;      /* Aligns text within each list item */
 }
 
-hr.medium {
-    width: 60%;
+hr {
+    width: 50%;
+    margin: 20px auto;
+    border: 1px solid #CCCCCC;
+    opacity: 0.5;
 }
 
 a:link,
@@ -166,17 +188,18 @@ textarea {
     }
 }
 
+/* 
 .nowrap {
     white-space: nowrap;
-}
+} */
 
-.video {
+/* .video {
     display: flex;
     justify-content: center;
-}
+} */
 
-.video iframe {
+/* .video iframe {
     aspect-ratio: 16 / 9;
     max-width: 30em;
     width: 100%;
-}
+} */

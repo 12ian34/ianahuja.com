@@ -1,13 +1,10 @@
-_site/
-.sass-cache/
-
-# Generated files by hugo
-blog/public/
-blog/resources/_gen/
-blog/assets/jsconfig.json
+/public/
+/resources/_gen/
+/assets/jsconfig.json
 hugo_stats.json
-
-# Temporary lock file while building
-blog/.hugo_build.lock
+hugo.exe
+hugo.darwin
+hugo.linux
+/.hugo_build.lock
 # Local Netlify folder
 .netlify
