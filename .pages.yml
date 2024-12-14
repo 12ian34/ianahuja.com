@@ -1,4 +1,4 @@
-collections:
+content:
   - label: "Blog Posts"
     name: "blog"
     folder: "content/blog"
@@ -35,5 +35,5 @@ backend:
   branch: "main"
   repo: "yourusername/your-repo-name" # Replace with your repo
 media:
-  folder: "static/images/uploads" # Where media files are stored
-  publicFolder: "/images/uploads" # Public path to media files
+  input: "static/images" # Where media files are stored
+  output: "/images" # Public path to media files
