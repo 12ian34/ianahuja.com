@@ -1,16 +1,19 @@
 ---
-title: "Moonquake Music"
-description: "Ian Ahuja's music page featuring modular and synthesizer-based compositions"
-keywords: ["ian", "ahuja", "moonquake", "music", "modular", "synthesizer"]
+title: "Moonquake music"
+description: "moonquake's music page featuring modular and synthesizer-based compositions"
+keywords: ["ian", "ahuja", "moonquake", "music", "modular", "synthesizer", "moonquake"]
 author: "Ian Ahuja"
 layout: "single"
 ---
+
+<div class="centered-content">
+
 
 I make music with analog, digital, and modular synthesizers.
 
 ---
 
-<iframe width="80%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1912381910&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+<iframe width="90%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1912381910&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
 
 ---
 
@@ -22,7 +25,10 @@ I make music with analog, digital, and modular synthesizers.
 
 ---
 
-### Explore More
+[listen more on Bandcamp](https://m-oonquake.bandcamp.com/)
 
-[Watch more on YouTube](https://www.youtube.com/@m_oonquake)  
-[Listen to more on Bandcamp](https://m-oonquake.bandcamp.com/)
+[watch more on YouTube](https://www.youtube.com/@m_oonquake)  
+
+[listen more on Soundcloud](https://soundcloud.com/m_oonquake)
+
+</div>

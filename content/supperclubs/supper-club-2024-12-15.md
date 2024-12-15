@@ -1,11 +1,12 @@
 ---
 title: "supper club - 15 Dec 2024"
 date: 2024-12-15
-type: "supperclub"
+eventtype: "supperclub"
 description: "supper club - 15 Dec 2024"
 tags: ["supper club", "dining", "london"]
 author: "Ian Ahuja"
 active: true
+layout: "single"
 ---
 
 spaces available: 0

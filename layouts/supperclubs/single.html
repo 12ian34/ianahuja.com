@@ -1,9 +1,12 @@
 {{ define "main" }}
+
 <article>
   <p>{{ .Title }}</p>
   <div>
     {{ .Content }}
   </div>
+  
   {{ partial "form.html" . }}
+
 </article>
 {{ end }}
