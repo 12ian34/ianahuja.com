@@ -48,6 +48,12 @@ p {
     line-height: 1.3em;
 }
 
+.supperclubs-list {
+    font-size: clamp(0.8em, 3vw, 0.8em);
+    color: #CCCCCC;
+    line-height: 1.3em;
+} 
+
 ul {
     text-align: center;
     padding: 0;

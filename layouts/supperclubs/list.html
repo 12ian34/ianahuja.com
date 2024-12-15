@@ -1,0 +1,23 @@
+{{ define "main" }}
+<p>
+  London needs more organized picnics and supper clubs.
+  <br>
+  <br>
+  So I'm hosting the former during summer and the latter during winter.
+</p>
+
+<ul class="supperclubs-list">
+  {{ range .Pages.ByDate.Reverse }}
+  <li>
+    <p> {{ if .Params.active }}
+      <span class="badge active">🟢 future -</span>
+      {{ else }}
+      <span class="badge inactive">🟠 past -</span>
+      {{ end }}<a href="{{ .Permalink }}">{{ .Title }}</a>
+  </li>
+  {{ end }}
+</ul>
+
+{{ partial "form.html" . }}
+
+{{ end }}

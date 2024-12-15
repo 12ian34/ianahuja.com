@@ -11,6 +11,7 @@ twitter = "https://x.com/12ian34"
 email = "12ian34@example.com"
 opengraph = true
 shareTwitter = true
+buildFuture = true
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
@@ -18,3 +19,4 @@ shareTwitter = true
   blog_title = "words"
 [permalinks]
   blog = "/blog/:year/:month/:slug/"
+  supperclubs = "/supperclubs/:slug/"

@@ -6,4 +6,4 @@ tags: ["blog", "intro"]
 author: "Ian Ahuja"
 ---
 
-init
+some words are on their way
