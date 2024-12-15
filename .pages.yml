@@ -1,12 +1,24 @@
 content:
   - type: collection
-    label: "Blog Posts"
+    label: "blog"
     name: "blog"
     path: "content/blog"
     fields:
       - { label: "Title", name: "title", type: "string" }
-      - { label: "Publish Date", name: "date", type: "date" }
+      - { label: "Publish date", name: "date", type: "date" }
       - { label: "Description", name: "description", type: "string" }
+      - { label: "Tags", name: "tags", type: "select"}
+      - { label: "Body", name: "body", type: "rich-text" }
+  - type: collection
+    label: "supper clubs"
+    name: "supperclubs"
+    path: "content/supperclubs"
+    fields:
+      - { label: "Title", name: "title", type: "string" }
+      - { label: "Publish date", name: "date", type: "date" }
+      - { label: "Event type", name: "eventtype", type: "select" }
+      - { label: "Description", name: "description", type: "string" }
+      - { label: "Active", name: "active", type: "boolean" }
       - { label: "Tags", name: "tags", type: "select"}
       - { label: "Body", name: "body", type: "rich-text" }
 media:
