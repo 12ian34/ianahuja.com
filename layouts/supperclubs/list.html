@@ -9,11 +9,19 @@
 <ul class="supperclubs-list">
   {{ range .Pages.ByDate.Reverse }}
   <li>
-    <p> {{ if .Params.active }}
+    <p>
+      {{ if .Params.active }}
       <span class="badge active">🟢 future -</span>
       {{ else }}
       <span class="badge inactive">🟠 past -</span>
-      {{ end }}<a href="{{ .Permalink }}">{{ .Title }}</a>
+      {{ end }}
+      {{ if eq .Params.type "picnic" }}
+      <span>🏕️</span>
+      {{ else if eq .Params.type "supperclub" }}
+      <span>🍽️</span>
+      {{ end }}
+      <a href="{{ .Permalink }}">{{ .Title }}
+      </a>
   </li>
   {{ end }}
 </ul>

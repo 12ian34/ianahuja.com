@@ -1,6 +1,7 @@
 ---
-title: "🍽️ supper club - xx Jan 2024"
+title: "supper club - xx Jan 2024"
 date: 2025-01-31
+type: "supperclub"
 description: "supper club - xx Jan 2024"
 tags: ["supper club", "dining", "london"]
 author: "Ian Ahuja"
