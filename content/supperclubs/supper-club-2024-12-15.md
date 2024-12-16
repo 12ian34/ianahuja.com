@@ -2,7 +2,7 @@
 title: "supper club - 15 Dec 2024"
 date: 2024-12-15
 description: "ian ahuja - supper club - 15 Dec 2024"
-keywords: "supper club, supper, club, restaurant, dining, london, connection"
+keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends"
 eventtype: "supperclub"
 active: false
 og_title: "ian ahuja - supper clubs"

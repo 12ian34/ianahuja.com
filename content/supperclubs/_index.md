@@ -2,7 +2,7 @@
 title: "ian ahuja - supper clubs"
 date: 2024-12-16
 description: "ian ahuja - supper clubs"
-keywords: "supper club, supper, club, restaurant, dining, london, connection"
+keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends"
 og_title: "ian ahuja - supper clubs"
 og_description: "ian ahuja - supper clubs"
 ---

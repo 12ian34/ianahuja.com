@@ -2,7 +2,7 @@
 title: "moonquake music"
 date: 2024-12-16
 description: "moonquake music"
-keywords: ["ian", "ahuja", "moonquake", "music", "modular", "synthesizer", "synth"]
+keywords: "ian, ahuja, ianahuja, moonquake, m-oonquake, m_oonquake, music, electronic music, synthesizer, synth, modular, eurorack, ian ahuja, electronic, london, artist, song, track"
 og_title: "moonquake - music"
 og_description: "moonquake - music"
 layout: "single"

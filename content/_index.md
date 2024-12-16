@@ -2,7 +2,7 @@
 title: "ian ahuja - home"
 date: 2024-12-16
 description: "ian ahuja - home"
-keywords: ["ian", "ahuja", "ianahuja"]
+keywords: "ian ahuja, ian, ahuja, blog, tech, startups, entrepreneurship, sales, b2b, saas, moonquake, music, synth, plantle"
 og_title: "ian ahuja - home"
 og_description: "ian ahuja - home"
 ---
@@ -11,7 +11,7 @@ og_description: "ian ahuja - home"
 <p class="homepage-title">ian ahuja</p>
 
 {{< figure
-    src="images/offsite_headshot_3598_square_smaller.jpg"
+    src="images/3598.jpg"
     alt="A self-portrait photograph of Ian Ahuja with mountainous backdrop."
     width="30%"
 >}}
