@@ -12,7 +12,7 @@ layout: "single"
 
 🍽️
 
-spaces available /// **6**  
+spaces available /// **8**  
 chefs /// **ian + bassem**  
 location /// **greenwich, london**  
 contribution /// **~£20**  
