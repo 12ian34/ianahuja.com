@@ -23,7 +23,7 @@ buildFuture = true
   og_site_name = "ian ahuja"
   og_article_author = "ian ahuja"
   og_description = "ian ahuja's projects"
-  og_image = "images/moon.png"
+  og_image = "/images/moon.png"
   default_keywords = "ian, ahuja, ianahuja, moonquake, music, supper clubs, supper, club, restaurant, london, tech, chess, electronic, synth"
 
 [permalinks]
