@@ -1,5 +1,5 @@
 ---
-title: "ian ahuja - blog - 2024-12-14"
+title: "blog 2024-12-14"
 date: 2024-12-14
 description: "ian ahuja - blog - 2024-12-14"
 keywords: "ian ahuja, ian, ahuja, blog, tech, startups, entrepreneurship, sales, b2b, saas, moonquake, music, synth, plantle"
