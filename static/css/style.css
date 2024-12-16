@@ -191,6 +191,10 @@ textarea {
     }
 }
 
+input:invalid, textarea:invalid {
+    border: 2px solid red;
+}
+
 /* 
 .nowrap {
     white-space: nowrap;

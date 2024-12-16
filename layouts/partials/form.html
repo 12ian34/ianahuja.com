@@ -1,13 +1,59 @@
 <br>
 <hr>
 <p>interested in joining a future supper club or picnic?</p>
-<form name="contact" method="POST" data-netlify="true">
-    <input type="text" name="name" placeholder="name" />
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="hpot-field" onsubmit="return validateForm(event)">
+    <p style="display:none">
+        <label>
+          <input name="hpot-field" />
+        </label>
+    </p>
+    <input type="text" name="name" placeholder="name" required minlength="2" />
     <br>
-    <input type="email" name="email" placeholder="email" />
+    <input type="email" name="email" placeholder="email" required />
     <br>
-    <textarea name="message">yo I'm interested in joining your supper club :)</textarea>
+    <textarea name="message" required minlength="5">yo I'm interested in joining your supper club :)</textarea>
     <br>
     <button id="supperclub" type="submit">submit</button>
 </form>
 <br>
+
+<script>
+  function validateForm(event) {
+      const name = document.querySelector('input[name="name"]');
+      const email = document.querySelector('input[name="email"]');
+      const message = document.querySelector('textarea[name="message"]');
+
+      if (!name.value.trim()) {
+          alert("your name please");
+          name.focus();
+          return false;
+      }
+
+      if (name.value.length < 2) {
+          alert("your name is probably more than 1 letter");
+          name.focus();
+          return false;
+      }
+
+      if (!email.value.trim()) {
+          alert("your email please");
+          email.focus();
+          return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.value)) {
+          alert("your real email please");
+          email.focus();
+          return false;
+      }
+
+      if (!message.value.trim() || message.value.length < 5) {
+          alert("let me know why you're interested");
+          message.focus();
+          return false;
+      }
+
+      return true;
+  }
+</script>
