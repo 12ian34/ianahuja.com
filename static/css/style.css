@@ -36,6 +36,14 @@ h1 {
     position: relative;
 }
 
+.homepage-title {
+    font-size: clamp(1.8em, 4.5vw, 2.7em);
+    color: #CCCCCC;
+    text-align: center;
+    position: relative;
+    font-weight: 200;
+}
+
 h3 {
     font-size: clamp(1.2em, 3vw, 1.2e);
     color: #CCCCCC;

@@ -1,9 +1,9 @@
 languageCode = 'en-gb'
-title = 'Ian Ahuja'
 disableKinds = ['taxonomy', 'term']
 intro = true
-headline = "Ian"
-description = "Ian Ahuja's website"
+title = "ian ahuja"
+headline = "ian ahuja"
+description = "ian ahuja"
 baseURL = "https://ianahuja.com"
 contentDir = "content"
 github = "https://github.com/12ian34"
@@ -17,6 +17,15 @@ buildFuture = true
     unsafe = true
 [params]
   blog_title = "words"
+  og_type = "website"
+  og_locale = "en_GB"
+  og_title = "ian ahuja"
+  og_site_name = "ian ahuja"
+  og_article_author = "ian ahuja"
+  og_description = "ian ahuja's projects"
+  og_image = "images/PXL_20230501_122853688_fun4.png"
+  default_keywords = "ian, ahuja, ianahuja, moonquake, music, supper clubs, supper, club, restaurant, london, tech, chess"
+
 [permalinks]
   blog = "/blog/:year/:month/:slug/"
   supperclubs = "/supperclubs/:slug/"

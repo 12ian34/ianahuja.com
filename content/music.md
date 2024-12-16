@@ -1,15 +1,17 @@
 ---
-title: "Moonquake music"
-description: "moonquake's music page featuring modular and synthesizer-based compositions"
-keywords: ["ian", "ahuja", "moonquake", "music", "modular", "synthesizer", "moonquake"]
-author: "Ian Ahuja"
+title: "moonquake music"
+date: 2024-12-16
+description: "moonquake music"
+keywords: ["ian", "ahuja", "moonquake", "music", "modular", "synthesizer", "synth"]
+og_title: "moonquake - music"
+og_description: "moonquake - music"
 layout: "single"
 ---
 
 <div class="centered-content">
 
 
-I make music with analog, digital, and modular synthesizers.
+i make music with analog, digital, and modular synthesizers.
 
 ---
 

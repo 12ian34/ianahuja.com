@@ -1,21 +1,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ian Ahuja</title>
+<title>{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
 <link rel="shortcut icon" type="image/jpg" href="images/moon.png" />
 
-<meta name="description" content="ian ahuja">
-<meta name="keywords" content="ian, ahuja, ianahuja">
-<meta name="author" content="ian ahuja">
+<meta name="author" content="{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ .Site.Params.og_article_author }}{{ end }}">
+<meta name="description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.og_description }}{{ end }}">
+<meta name="keywords" content="{{ if .Params.keywords }}{{ .Params.keywords }}{{ else }}{{ .Site.Params.default_keywords }}{{ end }}">
 
 <meta property="og:article:author" content="ian ahuja">
-<meta property="og:title" content="ian ahuja - home">
 <meta property="og:type" content="website"/>
 <meta property="og:locale" content="en_GB" />
 <meta property="og:site_name" content="ian ahuja">
 <meta property="og:image" conten="images/PXL_20230501_122853688_fun4.png"/>
+<meta property="og:title" content="{{ if .Params.og_title }}{{ .Params.og_title }}{{ else }}{{ .Site.Params.og_title }}{{ end }}">
+<meta property="og:description" content="{{ if .Params.og_description }}{{ .Params.og_description }}{{ else }}{{ .Site.Params.og_description }}{{ end }}">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

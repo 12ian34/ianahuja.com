@@ -1,17 +1,20 @@
 ---
-title: "supper club - xx Jan 2024"
-date: 2025-01-31
+title: "supper club - 25 Jan 2024"
+date: 2025-01-25
+description: "supper club - 25 Jan 2024"
+keywords: "supper club, supper, club, restaurant, dining, london, connection"
 eventtype: "supperclub"
-description: "supper club - xx Jan 2024"
-tags: ["supper club", "dining", "london"]
-author: "Ian Ahuja"
 active: true
+og_title: "ian ahuja - supper clubs"
+og_description: "ian ahuja - supper clubs - 2025-01-25"
 layout: "single"
 ---
 
-spaces available: 6
-
-chefs: ian
+spaces available /// **6**  
+chefs /// **ian + bassem**  
+location /// **greenwich, london**  
+contribution /// **~£20**  
 
 menu:
-- tbc
+
+tbc
