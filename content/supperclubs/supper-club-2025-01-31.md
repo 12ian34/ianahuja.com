@@ -10,6 +10,8 @@ og_description: "ian ahuja - supper clubs - 2025-01-25"
 layout: "single"
 ---
 
+🍽️
+
 spaces available /// **6**  
 chefs /// **ian + bassem**  
 location /// **greenwich, london**  
