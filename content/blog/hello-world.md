@@ -1,7 +1,7 @@
 ---
-title: "hello world"
+title: "blog 1"
 date: 2024-12-14
-description: "init"
+description: "ian ahuja - blog 1"
 keywords: "ian ahuja, ian, ahuja, blog, tech, startups, entrepreneurship, sales, b2b, saas"
 og_title: "ian ahuja - blog"
 og_description: "ian ahuja - blog - 2024-12-14"

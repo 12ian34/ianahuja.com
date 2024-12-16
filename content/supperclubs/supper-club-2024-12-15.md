@@ -1,7 +1,7 @@
 ---
 title: "supper club - 15 Dec 2024"
 date: 2024-12-15
-description: "supper club - 15 Dec 2024"
+description: "ian ahuja - supper club - 15 Dec 2024"
 keywords: "supper club, supper, club, restaurant, dining, london, connection"
 eventtype: "supperclub"
 active: false

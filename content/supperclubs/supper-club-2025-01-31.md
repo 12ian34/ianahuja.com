@@ -1,7 +1,7 @@
 ---
 title: "supper club - 25 Jan 2024"
 date: 2025-01-25
-description: "supper club - 25 Jan 2024"
+description: "ian ahuja - supper clubs - 2025-01-25"
 keywords: "supper club, supper, club, restaurant, dining, london, connection"
 eventtype: "supperclub"
 active: true
