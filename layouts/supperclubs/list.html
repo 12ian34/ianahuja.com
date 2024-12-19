@@ -6,10 +6,11 @@
   so I'm hosting the former during summer and the latter during winter...
 </p>
 
+<p><i class="fa-brands fa-instagram"></i> <a href="https://instagram.com/plenty.of.dish">plenty.of.dish</a>
+
 <ul class="supperclubs-list">
   {{ range .Pages.ByDate.Reverse }}
   <li>
-    <p>
       {{ if .Params.active }}
       <span class="badge active">🟢 future -</span>
       {{ else }}
@@ -20,8 +21,7 @@
       {{ else if eq .Params.eventtype "supperclub" }}
       <span>🍽️</span>
       {{ end }}
-      <a href="{{ .Permalink }}">{{ .Title }}
-      </a>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
   </li>
   {{ end }}
 </ul>
