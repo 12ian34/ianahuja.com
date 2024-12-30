@@ -3,7 +3,7 @@ title: supper club - 15 Dec 2024
 date: 2024-12-15
 eventtype: supperclub
 description: ian ahuja - supper club - 15 Dec 2024
-active: true
+active: false
 ---
 🍽️
 
