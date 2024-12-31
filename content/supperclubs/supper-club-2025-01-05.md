@@ -11,7 +11,7 @@ layout: "single"
 ---
 🍽️
 
-spaces available /// **2**  
+spaces available /// **full!**  
 chefs /// **alexandra + Ian + bassem**  
 location /// **clapton, london**  
 time // **19:00**  
