@@ -1,5 +1,5 @@
 ---
-title: "supper club - 25 Jan 2024"
+title: "supper club - 25 Jan 2025"
 date: 2025-01-25
 description: "ian ahuja - supper clubs - 2025-01-25"
 keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends"
