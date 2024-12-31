@@ -1,6 +1,7 @@
 ---
 title: supper club - 5 jan 2025
 date: 2025-01-05
+eventtype: supperclub
 description: ian ahuja - supper clubs - 2025-01-05
 active: true
 ---
