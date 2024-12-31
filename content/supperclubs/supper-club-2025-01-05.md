@@ -1,6 +1,6 @@
 ---
 title: "supper club - 5 Jan 2025"
-date: 2025-01-25
+date: 2025-01-05
 description: "ian ahuja - supper clubs - 2025-01-05"
 keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends"
 eventtype: "supperclub"
@@ -14,7 +14,7 @@ layout: "single"
 spaces available /// **2**  
 chefs /// **alexandra + Ian + bassem**  
 location /// **clapton, london**  
-time // 19:00
+time // **19:00**  
 contribution /// **~£15**
 
 menu:
