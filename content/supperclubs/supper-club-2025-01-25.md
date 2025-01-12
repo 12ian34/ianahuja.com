@@ -12,11 +12,13 @@ layout: "single"
 
 🍽️
 
-spaces available /// **8**  
+[register here](https://partiful.com/e/Qc1Af5WwDEEDhtmoyaXc)
+
+seats taken /// **9**  
+seats available /// **3**  
 chefs /// **ian + bassem**  
 location /// **greenwich, london**  
 contribution /// **~£20**  
+menu /// indian+egyptian
 
-menu:
-
-tbc
+[register here](https://partiful.com/e/Qc1Af5WwDEEDhtmoyaXc)
