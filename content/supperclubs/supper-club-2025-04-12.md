@@ -14,7 +14,7 @@ layout: "single"
 
 [register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)  
 
-seats taken: **0**  
+seats taken: **1**  
 seats available: **11**  
 chefs: **ian, tbc**  
 location: **haggerston, london**  
