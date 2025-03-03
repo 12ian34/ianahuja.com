@@ -1,23 +1,25 @@
 ---
-title: "supper club - 1 Mar 2025"
-date: 2025-03-01
-description: "ian ahuja - supper clubs - 2025-03-01"
+title: "supper club - 12 Apr 2025"
+date: 2025-04-12
+description: "ian ahuja - supper clubs - 2025-04-12"
 keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends"
 eventtype: "supperclub"
-active: false
+active: true
 og_title: "ian ahuja - supper clubs"
-og_description: "ian ahuja - supper clubs - 2025-03-01"
+og_description: "ian ahuja - supper clubs - 2025-04-12"
 layout: "single"
 ---
 
 🍽️
 
-seats taken: **12**  
-seats available: **0**  
-chefs: **ian, caro**  
+[register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)  
+
+seats taken: **0**  
+seats available: **11** - only waiting list in case of dropout  
+chefs: **ian, tbc**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
-menu: asian  
+menu: mexican  
 
 ---
 
@@ -34,3 +36,5 @@ no need to bring anything, but people tend to bring their own drinks
 ---
 
 there may be more registrations than seats available. i personally know most of the people invited, and i try to curate, so, rather than first come first serve, it's vibe-based. i'll try to be fair. if you register but aren't confirmed, then you'll be priority for the next one.
+
+[register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)
