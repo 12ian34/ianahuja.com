@@ -15,7 +15,7 @@ layout: "single"
 [register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)  
 
 seats taken: **0**  
-seats available: **11** - only waiting list in case of dropout  
+seats available: **11**  
 chefs: **ian, tbc**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
