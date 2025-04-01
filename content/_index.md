@@ -32,11 +32,11 @@ talk to me about...
 
 live projects
 
-🌱 [plantle](https://plantle.netlify.app)  
 🍽️ [ahuja supper clubs](/supperclubs/)  
-🏌️ [golf tournament app](https://ruffryder.golf)  
 🎹 [moonquake music](https://m-oonquake.bandcamp.com)  
-🎙️ [moonquake infinite radio](https://radio.spookyaction.media)
+🌱 [plantle](https://plantle.netlify.app)  
+🏌️ [golf tournament app](https://ruffryder.golf)  
+~~🎙️ [moonquake infinite radio](https://radio.spookyaction.media)~~
 
 ---
 

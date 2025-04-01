@@ -12,10 +12,10 @@ layout: "single"
 
 🍽️
 
-[register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)  
+~~[register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)~~  
 
-seats taken: **8**  
-seats available: **4**  
+seats taken: **12**  
+seats available: **0**  
 chefs: **ian**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
@@ -37,4 +37,4 @@ no need to bring anything, but people tend to bring their own drinks
 
 there may be more registrations than seats available. i personally know most of the people invited, and i try to curate, so, rather than first come first serve, it's vibe-based. i'll try to be fair. if you register but aren't confirmed, then you'll be priority for the next one.
 
-[register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)
+~~[register for a seat here!](https://partiful.com/e/OXvZQpc5Ukmy0hMNWoCw)~~
