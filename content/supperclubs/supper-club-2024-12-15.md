@@ -1,5 +1,5 @@
 ---
-title: supper club - 15 Dec 2024
+title: "🏖️ mediterranean supper club"
 date: 2024-12-15
 description: "ian ahuja - supper clubs - 2024-12-15"
 keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends"
@@ -8,15 +8,17 @@ active: false
 og_title: "ian ahuja - supper clubs"
 og_description: "ian ahuja - supper clubs - 2024-12-15"
 layout: "single"
+slug: "2024-12-15-mediterranean"
 ---
-🍽️
 
-spaces available /// **0**  
-chefs /// **alexandra + ian**  
-location /// **N1, london**  
-contribution /// **£18**
+sold out!  
 
-menu:
+spaces available: **0**  
+chefs: **alexandra + ian**  
+location: **N1, london**  
+contribution: **£18**
+
+# menu
 
 - sumac roast baby potatoes
 - grilled aubergines

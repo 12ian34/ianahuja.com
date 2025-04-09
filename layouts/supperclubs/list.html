@@ -8,24 +8,28 @@
 
 <p><i class="fa-brands fa-instagram"></i> <a href="https://instagram.com/plenty.of.dish">plenty.of.dish</a>
 
+<h1>upcoming</h1>
 <ul class="supperclubs-list">
   {{ range .Pages.ByDate.Reverse }}
-  <li>
-      {{ if .Params.active }}
-      <span class="badge active">🟢 future -</span>
-      {{ else }}
-      <span class="badge inactive">🟠 past -</span>
-      {{ end }}
-      {{ if eq .Params.eventtype "picnic" }}
-      <span>🏕️</span>
-      {{ else if eq .Params.eventtype "supperclub" }}
-      <span>🍽️</span>
-      {{ end }}
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-  </li>
+    {{ if .Params.active }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Title }}</a> {{ .Date.Format "2 Jan 2006" }}
+    </li>
+    {{ end }}
   {{ end }}
 </ul>
 
+<h1>past</h1>
+<ul class="supperclubs-list">
+  {{ range .Pages.ByDate.Reverse }}
+    {{ if not .Params.active }}
+    <li>
+      <a href="{{ .Permalink }}">{{ .Title }}</a> {{ .Date.Format "2 Jan 2006" }}
+    </li>
+    {{ end }}
+  {{ end }}
+</ul>
+<hr>
 {{ partial "form.html" . }}
 
 {{ end }}

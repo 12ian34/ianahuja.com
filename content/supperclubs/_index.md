@@ -9,6 +9,4 @@ og_description: "ian ahuja - supper clubs"
 
 london needs more organized picnics and supper clubs
 
-TESTING
-
 so I'm hosting the former during summer and the latter during winter...

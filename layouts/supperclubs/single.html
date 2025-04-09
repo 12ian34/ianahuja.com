@@ -1,11 +1,14 @@
 {{ define "main" }}
 
 <article>
-  <p>{{ .Title }}</p>
+  <h1>{{ .Title }}</h1>
   <div>
     {{ .Content }}
   </div>
-  
+
+  <h1>info</h1>
+  {{ partial "supper-club-info.html" . }}
+  <h1>book</h1>
   {{ partial "form.html" . }}
 
 </article>
