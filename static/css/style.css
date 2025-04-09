@@ -116,7 +116,6 @@ a:visited,
 a:hover,
 .nav-top a:hover {
     color: #00FF34;
-    text-decoration: underline;
     transform: translateY(-10px);
 }
 
@@ -124,7 +123,6 @@ a:active,
 .nav-top a:active {
     /* click and hold */
     color: #EB21EE;
-    text-decoration: underline;
 }
 
 a.active,

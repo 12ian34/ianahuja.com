@@ -10,27 +10,23 @@ layout: "single"
 
 <div class="centered-content">
 
+i make music with analog, digital, and modular synthesizers
 
-i make music with analog, digital, and modular synthesizers.
+[listen on Bandcamp](https://m-oonquake.bandcamp.com/)
 
----
+[watch on YouTube](https://www.youtube.com/@m_oonquake)  
 
-<iframe width="90%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1912381910&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+[Soundcloud](https://soundcloud.com/m_oonquake)
 
----
+i do live sets when i get the chance:
 
-<iframe src="https://www.youtube-nocookie.com/embed/_Cqhu-U_syU?si=oxbUVZgfBWKIoxQ-&controls=1&start=1920" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+# upcoming
 
----
+tbc...
 
-<iframe style="border: 0; width: 300px; height: 400px;" src="https://bandcamp.com/EmbeddedPlayer/track=804438219/size=large/bgcol=333333/linkcol=2ebd35/tracklist=false/transparent=true/" seamless><a href="https://m-oonquake.bandcamp.com/track/clandestine-shimmer">clandestine shimmer by moonquake</a></iframe>
+# past
 
----
-
-[listen more on Bandcamp](https://m-oonquake.bandcamp.com/)
-
-[watch more on YouTube](https://www.youtube.com/@m_oonquake)  
-
-[listen more on Soundcloud](https://soundcloud.com/m_oonquake)
+- [22 mar 2025 @ London Night Cafe](https://www.youtube.com/watch?v=8A_z7yd8zew)
+- [07 sep 2024 @ London Night Cafe](https://soundcloud.com/m_oonquake/moonquake-live-modular-synth-set-london-night-cafe-07-sep-2024)
 
 </div>
