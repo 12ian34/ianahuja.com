@@ -7,3 +7,5 @@ hugo.darwin
 hugo.linux
 /.hugo_build.lock
 .netlify
+.cursor
+.cursorrules

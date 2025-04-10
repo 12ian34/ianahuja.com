@@ -1,0 +1,45 @@
+<style>
+    .geometric-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: transparent;
+        pointer-events: none;
+        z-index: 5;
+    }
+    
+    #geometric-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
+        mix-blend-mode: overlay;
+    }
+    
+    .centered-content {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    body {
+        background: #f8f8f8;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<div class="geometric-container">
+    <canvas id="geometric-canvas"></canvas>
+</div>
+
+<script src="/js/geometric-visualizer.js"></script>
