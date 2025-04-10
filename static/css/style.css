@@ -5,7 +5,7 @@ html, body {
     margin: 0;
     padding: 0;
     background-position: center;
-    background: linear-gradient(135deg, #0f1210 0%, #243129 100%);
+    background: linear-gradient(0deg, #2d3c32 -250%, #000000 80%);
     background-attachment: fixed;
     /* max-width: 80%; */
     /* margin: 10%; */
@@ -144,7 +144,7 @@ a.active,
     position: sticky;
     z-index: 1000;
     top: 0;
-    background-color: rgba(15, 18, 16, 0.98);
+    background-color: rgba(0, 0, 0, 0.98);
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
     /* background-color: #0f1210; */
@@ -246,6 +246,39 @@ textarea {
 
 input:invalid, textarea:invalid {
     outline: 2px solid orange;
+}
+
+.geometric-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 150vh;
+    overflow: hidden;
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+#geometric-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150vh;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+@media (max-width: 768px) {
+    #geometric-canvas {
+        pointer-events: none;
+    }
+    body {
+        overflow: auto;
+        position: relative;
+    }
 }
 
 /* 

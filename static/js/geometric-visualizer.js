@@ -92,7 +92,7 @@ class GeometricVisualizer {
             // Scroll interaction
             const scrollEffect = this.scrollY * 0.1;
             particle.y += Math.sin(scrollEffect * 1) * 1;
-            particle.x += Math.cos(scrollEffect * 1) * 1;
+            // particle.x += Math.cos(scrollEffect * 1) * 1;
 
             // Apply current speed
             particle.x += particle.currentSpeedX;
