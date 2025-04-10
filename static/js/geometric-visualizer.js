@@ -5,6 +5,7 @@ class GeometricVisualizer {
         this.particles = [];
         this.animationFrame = null;
         this.mouse = { x: null, y: null, radius: 150 };
+        this.scrollY = 0;
         this.resize();
         
         // Initialize particles
@@ -46,6 +47,11 @@ class GeometricVisualizer {
             this.mouse.x = null;
             this.mouse.y = null;
         });
+
+        // Scroll interaction
+        window.addEventListener('scroll', () => {
+            this.scrollY = window.scrollY;
+        });
     }
 
     resize() {
@@ -82,6 +88,11 @@ class GeometricVisualizer {
                     particle.y -= Math.sin(angle) * force * 1.5;
                 }
             }
+
+            // Scroll interaction
+            const scrollEffect = this.scrollY * 0.1;
+            particle.y += Math.sin(scrollEffect * 1) * 1;
+            particle.x += Math.cos(scrollEffect * 1) * 1;
 
             // Apply current speed
             particle.x += particle.currentSpeedX;
