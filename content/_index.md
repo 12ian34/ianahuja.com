@@ -33,7 +33,7 @@ talk to me about...
 live projects
 
 🍽️ [ahuja supper clubs](/supperclubs/)  
-🃏 [unique shuffle](https://unique-shuffle.netlify.app)
+🃏 [unique shuffle](https://unique-shuffle.netlify.app)  
 🎹 [moonquake music](https://m-oonquake.bandcamp.com)  
 🌱 [plantle](https://plantle.netlify.app)  
 🏌️ [golf tournament app](https://ruffryder.golf)  
