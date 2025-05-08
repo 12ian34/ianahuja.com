@@ -13,8 +13,8 @@ slug: "2025-05-17-indian"
 
 registration not yet open!  
 
-seats taken: **1**  
-seats available: **12**  
+seats taken: **7**  
+seats available: **5**  
 chefs: **ian**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
