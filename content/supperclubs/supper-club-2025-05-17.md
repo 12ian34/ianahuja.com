@@ -11,13 +11,14 @@ layout: "single"
 slug: "2025-05-17-indian"
 ---
 
-registration not yet open!  
+[sign up here](https://partiful.com/e/xYFjqWh6K04ZALYTmSbX?)  
 
-seats taken: **7**  
-seats available: **5**  
+seats taken: **11**  
+seats available: **1**  
 chefs: **ian**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
 
 # menu
+
 indian
