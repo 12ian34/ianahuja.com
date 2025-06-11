@@ -21,13 +21,13 @@ contribution: **£20** suggested, pay what you can
 
 # menu
 
-30 pct wholemeal jalapeno sourdough
-burritos
-nachos
-guac
-cumin roasted peppers and onions
-salsa de arbol
-pico de gallo salsa
-mexican rice
-spiced hot choc brownies
-peach and rooibos tea sorbet
+- 30 pct wholemeal jalapeno sourdough
+- burritos
+- nachos
+- guac
+- cumin roasted peppers and onions
+- salsa de arbol
+- pico de gallo salsa
+- mexican rice
+- spiced hot choc brownies
+- peach and rooibos tea sorbet

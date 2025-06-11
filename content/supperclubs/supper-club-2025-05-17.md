@@ -11,14 +11,28 @@ layout: "single"
 slug: "2025-05-17-indian"
 ---
 
-[sign up here](https://partiful.com/e/xYFjqWh6K04ZALYTmSbX?)  
+sold out!
 
-seats taken: **11**  
-seats available: **1**  
+seats taken: **12**  
+seats available: **0**  
 chefs: **ian**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
 
 # menu
 
-indian
+[mostly family recipes]  
+
+- soaked almonds
+- coconut chutney
+- mint chutnet
+- raita
+- roti
+- rajma
+- daal
+- mumbai potatoes
+- chicken curry
+- sri lankan tofu curry
+- baingain aloo
+- mango and basil sorbet
+- lychee martinis
