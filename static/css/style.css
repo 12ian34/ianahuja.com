@@ -185,7 +185,7 @@ a.active,
     width: 80%;
 }
 
-.nav-top a[href="/blog/"] {
+.nav-top a[href="/words/"] {
     display: none;
 }
 
