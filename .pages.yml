@@ -1,8 +1,8 @@
 content:
   - type: collection
-    label: "blog"
-    name: "blog"
-    path: "content/blog"
+    label: "words"
+    name: "words"
+    path: "content/words"
     fields:
       - { label: "Title", name: "title", type: "string" }
       - { label: "Publish date", name: "date", type: "date" }

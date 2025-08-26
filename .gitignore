@@ -1,11 +1,43 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Hugo build outputs
 /public/
 /resources/_gen/
-/assets/jsconfig.json
 hugo_stats.json
-hugo.exe
-hugo.darwin
-hugo.linux
-/.hugo_build.lock
-.netlify
-.cursor
-.cursorrules
+.hugo_build.lock
+
+# Netlify CLI state (keep netlify.toml tracked)
+/.netlify/
+
+# Logs
+*.log
+
+# Node (if used in tooling)
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# Cursor metadata
+.cursor/
+
+# Caches
+.cache/
+.sass-cache/

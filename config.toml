@@ -26,5 +26,5 @@ buildFuture = true
   og_image = "/images/moon.png"
   default_keywords = "ian, ahuja, ianahuja, moonquake, music, supper clubs, supper, club, restaurant, london, tech, chess, electronic, synth"
 [permalinks]
-  blog = "/blog/:year/:month/:slug/"
+  words = "/words/:year/:month/:slug/"
   supperclubs = "/supperclubs/:slug/"
