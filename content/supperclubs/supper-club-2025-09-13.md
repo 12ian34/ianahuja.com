@@ -11,14 +11,21 @@ layout: "single"
 slug: "2025-09-13-thai"
 ---
 
-sign up link coming soon!
+[sign up here](https://partiful.com/e/RsTm50nGfm2qKKiykXVK)
 
-seats taken: **2**  
-seats available: **10**  
+seats taken: **10**  
+seats available: **2**  
 chefs: **ian**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
 
 # menu
 
-- thai food tbc!
+- kaeng khiao wan - thai green curry
+- gaeng daeng - thai red curry
+- kaeng matsaman - massaman curry
+- tom yum
+- tom kha gai
+- som tam - green papaya salad
+- khao niao mamuang - mango sticky rice
+- more tbc
