@@ -15,7 +15,7 @@ sign up link coming in December...
 
 seats taken: **2**  
 seats available: **10**  
-chefs: **ian**  
+chefs: **ian + caro**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
 

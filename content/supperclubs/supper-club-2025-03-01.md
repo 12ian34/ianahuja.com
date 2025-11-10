@@ -15,7 +15,7 @@ sold out!
 
 seats taken: **12**  
 seats available: **0**  
-chefs: **ian, caro**  
+chefs: **ian + caro**  
 location: **haggerston, london**  
 contribution: **£20** suggested, pay what you can  
 
