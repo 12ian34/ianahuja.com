@@ -4,7 +4,7 @@ date: 2026-01-17
 description: "ian ahuja - supper clubs - 2026-01-17"
 keywords: "picnic, park, supper club, supper, club, restaurant, dining, london, connection, ian ahuja, food, eat, friends, spicy, chilli, hot"
 eventtype: "supperclub"
-active: false
+active: true
 og_title: "ian ahuja - supper clubs"
 og_description: "ian ahuja - supper clubs - 2026-01-17"
 layout: "single"
