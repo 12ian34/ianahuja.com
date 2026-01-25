@@ -16,9 +16,6 @@
   <hr>
 
   <div class="recipe-meta">
-    {{ with .Params.source }}
-    <p><a href="{{ . }}">original recipe</a></p>
-    {{ end }}
     <p class="recipe-dates">
       {{ with .Params.created }}created {{ . | time.Format "2 Jan 2006" }}{{ end }}
       {{ with $.Params.modified }} · updated {{ . | time.Format "2 Jan 2006" }}{{ end }}
