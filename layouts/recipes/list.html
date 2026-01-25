@@ -36,17 +36,15 @@
     </div>
     {{ end }}
     <div class="recipe-card-info">
-      <div class="recipe-card-header">
-        <div class="recipe-card-title">{{ .Title }}</div>
-        {{ with .Params.prep }}
-        <div class="recipe-card-prep">{{ . }} min</div>
-        {{ end }}
-      </div>
+      <div class="recipe-card-title">{{ .Title }}</div>
       <div class="recipe-card-tags">
         {{ with .Params.cuisine }}<span class="recipe-card-tag">{{ . }}</span>{{ end }}
         {{ with .Params.diet }}<span class="recipe-card-tag">{{ . }}</span>{{ end }}
       </div>
     </div>
+    {{ with .Params.prep }}
+    <div class="recipe-card-prep">{{ . }} min</div>
+    {{ end }}
   </a>
   {{ end }}
 </div>
