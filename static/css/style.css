@@ -186,8 +186,8 @@ a:link,
 
 a:visited,
 .nav-top a:visited {
-    color: #217E2D;
-    text-decoration: line-through;
+    color: #94F3A6;
+    text-decoration: none;
 }
 
 a:hover,
@@ -212,7 +212,8 @@ a.active,
 }
 
 .nav-top {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     margin: 0 auto;
     padding-top: 0;
     display: flex;
@@ -236,6 +237,9 @@ a.active,
         0 4px 20px rgba(0, 0, 0, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
     transition: all 0.3s ease;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     /* background-color: #0f1210; */
     /* display: block; */
 }
@@ -243,7 +247,12 @@ a.active,
 @media (min-width: 768px) {
     .nav-top {
         width: 100%;
+        justify-content: center;
     }
+}
+
+.nav-top::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-top a {
@@ -252,10 +261,12 @@ a.active,
     padding: 1em 1em;
     text-decoration: none;
     line-height: 1.3em;
-    font-size: clamp(1.2em, 3vw, 1.2em);
+    font-size: clamp(1em, 3vw, 1.2em);
     font-family: 'Work Sans', sans-serif;
     transition: all 0.3s ease;
     position: relative;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-top a::after {
