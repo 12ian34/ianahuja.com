@@ -1,16 +1,11 @@
 html, body {
     background-color: #0f1210 !important;
-    height: 100%;
-    min-height: 100vw;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     background-position: center;
     background: linear-gradient(0deg, #2d3c32 -250%, #000000 80%);
     background-attachment: fixed;
-    /* max-width: 80%; */
-    /* margin: 10%; */
-    /* padding: 0% 5% 5% 5%; */
-    /* font-size: 100%; */
 }
 
 main {
@@ -74,6 +69,88 @@ p {
     font-size: clamp(0.8em, 3vw, 0.8em);
     color: #CCCCCC;
     line-height: 1.3em;
+}
+
+/* Recipes */
+.recipes-list {
+    font-size: clamp(0.9em, 3vw, 1em);
+    color: #CCCCCC;
+    line-height: 1.6em;
+}
+
+.recipes-list li {
+    margin-bottom: 0.5em;
+}
+
+.recipe-item-tags {
+    font-size: 0.75em;
+    color: #666;
+    margin-left: 0.5em;
+}
+
+.recipe-tags {
+    text-align: center;
+    margin: 1em 0;
+}
+
+.recipe-tag {
+    display: inline-block;
+    background-color: rgba(148, 243, 166, 0.15);
+    color: #94F3A6;
+    padding: 0.2em 0.6em;
+    margin: 0.2em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.recipe-image {
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+.recipe-image img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.recipe-content {
+    line-height: 1.6;
+}
+
+.recipe-content h2 {
+    font-size: 1.3em;
+    color: #94F3A6;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+
+.recipe-content ul, .recipe-content ol {
+    text-align: left;
+    padding-left: 1.5em;
+}
+
+.recipe-content li {
+    margin-bottom: 0.3em;
+    list-style-type: disc;
+}
+
+.recipe-content ol li {
+    list-style-type: decimal;
+}
+
+.recipe-meta {
+    text-align: center;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.recipe-dates {
+    font-size: 0.8em;
+    color: #666;
 } 
 
 ul {
@@ -116,7 +193,6 @@ a:visited,
 a:hover,
 .nav-top a:hover {
     color: #00FF34;
-    transform: translateY(-10px);
 }
 
 a:active,
@@ -127,8 +203,12 @@ a:active,
 
 a.active,
 .nav-top a.active {
-    color: #79CF09;
-    background-color: rgba(87, 104, 88, 0.4);
+    color: #94F3A6;
+}
+
+.nav-top a.active::after {
+    width: 80%;
+    background-color: #94F3A6;
 }
 
 .nav-top {
@@ -139,13 +219,22 @@ a.active,
     justify-content: center;
     align-items: center;
     width: 100%;
-    border-bottom: 0.2em solid rgba(203, 203, 203, 0.3);
     box-sizing: border-box;
     position: sticky;
     z-index: 1000;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.98);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        rgba(200, 220, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     transition: all 0.3s ease;
     /* background-color: #0f1210; */
     /* display: block; */
@@ -153,14 +242,14 @@ a.active,
 
 @media (min-width: 768px) {
     .nav-top {
-        width: 40%;
+        width: 100%;
     }
 }
 
 .nav-top a {
     color: #CCCCCC;
     text-align: center;
-    padding: 0.5em 1em;
+    padding: 1em 1em;
     text-decoration: none;
     line-height: 1.3em;
     font-size: clamp(1.2em, 3vw, 1.2em);

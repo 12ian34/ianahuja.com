@@ -21,6 +21,17 @@ content:
       - { label: "Active", name: "active", type: "boolean" }
       - { label: "Tags", name: "tags", type: "select"}
       - { label: "Body", name: "body", type: "rich-text" }
+  - type: collection
+    label: "recipes"
+    name: "recipes"
+    path: "content/recipes"
+    fields:
+      - { label: "Title", name: "title", type: "string" }
+      - { label: "Created", name: "created", type: "date" }
+      - { label: "Modified", name: "modified", type: "date" }
+      - { label: "Source", name: "source", type: "string" }
+      - { label: "Image", name: "image", type: "image" }
+      - { label: "Body", name: "body", type: "rich-text" }
 media:
   input: "static/images"
   output: "/images"

@@ -1,6 +1,7 @@
 <div class="nav-top">
     <a href="/" {{ if eq .RelPermalink "/" }}class="active"{{ end }}>home</a>
-    <a href="/words/" {{ if eq .RelPermalink "/words/" }}class="active"{{ end }}>words</a>
-    <a href="/supperclubs/" {{ if eq .RelPermalink "/supperclubs/" }}class="active"{{ end }}>supper clubs</a>
-    <a href="/music/" {{ if eq .RelPermalink "/music/" }}class="active"{{ end }}>music</a>
+    <a href="/words/" {{ if hasPrefix .RelPermalink "/words" }}class="active"{{ end }}>words</a>
+    <a href="/supperclubs/" {{ if hasPrefix .RelPermalink "/supperclubs" }}class="active"{{ end }}>supper clubs</a>
+    <a href="/recipes/" {{ if hasPrefix .RelPermalink "/recipes" }}class="active"{{ end }}>recipes</a>
+    <a href="/music/" {{ if hasPrefix .RelPermalink "/music" }}class="active"{{ end }}>music</a>
 </div>

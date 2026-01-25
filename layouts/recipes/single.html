@@ -1,0 +1,29 @@
+{{ define "main" }}
+
+<article class="recipe">
+  <h1>{{ .Title }}</h1>
+
+  {{ with .Params.image }}
+  <div class="recipe-image">
+    <img src="{{ . }}" alt="{{ $.Title }}">
+  </div>
+  {{ end }}
+
+  <div class="recipe-content">
+    {{ .Content }}
+  </div>
+
+  <hr>
+
+  <div class="recipe-meta">
+    {{ with .Params.source }}
+    <p><a href="{{ . }}">original recipe</a></p>
+    {{ end }}
+    <p class="recipe-dates">
+      {{ with .Params.created }}created {{ . | time.Format "2 Jan 2006" }}{{ end }}
+      {{ with $.Params.modified }} · updated {{ . | time.Format "2 Jan 2006" }}{{ end }}
+    </p>
+  </div>
+</article>
+
+{{ end }}
