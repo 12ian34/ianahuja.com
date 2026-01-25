@@ -25,8 +25,9 @@ content:
     label: "recipes"
     name: "recipes"
     path: "content/recipes"
+    filename: "{fields.title}"
     fields:
-      - { label: "Title", name: "title", type: "string" }
+      - { label: "Title", name: "title", type: "string", required: true }
       - { label: "Created", name: "created", type: "date" }
       - { label: "Modified", name: "modified", type: "date" }
       - { label: "Source", name: "source", type: "string" }
