@@ -2,7 +2,7 @@
 title: korean pickled daikon
 created: 2025-02-25T23:43:20+00:00
 modified: 2025-08-06T00:00:54+01:00
-image: /images/korean-pickled-daikon.jpeg
+image: /images/korean-pickled-daikon.webp
 cuisine: korean
 diet: vegan
 prep: 15

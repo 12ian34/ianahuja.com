@@ -2,7 +2,7 @@
 title: sesame matcha cheesecake
 created: 2025-08-02T20:02:47+01:00
 modified: 2025-08-06T00:01:34+01:00
-image: /images/sesame-matcha-cheesecake.jpeg
+image: /images/sesame-matcha-cheesecake.webp
 cuisine: japanese
 diet: vegetarian
 prep: 60

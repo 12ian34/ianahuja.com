@@ -2,7 +2,7 @@
 title: spicy smacked soy cucumber
 created: 2024-08-01T17:13:44+01:00
 modified: 2025-09-01T13:34:50+01:00
-image: /images/spicy-soy-smacked-cucumber.jpeg
+image: /images/spicy-soy-smacked-cucumber.webp
 cuisine: asian
 diet: vegan
 prep: 10

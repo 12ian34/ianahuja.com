@@ -3,7 +3,7 @@ title: bang bang cauliflower
 created: 2025-02-26T14:51:11+00:00
 modified: 2025-08-06T00:00:06+01:00
 source: https://jessicainthekitchen.com/bang-bang-cauliflower-vegan/#recipe
-image: /images/bang-bang-cauliflower.jpeg
+image: /images/bang-bang-cauliflower.webp
 cuisine: asian
 diet: vegan
 prep: 45
