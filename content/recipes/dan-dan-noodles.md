@@ -3,6 +3,8 @@ title: dan dan noodles
 created: 2025-08-02T19:54:52+01:00
 modified: 2025-12-31T17:19:09+00:00
 image: /images/dan-dan-noodles.jpeg
+cuisine: chinese
+prep: 25
 ---
 
 ## sauce ingredients

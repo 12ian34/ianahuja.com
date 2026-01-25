@@ -3,6 +3,10 @@
 <article class="recipe">
   <h1>{{ .Title }}</h1>
 
+  {{ with .Params.prep }}
+  <p class="recipe-prep">{{ . }} mins</p>
+  {{ end }}
+
   {{ with .Params.image }}
   <div class="recipe-image">
     <img src="{{ . }}" alt="{{ $.Title }}">

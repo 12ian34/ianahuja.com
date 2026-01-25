@@ -1,14 +1,75 @@
 {{ define "main" }}
-<p>
-  recipes from my kitchen
-</p>
 
-<ul class="recipes-list">
+<div class="recipe-filters">
+  <select id="filter-cuisine" class="filter-select">
+    <option value="all">all cuisines</option>
+    {{- $cuisines := slice -}}
+    {{- range .Pages -}}
+      {{- with .Params.cuisine -}}
+        {{- $cuisines = $cuisines | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- range ($cuisines | uniq | sort) }}
+    <option value="{{ . }}">{{ . }}</option>
+    {{- end }}
+  </select>
+  <select id="filter-diet" class="filter-select">
+    <option value="all">all diets</option>
+    {{- $diets := slice -}}
+    {{- range .Pages -}}
+      {{- with .Params.diet -}}
+        {{- $diets = $diets | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- range ($diets | uniq | sort) }}
+    <option value="{{ . }}">{{ . }}</option>
+    {{- end }}
+  </select>
+</div>
+
+<div class="recipe-list">
   {{ range .Pages.ByParam "modified" }}
-  <li>
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-  </li>
+  <a href="{{ .Permalink }}" class="recipe-card" data-cuisine="{{ .Params.cuisine }}" data-diet="{{ .Params.diet }}">
+    {{ if .Params.image }}
+    <div class="recipe-card-image">
+      <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+    </div>
+    {{ end }}
+    <div class="recipe-card-info">
+      <div class="recipe-card-header">
+        <div class="recipe-card-title">{{ .Title }}</div>
+        {{ with .Params.prep }}
+        <div class="recipe-card-prep">{{ . }} min</div>
+        {{ end }}
+      </div>
+      <div class="recipe-card-tags">
+        {{ with .Params.cuisine }}<span class="recipe-card-tag">{{ . }}</span>{{ end }}
+        {{ with .Params.diet }}<span class="recipe-card-tag">{{ . }}</span>{{ end }}
+      </div>
+    </div>
+  </a>
   {{ end }}
-</ul>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cuisineSelect = document.getElementById('filter-cuisine');
+  const dietSelect = document.getElementById('filter-diet');
+  const cards = document.querySelectorAll('.recipe-card');
+
+  function filterCards() {
+    const cuisine = cuisineSelect.value;
+    const diet = dietSelect.value;
+    cards.forEach(card => {
+      const matchCuisine = cuisine === 'all' || card.dataset.cuisine === cuisine;
+      const matchDiet = diet === 'all' || card.dataset.diet === diet;
+      card.style.display = (matchCuisine && matchDiet) ? '' : 'none';
+    });
+  }
+
+  cuisineSelect.addEventListener('change', filterCards);
+  dietSelect.addEventListener('change', filterCards);
+});
+</script>
 
 {{ end }}

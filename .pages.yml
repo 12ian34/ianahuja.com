@@ -32,6 +32,9 @@ content:
       - { label: "Modified", name: "modified", type: "date" }
       - { label: "Source", name: "source", type: "string" }
       - { label: "Image", name: "image", type: "image" }
+      - { label: "Cuisine", name: "cuisine", type: "string" }
+      - { label: "Diet", name: "diet", type: "string" }
+      - { label: "Prep (mins)", name: "prep", type: "number" }
       - { label: "Body", name: "body", type: "rich-text" }
 media:
   input: "static/images"
