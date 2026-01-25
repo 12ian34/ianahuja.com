@@ -9,11 +9,10 @@ html, body {
 }
 
 main {
-    max-width: 600px; /* Restrict the maximum width of the content */
-    margin: 0 auto;    /* Center the container horizontally */
-    padding: 0 20px;   /* Add padding for spacing on smaller screens */
-    box-sizing: border-box;  /*Ensure padding doesn't overflow the container*/
-    min-height: 100vh; /* Stretch main container to viewport height */
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
     animation: fadeIn 0.3s ease-in-out;
 }
 
