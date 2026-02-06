@@ -630,7 +630,7 @@ body:has(.miniti-page) main {
 .miniti-tagline {
     font-size: clamp(1em, 2.5vw, 1.1em);
     color: #CCCCCC;
-    max-width: 420px;
+    max-width: 600px;
     margin: 0 auto 0.5em;
 }
 
@@ -638,7 +638,7 @@ body:has(.miniti-page) main {
     list-style: none;
     padding: 0;
     margin: 0 auto 1em;
-    max-width: 420px;
+    max-width: 600px;
     text-align: left;
     font-size: clamp(0.9em, 2.5vw, 1em);
     color: #CCCCCC;
@@ -656,7 +656,7 @@ body:has(.miniti-page) main {
 .miniti-meta {
     font-size: clamp(0.85em, 2vw, 0.95em);
     color: #888;
-    max-width: 420px;
+    max-width: 600px;
     margin: 0 auto 2em;
 }
 
