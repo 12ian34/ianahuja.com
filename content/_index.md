@@ -32,7 +32,7 @@ talk to me about...
 
 live projects
 
-🎙️ [miniti](/miniti/)
+🎙️ [miniti](/miniti/)  
 🍽️ [ahuja supper clubs](/supperclubs/)  
 🎹 [moonquake music](https://m-oonquake.bandcamp.com)  
 🃏 [unique shuffle](https://unique-shuffle.netlify.app)  
