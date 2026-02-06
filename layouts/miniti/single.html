@@ -1,0 +1,68 @@
+{{ define "main" }}
+<div class="miniti-page">
+  <h1>Miniti</h1>
+  <p class="miniti-tagline">a macOS meeting assistant. records mic + system audio, live transcription, AI insights.</p>
+  <p class="miniti-meta">requires macOS 14.2+. free — 500 minutes/month managed, or bring your own API keys for unlimited.</p>
+
+  <div id="form-section" class="miniti-form-section">
+    <form id="download-form" name="miniti-download" method="POST" data-netlify="true" netlify-honeypot="hpot-field">
+      <p style="display:none"><label><input name="hpot-field" /></label></p>
+      <input type="text" name="name" placeholder="name" required minlength="2" />
+      <input type="email" name="email" placeholder="email" required />
+      <button type="submit">get download link</button>
+    </form>
+  </div>
+
+  <div id="success-section" class="miniti-message" style="display:none;">
+    <p>check your email for the download link.</p>
+  </div>
+
+  <div id="error-section" class="miniti-message miniti-error" style="display:none;">
+    <p>something went wrong. try again?</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('download-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const honeypot = form.querySelector('[name="hpot-field"]').value;
+
+    if (honeypot) return; // bot
+
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'sending...';
+
+    try {
+      // Submit to Netlify Forms (for records)
+      const formData = new URLSearchParams();
+      formData.append('form-name', 'miniti-download');
+      formData.append('name', name);
+      formData.append('email', email);
+      await fetch('/', { method: 'POST', body: formData, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+
+      // Trigger the verification email
+      const res = await fetch('/.netlify/functions/request-download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email }),
+      });
+
+      if (res.ok) {
+        document.getElementById('form-section').style.display = 'none';
+        document.getElementById('success-section').style.display = 'block';
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (err) {
+      document.getElementById('error-section').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'get download link';
+    }
+  });
+</script>
+{{ end }}

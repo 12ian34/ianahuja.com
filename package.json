@@ -1,0 +1,24 @@
+{
+  "name": "ianahuja.com",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ianahuja.com — Hugo site with Netlify Functions",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/12ian34/ianahuja.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/12ian34/ianahuja.com/issues"
+  },
+  "homepage": "https://github.com/12ian34/ianahuja.com#readme",
+  "dependencies": {
+    "resend": "^6.9.1"
+  }
+}

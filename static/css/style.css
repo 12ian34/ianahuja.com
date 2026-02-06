@@ -559,6 +559,59 @@ input:invalid, textarea:invalid {
     }
 }
 
+/* Miniti page */
+.miniti-page {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.miniti-tagline {
+    font-size: clamp(1em, 2.5vw, 1.1em);
+    color: #CCCCCC;
+    max-width: 420px;
+    margin: 0 auto 0.5em;
+}
+
+.miniti-meta {
+    font-size: clamp(0.85em, 2vw, 0.95em);
+    color: #888;
+    max-width: 420px;
+    margin: 0 auto 2em;
+}
+
+.miniti-form-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.miniti-form-section input[type="text"],
+.miniti-form-section input[type="email"] {
+    width: clamp(14em, 60vw, 20em);
+    text-align: center;
+}
+
+.miniti-form-section button[type="submit"] {
+    width: clamp(14em, 60vw, 20em);
+    margin-top: 0.25rem;
+}
+
+.miniti-form-section button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.miniti-message p {
+    font-size: 1.1em;
+    color: #94F3A6;
+}
+
+.miniti-error p {
+    color: #e85d5d;
+}
+
 /* 
 .nowrap {
     white-space: nowrap;
