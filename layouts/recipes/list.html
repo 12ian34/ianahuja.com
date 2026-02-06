@@ -65,8 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  cuisineSelect.addEventListener('change', filterCards);
-  dietSelect.addEventListener('change', filterCards);
+  cuisineSelect.addEventListener('change', function() {
+    filterCards();
+    posthog.capture('recipe_filter_changed', { filter: 'cuisine', value: cuisineSelect.value });
+  });
+  dietSelect.addEventListener('change', function() {
+    filterCards();
+    posthog.capture('recipe_filter_changed', { filter: 'diet', value: dietSelect.value });
+  });
 });
 </script>
 

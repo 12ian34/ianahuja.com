@@ -572,6 +572,25 @@ input:invalid, textarea:invalid {
     margin: 0 auto 0.5em;
 }
 
+.miniti-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 1em;
+    max-width: 420px;
+    text-align: left;
+    font-size: clamp(0.9em, 2.5vw, 1em);
+    color: #CCCCCC;
+}
+
+.miniti-features li {
+    padding: 0.2em 0;
+}
+
+.miniti-features li::before {
+    content: "- ";
+    color: #888;
+}
+
 .miniti-meta {
     font-size: clamp(0.85em, 2vw, 0.95em);
     color: #888;

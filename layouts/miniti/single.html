@@ -1,8 +1,17 @@
 {{ define "main" }}
 <div class="miniti-page">
-  <h1>Miniti</h1>
-  <p class="miniti-tagline">a macOS meeting assistant. records mic + system audio, live transcription, AI insights.</p>
-  <p class="miniti-meta">requires macOS 14.2+. free — 500 minutes/month managed, or bring your own API keys for unlimited.</p>
+  <h1>initi</h1>
+  <p class="miniti-tagline">a macOS meeting assistant.</p>
+  <ul class="miniti-features">
+    <li>records mic + system audio simultaneously</li>
+    <li>live transcription with speaker diarization</li>
+    <li>AI-generated summaries and action items</li>
+    <li>MEDDPICC analysis mode</li>
+    <li>meeting history browser</li>
+    <li>menu bar app with global keyboard shortcuts</li>
+    <li>no screen recording permission needed</li>
+  </ul>
+  <p class="miniti-meta">requires macOS 14.2+. free, 500 minutes/month managed, or bring your own API keys for unlimited.</p>
 
   <div id="form-section" class="miniti-form-section">
     <form id="download-form" name="miniti-download" method="POST" data-netlify="true" netlify-honeypot="hpot-field">
@@ -37,6 +46,8 @@
     btn.disabled = true;
     btn.textContent = 'sending...';
 
+    posthog.capture('miniti_download_submitted');
+
     try {
       // Submit to Netlify Forms (for records)
       const formData = new URLSearchParams();
@@ -53,12 +64,14 @@
       });
 
       if (res.ok) {
+        posthog.capture('miniti_download_success');
         document.getElementById('form-section').style.display = 'none';
         document.getElementById('success-section').style.display = 'block';
       } else {
         throw new Error('Request failed');
       }
     } catch (err) {
+      posthog.capture('miniti_download_error');
       document.getElementById('error-section').style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'get download link';
