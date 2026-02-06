@@ -78,12 +78,16 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
+  function ph(event) {
+    try { posthog.capture(event); } catch (_) {}
+  }
+
   const form = document.getElementById('download-form');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = form.querySelector('[name="name"]').value.trim();
-    const email = form.querySelector('[name="email"]').value.trim();
+    const userName = form.querySelector('[name="name"]').value.trim();
+    const userEmail = form.querySelector('[name="email"]').value.trim();
     const honeypot = form.querySelector('[name="hpot-field"]').value;
 
     if (honeypot) return; // bot
@@ -92,32 +96,32 @@
     btn.disabled = true;
     btn.textContent = 'sending...';
 
-    posthog.capture('miniti_download_submitted');
+    ph('miniti_download_submitted');
 
     try {
       // Submit to Netlify Forms (for records)
       const formData = new URLSearchParams();
       formData.append('form-name', 'miniti-download');
-      formData.append('name', name);
-      formData.append('email', email);
+      formData.append('name', userName);
+      formData.append('email', userEmail);
       await fetch('/', { method: 'POST', body: formData, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
 
       // Trigger the verification email
       const res = await fetch('/.netlify/functions/request-download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name: userName, email: userEmail }),
       });
 
       if (res.ok) {
-        posthog.capture('miniti_download_success');
+        ph('miniti_download_success');
         document.getElementById('form-section').style.display = 'none';
         document.getElementById('success-section').style.display = 'block';
       } else {
         throw new Error('Request failed');
       }
     } catch (err) {
-      posthog.capture('miniti_download_error');
+      ph('miniti_download_error');
       document.getElementById('error-section').style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'get download link';
