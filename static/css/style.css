@@ -563,6 +563,12 @@ input:invalid, textarea:invalid {
 .miniti-page {
     text-align: center;
     padding-top: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+body:has(.miniti-page) main {
+    max-width: 900px;
 }
 
 .miniti-icon {
