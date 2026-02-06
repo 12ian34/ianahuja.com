@@ -565,6 +565,62 @@ input:invalid, textarea:invalid {
     padding-top: 2rem;
 }
 
+.miniti-icon {
+    width: 96px;
+    height: 96px;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+}
+
+.miniti-gallery-wrap {
+    position: relative;
+    margin: 0 auto 2em;
+}
+
+.miniti-gallery-wrap::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3rem;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #0f1210);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s;
+}
+
+.miniti-gallery-wrap.scrolled-end::after {
+    opacity: 0;
+}
+
+.miniti-gallery {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.miniti-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.miniti-gallery-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0 max(1rem, calc((100vw - 600px) / 2));
+}
+
+.miniti-gallery-track img {
+    flex-shrink: 0;
+    height: min(55vw, 340px);
+    width: auto;
+    border-radius: 8px;
+    scroll-snap-align: center;
+    background: #0f1210;
+}
+
 .miniti-tagline {
     font-size: clamp(1em, 2.5vw, 1.1em);
     color: #CCCCCC;

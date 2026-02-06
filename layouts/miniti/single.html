@@ -1,6 +1,7 @@
 {{ define "main" }}
 <div class="miniti-page">
-  <h1>initi</h1>
+  <img src="/images/miniti-icon.png" alt="miniti icon" class="miniti-icon" />
+  <h1>miniti</h1>
   <p class="miniti-tagline">a macOS meeting assistant.</p>
   <ul class="miniti-features">
     <li>records mic + system audio simultaneously</li>
@@ -11,7 +12,18 @@
     <li>menu bar app with global keyboard shortcuts</li>
     <li>no screen recording permission needed</li>
   </ul>
-  <p class="miniti-meta">requires macOS 14.2+. free, 500 minutes/month managed, or bring your own API keys for unlimited.</p>
+  <p class="miniti-meta">free, 500 minutes/month, or bring your own API keys for unlimited</p>
+
+  <div class="miniti-gallery-wrap">
+    <div class="miniti-gallery">
+      <div class="miniti-gallery-track">
+        <img src="/images/miniti-1.png" alt="miniti screenshot 1" />
+        <img src="/images/miniti-2.png" alt="miniti screenshot 2" />
+        <img src="/images/miniti-3.png" alt="miniti screenshot 3" />
+        <img src="/images/miniti-4.png" alt="miniti screenshot 4" />
+      </div>
+    </div>
+  </div>
 
   <div id="form-section" class="miniti-form-section">
     <form id="download-form" name="miniti-download" method="POST" data-netlify="true" netlify-honeypot="hpot-field">
@@ -32,6 +44,14 @@
 </div>
 
 <script>
+  // Gallery scroll fade
+  const gallery = document.querySelector('.miniti-gallery');
+  const wrap = document.querySelector('.miniti-gallery-wrap');
+  gallery.addEventListener('scroll', () => {
+    const atEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 10;
+    wrap.classList.toggle('scrolled-end', atEnd);
+  });
+
   const form = document.getElementById('download-form');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
