@@ -522,7 +522,7 @@ textarea {
     }
 }
 
-input:invalid, textarea:invalid {
+input:user-invalid, textarea:user-invalid {
     outline: 2px solid orange;
 }
 
