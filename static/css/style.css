@@ -687,6 +687,29 @@ input:invalid, textarea:invalid {
     color: #e85d5d;
 }
 
+.miniti-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.miniti-lightbox.active {
+    display: flex;
+}
+
+.miniti-lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+}
+
 /* 
 .nowrap {
     white-space: nowrap;

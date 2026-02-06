@@ -43,6 +43,10 @@
   </div>
 </div>
 
+<div class="miniti-lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
 <script>
   // Gallery scroll fade
   const gallery = document.querySelector('.miniti-gallery');
@@ -50,6 +54,28 @@
   gallery.addEventListener('scroll', () => {
     const atEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 10;
     wrap.classList.toggle('scrolled-end', atEnd);
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.miniti-gallery-track img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+  }
+
+  lightbox.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 
   const form = document.getElementById('download-form');
