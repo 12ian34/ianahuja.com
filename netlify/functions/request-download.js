@@ -36,15 +36,18 @@ exports.handler = async (event) => {
 
   try {
     await resend.emails.send({
-      from: `Miniti <${senderEmail}>`,
+      from: `Ian @ miniti <${senderEmail}>`,
       to: email,
-      subject: "Your Miniti download link",
+      subject: "Your miniti Download Link",
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 20px;">
+          <img src="${siteUrl}/images/miniti-icon.png" alt="miniti" width="48" height="48" style="border-radius: 12px; margin-bottom: 24px;" />
           <h2 style="margin-bottom: 8px;">Hey ${name},</h2>
-          <p>Thanks for your interest in Miniti! Click below to download:</p>
-          <a href="${verifyUrl}" style="display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin: 16px 0;">Download Miniti</a>
+          <p>Thanks for your interest in miniti 💚</p>
+          <p>Click below to download:</p>
+          <a href="${verifyUrl}" style="display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin: 16px 0;">Download miniti</a>
           <p style="color: #666; font-size: 14px;">This link expires in 24 hours. macOS 14.2+ required.</p>
+          <p style="color: #555; font-size: 14px; margin-top: 24px;">miniti is in beta. Let me know what you'd like to see in it by replying to this email.</p>
           <p style="color: #999; font-size: 12px; margin-top: 32px;">ianahuja.com/miniti</p>
         </div>
       `,
