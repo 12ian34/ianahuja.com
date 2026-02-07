@@ -15,6 +15,8 @@
   </ul>
   <p class="miniti-meta">500 mins/month for free<br>♾️ mins if you bring your own API keys</p>
   <div class="miniti-gallery-wrap">
+    <button class="gallery-arrow gallery-arrow-left hidden" aria-label="Previous">&#8249;</button>
+    <button class="gallery-arrow gallery-arrow-right" aria-label="Next">&#8250;</button>
     <div class="miniti-gallery">
       <div class="miniti-gallery-track">
         <img src="/images/miniti-1.png" alt="miniti screenshot 1" />
@@ -22,6 +24,12 @@
         <img src="/images/miniti-3.png" alt="miniti screenshot 3" />
         <img src="/images/miniti-4.png" alt="miniti screenshot 4" />
       </div>
+    </div>
+    <div class="gallery-dots">
+      <span class="gallery-dot active"></span>
+      <span class="gallery-dot"></span>
+      <span class="gallery-dot"></span>
+      <span class="gallery-dot"></span>
     </div>
   </div>
 
@@ -48,13 +56,57 @@
 </div>
 
 <script>
-  // Gallery scroll fade
+  // Gallery
   const gallery = document.querySelector('.miniti-gallery');
   const wrap = document.querySelector('.miniti-gallery-wrap');
-  gallery.addEventListener('scroll', () => {
+  const imgs = document.querySelectorAll('.miniti-gallery-track img');
+  const dots = document.querySelectorAll('.gallery-dot');
+  const arrowL = document.querySelector('.gallery-arrow-left');
+  const arrowR = document.querySelector('.gallery-arrow-right');
+
+  function getActiveIndex() {
+    const center = gallery.scrollLeft + gallery.clientWidth / 2;
+    let closest = 0, minDist = Infinity;
+    imgs.forEach((img, i) => {
+      const mid = img.offsetLeft + img.offsetWidth / 2;
+      const dist = Math.abs(mid - center);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    return closest;
+  }
+
+  function updateGalleryUI() {
     const atEnd = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 10;
+    const atStart = gallery.scrollLeft <= 10;
     wrap.classList.toggle('scrolled-end', atEnd);
+    arrowL.classList.toggle('hidden', atStart);
+    arrowR.classList.toggle('hidden', atEnd);
+    const idx = getActiveIndex();
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function scrollToImage(i) {
+    const img = imgs[i];
+    const offset = img.offsetLeft - gallery.clientWidth / 2 + img.offsetWidth / 2;
+    gallery.scrollTo({ left: offset, behavior: 'smooth' });
+  }
+
+  arrowL.addEventListener('click', () => {
+    const idx = Math.max(0, getActiveIndex() - 1);
+    scrollToImage(idx);
   });
+
+  arrowR.addEventListener('click', () => {
+    const idx = Math.min(imgs.length - 1, getActiveIndex() + 1);
+    scrollToImage(idx);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => scrollToImage(i));
+  });
+
+  gallery.addEventListener('scroll', updateGalleryUI, { passive: true });
+  updateGalleryUI();
 
   // Lightbox
   const lightbox = document.getElementById('lightbox');
