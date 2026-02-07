@@ -34,11 +34,36 @@ live projects
 
 🎙️ [miniti](/miniti/)  
 🍽️ [ahuja supper clubs](/supperclubs/)  
-🎹 [moonquake music](https://m-oonquake.bandcamp.com)  
-🃏 [unique shuffle](https://unique-shuffle.netlify.app)  
 🏌️ [golf tournament app](https://ruffryder.golf)  
 🌱 [plantle](https://plantle.netlify.app)  
-~~🎙️ [moonquake infinite radio](https://radio.spookyaction.media)~~
+🎹 [moonquake music](https://m-oonquake.bandcamp.com)  
+
+---
+
+current attention  
+<span class="last-updated">last updated 2026-02-07</span>
+
+🤖 AI  
+💼 enterprise sales  
+📈 scaling revenue post PMF  
+🍎 native mac/iOS development  
+📊 financial markets  
+🏛️ politics  
+✈️ travel planning  
+🥏 ultimate frisbee  
+🎾 improving squash  
+♟️ improving chess  
+🎛️ modular synthesis  
+🍜 miso soup  
+🍗 dry brine spatchcock chicken  
+🍞 wholemeal jalapeno sourdough  
+
+---
+
+laterbase projects
+
+🃏 [unique shuffle](https://unique-shuffle.netlify.app)  
+🎙️ [moonquake infinite radio](https://radio.spookyaction.media)
 
 ---
 

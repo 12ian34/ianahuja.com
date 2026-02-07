@@ -1,7 +1,35 @@
-<div class="nav-top">
-    <a href="/" {{ if eq .RelPermalink "/" }}class="active"{{ end }}>home</a>
-    <a href="/words/" {{ if hasPrefix .RelPermalink "/words" }}class="active"{{ end }}>words</a>
-    <a href="/supperclubs/" {{ if hasPrefix .RelPermalink "/supperclubs" }}class="active"{{ end }}>supper clubs</a>
-    <a href="/recipes/" {{ if hasPrefix .RelPermalink "/recipes" }}class="active"{{ end }}>recipes</a>
-    <a href="/music/" {{ if hasPrefix .RelPermalink "/music" }}class="active"{{ end }}>music</a>
+<div class="nav-wrap">
+  <div class="nav-fade nav-fade-left"></div>
+  <div class="nav-top">
+      <a href="/" {{ if eq .RelPermalink "/" }}class="active"{{ end }}>home</a>
+      <a href="/words/" {{ if hasPrefix .RelPermalink "/words" }}class="active"{{ end }}>words</a>
+      <a href="/miniti/" {{ if hasPrefix .RelPermalink "/miniti" }}class="active"{{ end }}>miniti</a>
+      <a href="/supperclubs/" {{ if hasPrefix .RelPermalink "/supperclubs" }}class="active"{{ end }}>supper clubs</a>
+      <a href="/recipes/" {{ if hasPrefix .RelPermalink "/recipes" }}class="active"{{ end }}>recipes</a>
+      <a href="/music/" {{ if hasPrefix .RelPermalink "/music" }}class="active"{{ end }}>music</a>
+  </div>
+  <div class="nav-fade nav-fade-right"></div>
 </div>
+<script>
+(function() {
+  var nav = document.querySelector('.nav-top');
+  var active = nav.querySelector('.active');
+  var fadeL = document.querySelector('.nav-fade-left');
+  var fadeR = document.querySelector('.nav-fade-right');
+
+  function updateFades() {
+    var sl = nav.scrollLeft;
+    var atLeft = sl <= 2;
+    var atRight = sl + nav.clientWidth >= nav.scrollWidth - 2;
+    fadeL.classList.toggle('hidden', atLeft);
+    fadeR.classList.toggle('hidden', atRight);
+  }
+
+  if (active) {
+    nav.scrollLeft = active.offsetLeft - nav.offsetWidth / 2 + active.offsetWidth / 2;
+  }
+
+  updateFades();
+  nav.addEventListener('scroll', updateFades, { passive: true });
+})();
+</script>
