@@ -765,8 +765,27 @@ body:has(.miniti-page) main {
     z-index: 2;
 }
 
+.miniti-subtitle {
+    font-size: clamp(1.1em, 3vw, 1.35em);
+    letter-spacing: 0.3em;
+    background: linear-gradient(90deg, #1A5C28, #1A5C28, #A0FFB0, #1A5C28, #1A5C28, #1A5C28, #A0FFB0, #1A5C28, #1A5C28);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: subtitleGlow 2s linear infinite;
+    margin: -0.7em auto 0.75em;
+    max-width: 600px;
+}
+
+@keyframes subtitleGlow {
+    0% { background-position: 200% 0; }
+    100% { background-position: 0% 0; }
+}
+
 .miniti-tagline {
-    font-size: clamp(1em, 2.5vw, 1.1em);
+    font-size: clamp(1.1em, 3vw, 1.25em);
+    font-weight: 400;
     color: #CCCCCC;
     max-width: 600px;
     margin: 0 auto 0.5em;
@@ -796,6 +815,12 @@ body:has(.miniti-page) main {
     color: #888;
     max-width: 600px;
     margin: 0 auto 2em;
+}
+
+.miniti-form-heading {
+    font-size: clamp(1.5em, 4vw, 2em);
+    color: #CCCCCC;
+    margin-bottom: 0.5em;
 }
 
 .miniti-form-section form {
