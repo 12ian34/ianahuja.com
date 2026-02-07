@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/12ian34/ianahuja.com#readme",
   "dependencies": {
+    "netlify-cli": "^23.15.1",
     "resend": "^6.9.1"
   }
 }

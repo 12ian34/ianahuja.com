@@ -880,6 +880,36 @@ body:has(.miniti-page) main {
     border-radius: 8px;
 }
 
+.miniti-changelog {
+    text-align: left;
+    max-width: 38em;
+    margin: 3rem auto 0;
+}
+
+.miniti-changelog h2 {
+    text-align: center;
+    font-size: clamp(1.5em, 4vw, 2em);
+    color: #CCCCCC;
+    margin-bottom: 1.5rem;
+}
+
+.changelog-entry {
+    margin-bottom: 1.5rem;
+}
+
+.changelog-entry h3 {
+    font-size: 1em;
+    color: #CCCCCC;
+    margin-bottom: 0.4rem;
+}
+
+.changelog-items {
+    font-family: 'Work Sans', sans-serif;
+    color: #999;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
 /* 
 .nowrap {
     white-space: nowrap;
