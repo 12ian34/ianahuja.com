@@ -7,13 +7,26 @@
 <meta name="description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.og_description }}{{ end }}">
 <meta name="keywords" content="{{ if .Params.keywords }}{{ .Params.keywords }}{{ else }}{{ .Site.Params.default_keywords }}{{ end }}">
 
+{{ $ogTitle := .Params.og_title | default .Title | default .Site.Params.og_title }}
+{{ $ogDesc := .Params.og_description | default .Params.description | default .Site.Params.og_description }}
+{{ $ogImage := .Params.og_image | default "/images/3598.jpg" }}
+{{ if not (hasPrefix $ogImage "http") }}{{ $ogImage = printf "%s%s" (.Site.BaseURL | strings.TrimRight "/") $ogImage }}{{ end }}
+
 <meta property="og:article:author" content="ian ahuja">
 <meta property="og:type" content="website"/>
 <meta property="og:locale" content="en_GB" />
 <meta property="og:site_name" content="ian ahuja">
-<meta property="og:image" content="/images/3598.jpg"/>
-<meta property="og:title" content="{{ if .Params.og_title }}{{ .Params.og_title }}{{ else }}{{ .Site.Params.og_title }}{{ end }}">
-<meta property="og:description" content="{{ if .Params.og_description }}{{ .Params.og_description }}{{ else }}{{ .Site.Params.og_description }}{{ end }}">
+<meta property="og:image" content="{{ $ogImage }}"/>
+<meta property="og:image:width" content="{{ .Params.og_image_width | default "1200" }}">
+<meta property="og:image:height" content="{{ .Params.og_image_height | default "630" }}">
+<meta property="og:title" content="{{ $ogTitle }}">
+<meta property="og:description" content="{{ $ogDesc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $ogTitle }}">
+<meta name="twitter:description" content="{{ $ogDesc }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="index, follow">
