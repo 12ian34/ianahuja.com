@@ -116,7 +116,7 @@ p {
 
 .filter-select:hover,
 .filter-select:focus {
-    border-color: rgba(148, 243, 166, 0.4);
+    border-color: rgba(63, 186, 80, 0.4);
     outline: none;
 }
 
@@ -150,15 +150,15 @@ p {
 
 .recipe-card:hover {
     background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(148, 243, 166, 0.3);
+    border-color: rgba(63, 186, 80, 0.3);
     transform: translateY(-2px);
     box-shadow: 
         0 8px 24px rgba(0, 0, 0, 0.2),
-        0 0 0 1px rgba(148, 243, 166, 0.1);
+        0 0 0 1px rgba(63, 186, 80, 0.1);
 }
 
 .recipe-card:hover .recipe-card-title {
-    color: #94F3A6;
+    color: #3FBA50;
 }
 
 .recipe-card-image {
@@ -197,7 +197,7 @@ p {
 .recipe-card-prep {
     font-family: 'Work Sans', sans-serif;
     font-size: 0.75em;
-    color: #94F3A6;
+    color: #3FBA50;
     font-weight: 300;
     white-space: nowrap;
     padding-right: 1rem;
@@ -279,8 +279,8 @@ p {
 
 .recipe-tag {
     display: inline-block;
-    background-color: rgba(148, 243, 166, 0.15);
-    color: #94F3A6;
+    background-color: rgba(63, 186, 80, 0.15);
+    color: #3FBA50;
     padding: 0.2em 0.6em;
     margin: 0.2em;
     border-radius: 4px;
@@ -306,7 +306,7 @@ p {
 
 .recipe-content h2 {
     font-size: 1.3em;
-    color: #94F3A6;
+    color: #3FBA50;
     margin-top: 1.5em;
     margin-bottom: 0.5em;
     text-align: left;
@@ -363,20 +363,20 @@ hr {
 a:link,
 .nav-top a:link {
     /* unvisited */
-    color: #94F3A6;
+    color: #4DD85E;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 a:visited,
 .nav-top a:visited {
-    color: #94F3A6;
+    color: #4DD85E;
     text-decoration: none;
 }
 
 a:hover,
 .nav-top a:hover {
-    color: #00FF34;
+    color: #4DD85E;
 }
 
 a:active,
@@ -387,12 +387,12 @@ a:active,
 
 a.active,
 .nav-top a.active {
-    color: #94F3A6;
+    color: #4DD85E;
 }
 
 .nav-top a.active::after {
     width: 80%;
-    background-color: #94F3A6;
+    background-color: #4DD85E;
 }
 
 .nav-wrap {
@@ -433,7 +433,7 @@ a.active,
 
 .nav-fade::after {
     font-size: 0.75em;
-    color: rgba(148, 243, 166, 0.5);
+    color: rgba(63, 186, 80, 0.5);
 }
 
 .nav-fade-left::after {
@@ -510,7 +510,7 @@ a.active,
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: #94F3A6;
+    background-color: #3FBA50;
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -532,7 +532,7 @@ input[type=text], button[type=submit], input[type=email], textarea {
     font-size: 1.2em;
     width: clamp(12em, 18vw, 18vw);
     border: none;
-    border-bottom: 0.1em solid #79CF09;
+    border-bottom: 0.1em solid #3FBA50;
     color: #CCCCCC;
     transition: all 0.3s ease;
     border-radius: 4px;
@@ -545,14 +545,14 @@ input[type=text]:focus, input[type=email]:focus, textarea:focus {
 }
 
 button[type=submit] {
-    background-color: #548C0C;
+    background-color: #2D8A3C;
     color: #FFFFFF;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 button[type=submit]:hover {
-    background-color: #79CF09;
+    background-color: #3FBA50;
     transform: translateY(-2px);
 }
 
@@ -662,9 +662,9 @@ body:has(.miniti-page) main {
     top: 50%;
     transform: translateY(-50%);
     z-index: 3;
-    background: rgba(148, 243, 166, 0.1);
-    border: 1px solid rgba(148, 243, 166, 0.25);
-    color: #94F3A6;
+    background: rgba(63, 186, 80, 0.1);
+    border: 1px solid rgba(63, 186, 80, 0.25);
+    color: #3FBA50;
     font-size: 1.8rem;
     width: 2.5rem;
     height: 2.5rem;
@@ -686,11 +686,11 @@ body:has(.miniti-page) main {
 }
 
 .gallery-arrow:hover {
-    background: rgba(148, 243, 166, 0.25);
+    background: rgba(63, 186, 80, 0.25);
 }
 
 .gallery-arrow:active {
-    background: rgba(148, 243, 166, 0.4);
+    background: rgba(63, 186, 80, 0.4);
 }
 
 .gallery-arrow.hidden {
@@ -717,13 +717,13 @@ body:has(.miniti-page) main {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: rgba(148, 243, 166, 0.2);
+    background: rgba(63, 186, 80, 0.2);
     transition: all 0.3s;
     cursor: pointer;
 }
 
 .gallery-dot.active {
-    background: #94F3A6;
+    background: #3FBA50;
     transform: scale(1.3);
 }
 
@@ -825,7 +825,7 @@ body:has(.miniti-page) main {
 
 .miniti-message p {
     font-size: 1.1em;
-    color: #94F3A6;
+    color: #3FBA50;
 }
 
 .miniti-error p {
