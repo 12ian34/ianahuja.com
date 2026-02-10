@@ -1,9 +1,11 @@
 ---
 title: 🌶️ spicy supper club
 date: 2026-02-21
+date_display: "date tbd"
 eventtype: supperclub
-description: ian ahuja - supper clubs - 2026-02-21
+description: ian ahuja - supper clubs - spicy supper club
 active: true
+slug: spicy-supper-club
 ---
 sign up link coming...
 

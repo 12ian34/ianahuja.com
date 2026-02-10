@@ -13,7 +13,7 @@
   {{ range .Pages.ByDate.Reverse }}
     {{ if .Params.active }}
     <li>
-      <a href="{{ .Permalink }}">{{ .Title }}</a> {{ .Date.Format "2 Jan 2006" }}
+      <a href="{{ .Permalink }}">{{ .Title }}</a> {{ with .Params.date_display }}{{ . }}{{ else }}{{ .Date.Format "2 Jan 2006" }}{{ end }}
     </li>
     {{ end }}
   {{ end }}
@@ -24,7 +24,7 @@
   {{ range .Pages.ByDate.Reverse }}
     {{ if not .Params.active }}
     <li>
-      <a href="{{ .Permalink }}">{{ .Title }}</a> {{ .Date.Format "2 Jan 2006" }}
+      <a href="{{ .Permalink }}">{{ .Title }}</a> {{ with .Params.date_display }}{{ . }}{{ else }}{{ .Date.Format "2 Jan 2006" }}{{ end }}
     </li>
     {{ end }}
   {{ end }}
