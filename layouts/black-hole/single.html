@@ -1,0 +1,123 @@
+{{ define "main" }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+<div class="relativity-page">
+  <div class="relativity-canvas-wrap">
+    <canvas id="relativity-canvas"></canvas>
+    <div class="relativity-hud">
+      <div class="relativity-hud-left">
+        <div class="hud-row"><span class="hud-label">distance</span> <span id="hud-distance">40.0 Rs</span></div>
+        <div class="hud-row"><span class="hud-label">time dilation</span> <span id="hud-dilation">0.987</span></div>
+      </div>
+      <div class="relativity-hud-right">
+        <div class="hud-row"><span class="hud-label">viewing angle</span> <span id="hud-angle">85°</span></div>
+      </div>
+    </div>
+    <div class="relativity-controls">
+      <span class="control-label">3 Rs</span>
+      <input type="range" id="distance-slider" min="30" max="400" value="400" step="1" />
+      <span class="control-label">40 Rs</span>
+    </div>
+    <p class="relativity-hint">drag to orbit · slider or ↑↓ to approach · ←→ to rotate</p>
+  </div>
+
+  <div class="relativity-explainer">
+    <h2>the black hole</h2>
+    <p>this is a non-rotating (schwarzschild) black hole with the mass of M87* &mdash; 6.5 billion solar masses. the simulation is scale-free: every distance is measured in schwarzschild radii, so the physics is identical for any mass.</p>
+
+    <div class="explainer-stats">
+      <div class="stat"><span class="stat-label">mass</span><span class="stat-value">6.5 &times; 10<sup>9</sup> M<sub>&odot;</sub></span></div>
+      <div class="stat"><span class="stat-label">schwarzschild radius</span><span class="stat-value">1.9 &times; 10<sup>10</sup> km &asymp; 127 AU</span></div>
+      <div class="stat"><span class="stat-label">photon sphere</span><span class="stat-value">2.9 &times; 10<sup>10</sup> km &asymp; 191 AU</span></div>
+      <div class="stat"><span class="stat-label">innermost orbit</span><span class="stat-value">5.8 &times; 10<sup>10</sup> km &asymp; 382 AU</span></div>
+    </div>
+
+    <h2>the physics</h2>
+
+    <div class="explainer-block">
+      <strong>schwarzschild metric</strong>
+      <p>the geometry of spacetime around a non-rotating mass. all the visual effects below emerge from this single equation.</p>
+      <div class="equation" data-eq="ds^2 = -\!\left(1 - \frac{R_s}{r}\right)c^2\,dt^2 + \left(1 - \frac{R_s}{r}\right)^{\!-1}dr^2 + r^2\,d\Omega^2"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>schwarzschild radius</strong>
+      <p>the event horizon. nothing that crosses this boundary can escape, including light.</p>
+      <div class="equation" data-eq="R_s = \frac{2GM}{c^2}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>photon geodesic</strong>
+      <p>each pixel traces a light ray through curved spacetime. the binet equation governs the orbital shape, where <em>u</em> = 1/<em>r</em>. the extra <em>u</em>&sup2; term (absent in newtonian gravity) is what causes light to spiral and lens.</p>
+      <div class="equation" data-eq="\frac{d^2 u}{d\phi^2} + u = \frac{3GM}{c^2}\, u^2"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>ray tracing acceleration</strong>
+      <p>the shader integrates this equivalent 3D form at every step. <em>h</em> is the photon's angular momentum, <em>r</em> its distance from the singularity. 350 steps per pixel, adaptive step size.</p>
+      <div class="equation" data-eq="\vec{a} = -\frac{3}{2}\,\frac{h^2}{r^5}\,\vec{r} \qquad \text{where } h = |\vec{r} \times \vec{v}|"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>critical impact parameter</strong>
+      <p>photons with impact parameter below this value are captured by the black hole. photons exactly at this value orbit forever on the photon sphere. this defines the size of the black hole's shadow.</p>
+      <div class="equation" data-eq="b_{\text{crit}} = \frac{3\sqrt{3}}{2}\;R_s \approx 2.598\;R_s"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>photon sphere</strong>
+      <p>the radius of unstable circular photon orbits. light here can loop the black hole before escaping, creating the sharp bright ring at the shadow's edge.</p>
+      <div class="equation" data-eq="r_{\text{photon}} = \frac{3}{2}\;R_s"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>accretion disk (ISCO)</strong>
+      <p>the innermost stable circular orbit sets the inner edge of the disk. matter inside this radius spirals rapidly inward.</p>
+      <div class="equation" data-eq="r_{\text{isco}} = 3\;R_s"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>disk temperature</strong>
+      <p>the accretion disk follows the shakura-sunyaev temperature profile. the inner edge glows white-hot; the outer edge fades to deep red.</p>
+      <div class="equation" data-eq="T(r) \propto r^{-3/4}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>keplerian velocity</strong>
+      <p>matter in the disk orbits at this velocity. the inner disk orbits faster, which is why you see differential rotation in the ring patterns.</p>
+      <div class="equation" data-eq="v_{\text{orb}} = \sqrt{\frac{GM}{r}} = c\sqrt{\frac{R_s}{2r}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>relativistic doppler shift</strong>
+      <p>disk matter orbiting toward you is blue-shifted (brighter, hotter); matter receding is red-shifted (dimmer, cooler). this creates the dramatic asymmetry in the disk.</p>
+      <div class="equation" data-eq="f = \frac{1}{1 - \dfrac{\vec{v}_{\text{orb}} \cdot \hat{n}}{c}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>relativistic beaming</strong>
+      <p>brightness scales as the doppler factor cubed, so even a modest velocity difference makes one side of the disk dramatically brighter.</p>
+      <div class="equation" data-eq="I_{\text{obs}} \propto f^{\,3}\; I_{\text{emit}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>gravitational time dilation</strong>
+      <p>clocks near the black hole tick slower. at 3 R<sub>s</sub>, time runs at 82% of the rate far away. at the event horizon, time stops entirely for a distant observer.</p>
+      <div class="equation" data-eq="\frac{d\tau}{dt} = \sqrt{1 - \frac{R_s}{r}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>gravitational lensing angle</strong>
+      <p>the weak-field deflection angle for a photon grazing a mass at distance <em>b</em>. near the black hole the deflection is much larger, and this formula breaks down as rays wrap fully around.</p>
+      <div class="equation" data-eq="\alpha = \frac{4GM}{c^2\,b}"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script>
+<script>
+document.querySelectorAll('.equation[data-eq]').forEach(function(el) {
+  katex.render(el.getAttribute('data-eq'), el, { displayMode: true, throwOnError: false });
+});
+</script>
+<script src="/js/black-hole.js"></script>
+{{ end }}

@@ -22,6 +22,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 | Supper clubs | `content/supperclubs/` | `supperclubs/list.html`, `supperclubs/single.html` | Event pages with shared info partial |
 | Recipes | `content/recipes/` | `recipes/list.html`, `recipes/single.html` | Recipe collection |
 | Music | `content/music.md` | `_default/single.html` | Standalone page |
+| Black hole | `content/black-hole.md` | `black-hole/single.html` | WebGL Schwarzschild black hole — ray tracing, accretion disk, KaTeX equations |
 
 ## Key files
 - `config.toml` — Hugo config; `buildFuture = true` so future-dated content is published
@@ -31,6 +32,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 - `layouts/partials/stars.html` — Decorative background partial
 - `layouts/shortcodes/figure.html` — Custom figure shortcode
 - `static/js/geometric-visualizer.js` — JS used on the site
+- `static/js/black-hole.js` — WebGL black hole (Schwarzschild ray tracing in fragment shader, 350 steps/pixel, accretion disk with Doppler shift, procedural starfield with 3×3 cell neighborhood). Default view: 40 Rs, 85° inclination. Slider 3–40 Rs + mouse/touch orbit + arrow keys. KaTeX for equations in the explainer.
 
 ## Netlify Functions
 - `request-download.js` — Receives name + email, generates HMAC-signed 24h token, sends download email via Resend
@@ -67,4 +69,6 @@ netlify dev             # local dev with functions
 - Taxonomies disabled (`disableKinds = ['taxonomy', 'term']`)
 
 ## Recent changes
+- 2026-02-12: Black hole page refinements — nav label "black hole", removed page heading, KaTeX equations (13 equations including Schwarzschild metric, geodesic, Doppler, beaming), M87* real-world stats, default 40 Rs / 85° view, 350 ray steps for accuracy at distance, 3×3 starfield cell neighborhood to fix grid artifacts, removed galactic band glow.
+- 2026-02-10: Replaced relativistic starfield with WebGL black hole visualization (`/relativity/`). Schwarzschild metric ray tracing in a fragment shader — gravitational lensing, accretion disk with Doppler shift, procedural starfield background. Distance slider + mouse/touch drag orbit controls. Added `date_display` support to supper club templates.
 - 2026-02-07: Added per-page OG + Twitter Card meta support in `head.html`. Created `miniti-og.png` (1200x630). Set custom social preview for miniti page.
