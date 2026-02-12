@@ -44,9 +44,12 @@ exports.handler = async (event) => {
           <img src="${siteUrl}/images/miniti-icon.png" alt="miniti" width="48" height="48" style="border-radius: 12px; margin-bottom: 24px;" />
           <h2 style="margin-bottom: 8px;">Hey ${name},</h2>
           <p>Thanks for your interest in miniti 💚</p>
-          <p>Click below to download:</p>
-          <a href="${verifyUrl}" style="display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin: 16px 0;">Download miniti</a>
+          <p><strong>macOS</strong></p>
+          <a href="${verifyUrl}" style="display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin: 16px 0;">Download for macOS</a>
           <p style="color: #666; font-size: 14px;">This link expires in 24 hours. macOS 14.2+ required.</p>
+          <p style="margin-top: 24px;"><strong>iOS</strong></p>
+          <a href="https://testflight.apple.com/join/1wuFJ684" style="display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin: 16px 0;">Join TestFlight for iOS</a>
+          <p style="color: #666; font-size: 14px;">iOS 17+ required. Install via Apple TestFlight.</p>
           <p style="color: #555; font-size: 14px; margin-top: 24px;">miniti is in beta. Let me know what you'd like to see in it by replying to this email.</p>
           <p style="color: #999; font-size: 12px; margin-top: 32px;">ianahuja.com/miniti</p>
         </div>
