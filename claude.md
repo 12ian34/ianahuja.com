@@ -50,6 +50,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 2. Upload it to Proton Drive
 3. Copy the new public share link
 4. Update `DOWNLOAD_URL` in **both** `.env` (local) and Netlify production via `netlify env:set DOWNLOAD_URL "<url>"`
+5. Redeploy with `netlify deploy --prod` — Netlify Functions only pick up new env vars after a redeploy
 
 ## Images
 All in `static/images/`. OG images should be 1200x630 PNG. `miniti-og.png` was created by center-cropping `miniti-1.png` with `sips`.

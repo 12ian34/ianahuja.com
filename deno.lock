@@ -11,6 +11,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:netlify-cli@^23.15.1",
         "npm:resend@^6.9.1"
       ]
     }

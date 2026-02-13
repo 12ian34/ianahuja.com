@@ -1120,6 +1120,21 @@ body:has(.miniti-page) main {
     border-radius: 0 4px 4px 0;
 }
 
+.miniti-privacy-link {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+}
+
+.miniti-privacy-link a {
+    color: #888;
+    text-decoration: none;
+}
+
+.miniti-privacy-link a:hover {
+    color: #94F3A6;
+}
+
 .equation .katex {
     color: #e0e0e0;
     font-size: 1.1rem;
