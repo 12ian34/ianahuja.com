@@ -19,6 +19,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 | Home | `content/_index.md` | `_default/single.html` | Personal landing page |
 | Words (blog) | `content/words/` | `words/list.html`, `words/single.html` | Permalink: `/words/:year/:month/:slug/` |
 | Miniti | `content/miniti.md` | `miniti/single.html` | Product page — gallery, signup form, changelog |
+| Miniti privacy | `content/miniti-privacy.md` | `_default/single.html` | Privacy policy, terms of use, copyright (`/miniti/privacy`) |
 | Supper clubs | `content/supperclubs/` | `supperclubs/list.html`, `supperclubs/single.html` | Event pages with shared info partial |
 | Recipes | `content/recipes/` | `recipes/list.html`, `recipes/single.html` | Recipe collection |
 | Music | `content/music.md` | `_default/single.html` | Standalone page |
@@ -35,7 +36,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 - `static/js/black-hole.js` — WebGL black hole (Schwarzschild ray tracing in fragment shader, 350 steps/pixel, accretion disk with Doppler shift, procedural starfield with 3×3 cell neighborhood). Default view: 40 Rs, 85° inclination. Slider 3–40 Rs + mouse/touch orbit + arrow keys. KaTeX for equations in the explainer.
 
 ## Netlify Functions
-- `request-download.js` — Receives name + email, generates HMAC-signed 24h token, sends download email via Resend
+- `request-download.js` — Receives name + email, generates HMAC-signed 24h token, sends download email via Resend (macOS DMG link + iOS TestFlight link)
 - `verify-download.js` — Validates token, serves the DMG download
 
 **Env vars required** (set in Netlify dashboard and `.env` for local dev):
@@ -45,12 +46,19 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 - `SENDER_EMAIL` — From address for download emails
 - `DOWNLOAD_URL` — Public Proton Drive share link to the current `.dmg.zip`
 
-### Releasing a new miniti version
+### Releasing a new miniti macOS version
 1. Build the new `.dmg`
 2. Upload it to Proton Drive
 3. Copy the new public share link
 4. Update `DOWNLOAD_URL` in **both** `.env` (local) and Netlify production via `netlify env:set DOWNLOAD_URL "<url>"`
 5. Redeploy with `netlify deploy --prod` — Netlify Functions only pick up new env vars after a redeploy
+6. Update changelog in `layouts/miniti/single.html`
+
+### Releasing a new miniti iOS version
+1. Upload build via Xcode → App Store Connect
+2. Wait for TestFlight beta review (few hours to a day)
+3. Public TestFlight link: `https://testflight.apple.com/join/1wuFJ684` (hardcoded in `request-download.js`)
+4. Update changelog in `layouts/miniti/single.html`
 
 ## Images
 All in `static/images/`. OG images should be 1200x630 PNG. `miniti-og.png` was created by center-cropping `miniti-1.png` with `sips`.
@@ -70,6 +78,7 @@ netlify dev             # local dev with functions
 - Taxonomies disabled (`disableKinds = ['taxonomy', 'term']`)
 
 ## Recent changes
+- 2026-02-13: Miniti v1.5.1 release updates — updated DOWNLOAD_URL (Proton Drive), added iOS TestFlight link to download email, updated miniti page tagline/features for iOS, added privacy & terms page (`/miniti/privacy`), updated changelog through v1.5.1.
 - 2026-02-12: Black hole page refinements — nav label "black hole", removed page heading, KaTeX equations (13 equations including Schwarzschild metric, geodesic, Doppler, beaming), M87* real-world stats, default 40 Rs / 85° view, 350 ray steps for accuracy at distance, 3×3 starfield cell neighborhood to fix grid artifacts, removed galactic band glow.
 - 2026-02-10: Replaced relativistic starfield with WebGL black hole visualization (`/relativity/`). Schwarzschild metric ray tracing in a fragment shader — gravitational lensing, accretion disk with Doppler shift, procedural starfield background. Distance slider + mouse/touch drag orbit controls. Added `date_display` support to supper club templates.
 - 2026-02-07: Added per-page OG + Twitter Card meta support in `head.html`. Created `miniti-og.png` (1200x630). Set custom social preview for miniti page.
