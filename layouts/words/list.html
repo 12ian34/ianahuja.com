@@ -1,6 +1,4 @@
 {{ define "main" }}
-<h1>words</h1>
-
 <div class="words-list">
   {{ range where .Pages.ByDate.Reverse "Params.draft" "ne" true }}
   <a href="{{ .Permalink }}" class="words-entry">

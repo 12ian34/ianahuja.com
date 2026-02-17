@@ -7,7 +7,7 @@ og_title: "ian ahuja - home"
 og_description: "ian ahuja - home"
 ---
 
-<p class="homepage-title">ian ahuja</p>
+# ian ahuja
 
 {{< figure
     src="images/3598.jpg"
@@ -24,8 +24,12 @@ loves making them easier
 ---
 
 talk to me about...  
-🚀 startups 🧑🏽‍🍳 cooking 🏞️ hiking  
-🎹 synths 🏛️ politics 🌌 space
+🚀 startups  
+🧑🏽‍🍳 cooking  
+🏞️ hiking  
+🎹 synths  
+🏛️ politics  
+🌌 space  
 
 ---
 

@@ -9,7 +9,7 @@ html, body {
 }
 
 main {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
@@ -90,7 +90,7 @@ p {
 /* Recipe Filters */
 .recipe-filters {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
@@ -131,7 +131,7 @@ p {
     flex-direction: column;
     gap: 0.75rem;
     padding: 0;
-    margin: 1.5rem auto 0;
+    margin: 1.5rem 0 0;
     max-width: 400px;
 }
 
@@ -223,7 +223,7 @@ p {
 
 @media (min-width: 768px) {
     .recipe-list {
-        max-width: 800px;
+        max-width: 600px;
         gap: 1rem;
     }
 
@@ -403,6 +403,18 @@ a.active {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        rgba(200, 220, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .nav-fade {
@@ -465,18 +477,6 @@ a.active {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.06) 0%,
-        rgba(200, 220, 255, 0.03) 50%,
-        rgba(255, 255, 255, 0.05) 100%
-    );
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -484,7 +484,9 @@ a.active {
 
 @media (min-width: 768px) {
     .nav-top {
-        justify-content: center;
+        max-width: 800px;
+        padding: 0 20px;
+        overflow-x: visible;
     }
 }
 
@@ -642,7 +644,8 @@ a.active {
 }
 
 .words-content img {
-    max-width: 100%;
+    max-width: 400px;
+    width: 100%;
     height: auto;
     border-radius: 6px;
     margin: 1rem 0;
@@ -1108,8 +1111,9 @@ body:has(.miniti-page) main {
 /* ---- Relativity page ---- */
 
 .relativity-page {
-    max-width: 750px;
+    max-width: 800px;
     margin: 0 auto;
+    padding-top: 1.5rem;
 }
 
 .relativity-subtitle {
@@ -1225,7 +1229,6 @@ body:has(.miniti-page) main {
 }
 
 .relativity-explainer > p {
-    font-size: 0.9rem;
     font-family: 'Work Sans', sans-serif;
     color: #999;
     line-height: 1.6;
@@ -1234,7 +1237,7 @@ body:has(.miniti-page) main {
 
 .explainer-stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 0.5rem 1.5rem;
     margin-bottom: 2rem;
     padding: 0.8rem 1rem;
@@ -1244,7 +1247,7 @@ body:has(.miniti-page) main {
 
 .stat {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 0.5rem;
     font-size: 0.82rem;
     font-family: 'Work Sans', sans-serif;
@@ -1254,17 +1257,15 @@ body:has(.miniti-page) main {
     color: #888;
 }
 
+.stat-label::after {
+    content: ':';
+}
+
 .stat-value {
     color: #94F3A6;
     font-family: 'Courier New', monospace;
-    text-align: right;
 }
 
-@media (max-width: 550px) {
-    .explainer-stats {
-        grid-template-columns: 1fr;
-    }
-}
 
 .explainer-block {
     margin-bottom: 1.6rem;
@@ -1272,14 +1273,13 @@ body:has(.miniti-page) main {
 
 .explainer-block strong {
     color: #94F3A6;
-    font-size: 0.95rem;
+    font-size: 1.2em;
     font-family: 'Work Sans', sans-serif;
     display: block;
     margin-bottom: 0.3rem;
 }
 
 .explainer-block p {
-    font-size: 0.9rem;
     font-family: 'Work Sans', sans-serif;
     color: #999;
     line-height: 1.6;
@@ -1297,6 +1297,9 @@ body:has(.miniti-page) main {
     padding: 0.6rem 1rem;
     margin: 0.5rem 0 0 0;
     border-radius: 0 4px 4px 0;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .miniti-privacy-link {
@@ -1317,4 +1320,14 @@ body:has(.miniti-page) main {
 .equation .katex {
     color: #e0e0e0;
     font-size: 1.1rem;
+    text-align: left !important;
+}
+
+.equation .katex-display {
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+.equation .katex-display > .katex {
+    text-align: left !important;
 }
