@@ -59,7 +59,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 ### Releasing a new miniti iOS version
 1. Upload build via Xcode → App Store Connect
 2. Wait for TestFlight beta review (few hours to a day)
-3. Public TestFlight link: `https://testflight.apple.com/join/1wuFJ684` (hardcoded in `request-download.js`)
+3. Public TestFlight link (hardcoded in `request-download.js`)
 4. Update changelog in `layouts/miniti/single.html`
 
 ## Images
