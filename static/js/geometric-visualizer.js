@@ -3,12 +3,12 @@ class GeometricVisualizer {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.foregroundParticles = [];
         this.shootingStars = [];
         this.satellites = [];
         this.nebulae = [];
         this.animationFrame = null;
         this.mouse = { x: null, y: null, radius: 150 };
+        this.mouseRadiusSq = 150 * 150;
         this.scrollY = 0;
         this.time = 0;
         this.resize();
@@ -25,7 +25,7 @@ class GeometricVisualizer {
             const depth = Math.random();
             const size = depth * 1.8 + 0.3;
             const color = starColors[Math.floor(Math.random() * starColors.length)];
-            const p = {
+            this.particles.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
                 size: size,
@@ -40,13 +40,11 @@ class GeometricVisualizer {
                 brightness: Math.random(),
                 twinkleSpeed: Math.random() * 0.025 + 0.008,
                 twinklePhase: Math.random() * Math.PI * 2,
-                color: color,
+                r: color.r, g: color.g, b: color.b,
                 novaTimer: 0,
                 novaDuration: 0,
                 novaIntensity: 0,
-            };
-            this.particles.push(p);
-            if (depth > 0.35) this.foregroundParticles.push(p);
+            });
         }
 
         for (let i = 0; i < 3; i++) {
@@ -82,9 +80,9 @@ class GeometricVisualizer {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
 
-        this.particles.forEach(particle => {
-            particle.baseX = Math.random() * this.canvas.width;
-            particle.baseY = Math.random() * this.canvas.height;
+        this.particles.forEach(p => {
+            p.baseX = Math.random() * this.canvas.width;
+            p.baseY = Math.random() * this.canvas.height;
         });
     }
 
@@ -93,11 +91,11 @@ class GeometricVisualizer {
         const startY = Math.random() * this.canvas.height * 0.5;
         const angle = Math.PI * 0.15 + Math.random() * Math.PI * 0.2;
         const speed = 4 + Math.random() * 4;
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed;
         this.shootingStars.push({
-            x: startX,
-            y: startY,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
+            x: startX, y: startY,
+            vx: vx, vy: vy, speed: speed,
             life: 1.0,
             decay: 0.008 + Math.random() * 0.012,
             length: 40 + Math.random() * 60,
@@ -106,50 +104,35 @@ class GeometricVisualizer {
     }
 
     spawnSatellite() {
-        const edge = Math.random();
-        let startX, startY, endX, endY;
-        if (edge < 0.5) {
-            startX = -10;
-            startY = Math.random() * this.canvas.height * 0.6;
-            endX = this.canvas.width + 10;
-            endY = startY + (Math.random() - 0.3) * this.canvas.height * 0.4;
-        } else {
-            startX = this.canvas.width + 10;
-            startY = Math.random() * this.canvas.height * 0.6;
-            endX = -10;
-            endY = startY + (Math.random() - 0.3) * this.canvas.height * 0.4;
-        }
+        const goRight = Math.random() < 0.5;
+        const startX = goRight ? -10 : this.canvas.width + 10;
+        const startY = Math.random() * this.canvas.height * 0.6;
+        const endX = goRight ? this.canvas.width + 10 : -10;
+        const endY = startY + (Math.random() - 0.3) * this.canvas.height * 0.4;
         const dx = endX - startX;
         const dy = endY - startY;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const speed = 0.6 + Math.random() * 0.4;
         this.satellites.push({
-            x: startX,
-            y: startY,
-            vx: (dx / dist) * speed,
-            vy: (dy / dist) * speed,
-            speed: speed,
-            maxDist: dist,
-            traveled: 0,
+            x: startX, y: startY,
+            vx: (dx / dist) * speed, vy: (dy / dist) * speed,
+            speed: speed, maxDist: dist, traveled: 0,
             brightness: 0.5 + Math.random() * 0.3,
             size: 0.8 + Math.random() * 0.4,
         });
     }
 
     spawnNebula(seeded) {
-        const nebulaColors = [
-            { r: 180, g: 140, b: 255 },
-            { r: 120, g: 200, b: 255 },
-            { r: 140, g: 220, b: 240 },
-            { r: 200, g: 120, b: 220 },
-            { r: 120, g: 200, b: 220 },
+        const colors = [
+            [180, 140, 255], [120, 200, 255], [140, 220, 240],
+            [200, 120, 220], [120, 200, 220],
         ];
-        const color = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
+        const c = colors[Math.floor(Math.random() * colors.length)];
         const neb = {
             x: Math.random() * this.canvas.width,
             y: Math.random() * this.canvas.height,
             radius: 60 + Math.random() * 80,
-            color: color,
+            r: c[0], g: c[1], b: c[2],
             life: seeded ? 0.6 + Math.random() * 0.4 : 0,
             maxLife: 1.0,
             fadeIn: 0.004 + Math.random() * 0.003,
@@ -158,32 +141,33 @@ class GeometricVisualizer {
             driftX: (Math.random() - 0.5) * 0.08,
             driftY: (Math.random() - 0.5) * 0.05,
             maxAlpha: 0.25 + Math.random() * 0.15,
+            holdTimer: seeded ? 8 + Math.random() * 15 : 0,
         };
-        if (seeded) neb.holdTimer = 8 + Math.random() * 15;
         this.nebulae.push(neb);
     }
 
     update() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        const ctx = this.ctx;
+        const w = this.canvas.width;
+        const h = this.canvas.height;
+        ctx.clearRect(0, 0, w, h);
         this.time += 0.016;
 
-        // Spawn events
         if (Math.random() < 0.008) this.spawnShootingStar();
         if (Math.random() < 0.004) this.spawnSatellite();
         if (Math.random() < 0.001 && this.nebulae.length < 6) this.spawnNebula();
 
-        // Trigger nova (~every 4-6 seconds)
         if (Math.random() < 0.004) {
-            const candidate = this.particles[Math.floor(Math.random() * this.particles.length)];
-            if (candidate.novaTimer <= 0) {
-                const duration = 3 + Math.random() * 2;
-                candidate.novaTimer = duration;
-                candidate.novaDuration = duration;
-                candidate.novaIntensity = 0;
+            const p = this.particles[Math.floor(Math.random() * this.particles.length)];
+            if (p.novaTimer <= 0) {
+                const dur = 3 + Math.random() * 2;
+                p.novaTimer = dur;
+                p.novaDuration = dur;
+                p.novaIntensity = 0;
             }
         }
 
-        // Draw nebulae (behind everything)
+        // Nebulae
         this.nebulae = this.nebulae.filter(neb => {
             neb.x += neb.driftX;
             neb.y += neb.driftY;
@@ -204,187 +188,137 @@ class GeometricVisualizer {
             }
 
             const alpha = neb.life * neb.maxAlpha;
-            const gradient = this.ctx.createRadialGradient(
-                neb.x, neb.y, 0,
-                neb.x, neb.y, neb.radius
-            );
-            gradient.addColorStop(0, `rgba(${neb.color.r}, ${neb.color.g}, ${neb.color.b}, ${alpha})`);
-            gradient.addColorStop(0.5, `rgba(${neb.color.r}, ${neb.color.g}, ${neb.color.b}, ${alpha * 0.4})`);
-            gradient.addColorStop(1, `rgba(${neb.color.r}, ${neb.color.g}, ${neb.color.b}, 0)`);
-            this.ctx.beginPath();
-            this.ctx.arc(neb.x, neb.y, neb.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = gradient;
-            this.ctx.fill();
+            const grad = ctx.createRadialGradient(neb.x, neb.y, 0, neb.x, neb.y, neb.radius);
+            grad.addColorStop(0, `rgba(${neb.r},${neb.g},${neb.b},${alpha})`);
+            grad.addColorStop(0.5, `rgba(${neb.r},${neb.g},${neb.b},${alpha * 0.4})`);
+            grad.addColorStop(1, `rgba(${neb.r},${neb.g},${neb.b},0)`);
+            ctx.beginPath();
+            ctx.arc(neb.x, neb.y, neb.radius, 0, Math.PI * 2);
+            ctx.fillStyle = grad;
+            ctx.fill();
             return true;
         });
 
-        // Constellation lines (only foreground stars, squared-distance check, batched draws)
-        const fg = this.foregroundParticles;
-        this.ctx.lineWidth = 0.5;
-        const maxThreshold = 120;
-        const maxThresholdSq = maxThreshold * maxThreshold;
-        const lines = [];
-        for (let i = 0; i < fg.length; i++) {
-            const a = fg[i];
-            for (let j = i + 1; j < fg.length; j++) {
-                const b = fg[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
+        // Particles
+        const hasMouse = this.mouse.x !== null;
+        const mx = this.mouse.x;
+        const my = this.mouse.y;
+        const mRadiusSq = this.mouseRadiusSq;
+        const scrollSin = Math.sin(this.scrollY * 0.05);
+
+        for (let i = 0, len = this.particles.length; i < len; i++) {
+            const p = this.particles[i];
+
+            p.currentSpeedX += (p.targetSpeedX - p.currentSpeedX) * 0.01;
+            p.currentSpeedY += (p.targetSpeedY - p.currentSpeedY) * 0.01;
+
+            if (hasMouse) {
+                const dx = mx - p.x;
+                const dy = my - p.y;
                 const distSq = dx * dx + dy * dy;
-                if (distSq < maxThresholdSq) {
+                const effRadius = this.mouse.radius * (0.8 + p.depth * 0.6);
+                if (distSq < effRadius * effRadius) {
                     const dist = Math.sqrt(distSq);
-                    const threshold = 80 + (a.depth + b.depth) * 20;
-                    if (dist < threshold) {
-                        const alpha = (1 - dist / threshold) * 0.15 * Math.min(a.brightness, b.brightness);
-                        lines.push(a.x, a.y, b.x, b.y, alpha);
-                    }
-                }
-            }
-        }
-        for (let i = 0; i < lines.length; i += 5) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(lines[i], lines[i + 1]);
-            this.ctx.lineTo(lines[i + 2], lines[i + 3]);
-            this.ctx.strokeStyle = `rgba(200, 220, 255, ${lines[i + 4]})`;
-            this.ctx.stroke();
-        }
-
-        // Update and draw particles
-        this.particles.forEach(particle => {
-            particle.currentSpeedX += (particle.targetSpeedX - particle.currentSpeedX) * 0.01;
-            particle.currentSpeedY += (particle.targetSpeedY - particle.currentSpeedY) * 0.01;
-
-            let dx = this.mouse.x - particle.x;
-            let dy = this.mouse.y - particle.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (this.mouse.x !== null && this.mouse.y !== null) {
-                const effectiveRadius = this.mouse.radius * (0.8 + particle.depth * 0.6);
-                if (distance < effectiveRadius) {
                     const angle = Math.atan2(dy, dx);
-                    const force = (effectiveRadius - distance) / effectiveRadius;
-                    particle.x -= Math.cos(angle) * force * (1 + particle.depth) * 1.2;
-                    particle.y -= Math.sin(angle) * force * (1 + particle.depth) * 1.2;
+                    const force = (effRadius - dist) / effRadius;
+                    p.x -= Math.cos(angle) * force * (1 + p.depth) * 1.2;
+                    p.y -= Math.sin(angle) * force * (1 + p.depth) * 1.2;
                 }
             }
 
-            const scrollFactor = particle.depth * 0.15 + 0.02;
-            particle.y += Math.sin(this.scrollY * 0.05) * scrollFactor * 2;
+            p.y += scrollSin * (p.depth * 0.15 + 0.02) * 2;
+            p.x += p.currentSpeedX;
+            p.y += p.currentSpeedY;
+            p.x += (p.baseX - p.x) * 0.005;
+            p.y += (p.baseY - p.y) * 0.005;
 
-            particle.x += particle.currentSpeedX;
-            particle.y += particle.currentSpeedY;
+            const twinkle = Math.sin(this.time * p.twinkleSpeed * 60 + p.twinklePhase);
+            p.brightness = 0.3 + (twinkle * 0.5 + 0.5) * 0.7;
 
-            particle.x += (particle.baseX - particle.x) * 0.005;
-            particle.y += (particle.baseY - particle.y) * 0.005;
-
-            // Twinkling
-            const twinkleWave = Math.sin(this.time * particle.twinkleSpeed * 60 + particle.twinklePhase);
-            particle.brightness = 0.3 + (twinkleWave * 0.5 + 0.5) * 0.7;
-
-            // Nova flare
             let novaGlow = 0;
-            if (particle.novaTimer > 0) {
-                particle.novaTimer -= 0.016;
-                const dur = particle.novaDuration;
-                const t = 1 - (particle.novaTimer / dur);
-                if (t < 0.1) {
-                    particle.novaIntensity = t / 0.1;
-                } else {
-                    particle.novaIntensity = Math.max(0, 1 - (t - 0.1) / 0.9);
-                }
-                novaGlow = particle.novaIntensity;
-                particle.brightness = Math.min(1, particle.brightness + novaGlow * 0.7);
+            if (p.novaTimer > 0) {
+                p.novaTimer -= 0.016;
+                const t = 1 - (p.novaTimer / p.novaDuration);
+                p.novaIntensity = t < 0.1 ? t / 0.1 : Math.max(0, 1 - (t - 0.1) / 0.9);
+                novaGlow = p.novaIntensity;
+                p.brightness = Math.min(1, p.brightness + novaGlow * 0.7);
             }
-
-            const { r, g, b } = particle.color;
 
             // Nova halo
             if (novaGlow > 0.02) {
-                const haloRadius = 15 + novaGlow * 30;
-                const gradient = this.ctx.createRadialGradient(
-                    particle.x, particle.y, 0,
-                    particle.x, particle.y, haloRadius
-                );
-                gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${novaGlow * 0.7})`);
-                gradient.addColorStop(0.3, `rgba(${r}, ${g}, ${b}, ${novaGlow * 0.3})`);
-                gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
-                this.ctx.beginPath();
-                this.ctx.arc(particle.x, particle.y, haloRadius, 0, Math.PI * 2);
-                this.ctx.fillStyle = gradient;
-                this.ctx.fill();
+                const hr = 15 + novaGlow * 30;
+                const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, hr);
+                grad.addColorStop(0, `rgba(${p.r},${p.g},${p.b},${novaGlow * 0.7})`);
+                grad.addColorStop(0.3, `rgba(${p.r},${p.g},${p.b},${novaGlow * 0.3})`);
+                grad.addColorStop(1, `rgba(${p.r},${p.g},${p.b},0)`);
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, hr, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
             }
 
-            // Normal glow for larger/brighter stars
-            if (particle.size > 1.2 && particle.brightness > 0.7) {
-                const gradient = this.ctx.createRadialGradient(
-                    particle.x, particle.y, 0,
-                    particle.x, particle.y, particle.size * 3
-                );
-                gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${particle.brightness * 0.3})`);
-                gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
-                this.ctx.beginPath();
-                this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
-                this.ctx.fillStyle = gradient;
-                this.ctx.fill();
+            // Glow for bright stars
+            if (p.size > 1.2 && p.brightness > 0.7) {
+                const gr = p.size * 3;
+                const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, gr);
+                grad.addColorStop(0, `rgba(${p.r},${p.g},${p.b},${p.brightness * 0.3})`);
+                grad.addColorStop(1, `rgba(${p.r},${p.g},${p.b},0)`);
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, gr, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
             }
 
-            // Draw star core
-            const drawSize = particle.baseSize + novaGlow * 3;
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, drawSize, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${particle.brightness})`;
-            this.ctx.fill();
-        });
+            // Star core
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.baseSize + novaGlow * 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${p.r},${p.g},${p.b},${p.brightness})`;
+            ctx.fill();
+        }
 
-        // Draw satellites
+        // Satellites
         this.satellites = this.satellites.filter(sat => {
             sat.x += sat.vx;
             sat.y += sat.vy;
             sat.traveled += sat.speed;
-
             if (sat.traveled >= sat.maxDist) return false;
 
-            const edgeFade = Math.min(1, sat.traveled / 80, (sat.maxDist - sat.traveled) / 80);
-            const alpha = sat.brightness * edgeFade;
-
-            this.ctx.beginPath();
-            this.ctx.arc(sat.x, sat.y, sat.size, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-            this.ctx.fill();
-
+            const alpha = sat.brightness * Math.min(1, sat.traveled / 80, (sat.maxDist - sat.traveled) / 80);
+            ctx.beginPath();
+            ctx.arc(sat.x, sat.y, sat.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+            ctx.fill();
             return true;
         });
 
-        // Draw shooting stars
+        // Shooting stars
         this.shootingStars = this.shootingStars.filter(star => {
             star.x += star.vx;
             star.y += star.vy;
             star.life -= star.decay;
-
             if (star.life <= 0) return false;
 
-            const speed = Math.sqrt(star.vx * star.vx + star.vy * star.vy);
-            const tailX = star.x - (star.vx / speed) * star.length * star.life;
-            const tailY = star.y - (star.vy / speed) * star.length * star.life;
+            const inv = 1 / star.speed;
+            const tailX = star.x - star.vx * inv * star.length * star.life;
+            const tailY = star.y - star.vy * inv * star.length * star.life;
 
-            const gradient = this.ctx.createLinearGradient(tailX, tailY, star.x, star.y);
-            gradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
-            gradient.addColorStop(0.6, `rgba(200, 220, 255, ${star.life * 0.4})`);
-            gradient.addColorStop(1, `rgba(255, 255, 255, ${star.life * 0.9})`);
+            const grad = ctx.createLinearGradient(tailX, tailY, star.x, star.y);
+            grad.addColorStop(0, 'rgba(255,255,255,0)');
+            grad.addColorStop(0.6, `rgba(200,220,255,${star.life * 0.4})`);
+            grad.addColorStop(1, `rgba(255,255,255,${star.life * 0.9})`);
 
-            this.ctx.beginPath();
-            this.ctx.moveTo(tailX, tailY);
-            this.ctx.lineTo(star.x, star.y);
-            this.ctx.strokeStyle = gradient;
-            this.ctx.lineWidth = star.width * star.life;
-            this.ctx.lineCap = 'round';
-            this.ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(tailX, tailY);
+            ctx.lineTo(star.x, star.y);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = star.width * star.life;
+            ctx.lineCap = 'round';
+            ctx.stroke();
 
-            this.ctx.beginPath();
-            this.ctx.arc(star.x, star.y, star.width * star.life * 0.8, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(255, 255, 255, ${star.life * 0.8})`;
-            this.ctx.fill();
-
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.width * star.life * 0.8, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${star.life * 0.8})`;
+            ctx.fill();
             return true;
         });
 
