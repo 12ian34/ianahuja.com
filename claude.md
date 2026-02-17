@@ -78,6 +78,7 @@ netlify dev             # local dev with functions
 - Taxonomies disabled (`disableKinds = ['taxonomy', 'term']`)
 
 ## Recent changes
+- 2026-02-17: Left-aligned homepage and music page — removed `centered-content` wrapper divs from `_index.md` and `music.md`, changed `.homepage-title` and `h1` to `text-align: left`, left-aligned `<hr>` elements (`margin: 20px 0` instead of `auto`).
 - 2026-02-13: Miniti v1.5.1 release updates — updated DOWNLOAD_URL (Proton Drive), added iOS TestFlight link to download email, updated miniti page tagline/features for iOS, added privacy & terms page (`/miniti/privacy`), updated changelog through v1.5.1.
 - 2026-02-12: Black hole page refinements — nav label "black hole", removed page heading, KaTeX equations (13 equations including Schwarzschild metric, geodesic, Doppler, beaming), M87* real-world stats, default 40 Rs / 85° view, 350 ray steps for accuracy at distance, 3×3 starfield cell neighborhood to fix grid artifacts, removed galactic band glow.
 - 2026-02-10: Replaced relativistic starfield with WebGL black hole visualization (`/relativity/`). Schwarzschild metric ray tracing in a fragment shader — gravitational lensing, accretion disk with Doppler shift, procedural starfield background. Distance slider + mouse/touch drag orbit controls. Added `date_display` support to supper club templates.

@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6, p, ul, li {
 h1 {
     font-size: clamp(1.8em, 4.5vw, 2.7em);
     color: #CCCCCC;
-    text-align: center;
+    text-align: left;
     position: relative;
     letter-spacing: 0.05em;
     line-height: 1.4;
@@ -50,7 +50,7 @@ h1 {
 .homepage-title {
     font-size: clamp(1.8em, 4.5vw, 2.7em);
     color: #CCCCCC;
-    text-align: center;
+    text-align: left;
     position: relative;
     font-weight: 200;
     letter-spacing: 0.05em;
@@ -355,9 +355,14 @@ li {
 
 hr {
     width: 50%;
-    margin: 20px auto;
+    margin: 20px 0;
     border: 1px solid #CCCCCC;
     opacity: 0.5;
+}
+
+figure {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 a:link,
@@ -625,6 +630,10 @@ input:user-invalid, textarea:user-invalid {
 
 body:has(.miniti-page) main {
     max-width: 900px;
+}
+
+.miniti-page h1 {
+    text-align: center;
 }
 
 .miniti-icon {

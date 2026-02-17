@@ -7,7 +7,6 @@ og_title: "ian ahuja - home"
 og_description: "ian ahuja - home"
 ---
 
-<div class="centered-content">
 <p class="homepage-title">ian ahuja</p>
 
 {{< figure
@@ -68,5 +67,3 @@ laterbase projects
 ---
 
 [linkedin](https://www.linkedin.com/in/ianahuja) | [github](https://github.com/12ian34) | [lichess](https://lichess.org/@/ahujjj/)
-
-</div>

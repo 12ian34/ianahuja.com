@@ -8,8 +8,6 @@ og_description: "moonquake - music"
 layout: "single"
 ---
 
-<div class="centered-content">
-
 i make music with analog, digital, and modular synthesizers
 
 [listen on Bandcamp](https://m-oonquake.bandcamp.com/)
@@ -28,5 +26,3 @@ tbc...
 
 - [22 mar 2025 @ London Night Cafe](https://www.youtube.com/watch?v=8A_z7yd8zew)
 - [07 sep 2024 @ London Night Cafe](https://soundcloud.com/m_oonquake/moonquake-live-modular-synth-set-london-night-cafe-07-sep-2024)
-
-</div>
