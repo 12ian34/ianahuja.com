@@ -128,7 +128,7 @@ class GeometricVisualizer {
             y: startY,
             vx: (dx / dist) * speed,
             vy: (dy / dist) * speed,
-            life: 1.0,
+            speed: speed,
             maxDist: dist,
             traveled: 0,
             brightness: 0.5 + Math.random() * 0.3,
@@ -218,26 +218,35 @@ class GeometricVisualizer {
             return true;
         });
 
-        // Constellation lines (only foreground stars for performance)
+        // Constellation lines (only foreground stars, squared-distance check, batched draws)
         const fg = this.foregroundParticles;
         this.ctx.lineWidth = 0.5;
+        const maxThreshold = 120;
+        const maxThresholdSq = maxThreshold * maxThreshold;
+        const lines = [];
         for (let i = 0; i < fg.length; i++) {
+            const a = fg[i];
             for (let j = i + 1; j < fg.length; j++) {
-                const a = fg[i];
                 const b = fg[j];
                 const dx = a.x - b.x;
                 const dy = a.y - b.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const threshold = 80 + (a.depth + b.depth) * 20;
-                if (dist < threshold) {
-                    const alpha = (1 - dist / threshold) * 0.15 * Math.min(a.brightness, b.brightness);
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(a.x, a.y);
-                    this.ctx.lineTo(b.x, b.y);
-                    this.ctx.strokeStyle = `rgba(200, 220, 255, ${alpha})`;
-                    this.ctx.stroke();
+                const distSq = dx * dx + dy * dy;
+                if (distSq < maxThresholdSq) {
+                    const dist = Math.sqrt(distSq);
+                    const threshold = 80 + (a.depth + b.depth) * 20;
+                    if (dist < threshold) {
+                        const alpha = (1 - dist / threshold) * 0.15 * Math.min(a.brightness, b.brightness);
+                        lines.push(a.x, a.y, b.x, b.y, alpha);
+                    }
                 }
             }
+        }
+        for (let i = 0; i < lines.length; i += 5) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(lines[i], lines[i + 1]);
+            this.ctx.lineTo(lines[i + 2], lines[i + 3]);
+            this.ctx.strokeStyle = `rgba(200, 220, 255, ${lines[i + 4]})`;
+            this.ctx.stroke();
         }
 
         // Update and draw particles
@@ -331,7 +340,7 @@ class GeometricVisualizer {
         this.satellites = this.satellites.filter(sat => {
             sat.x += sat.vx;
             sat.y += sat.vy;
-            sat.traveled += Math.sqrt(sat.vx * sat.vx + sat.vy * sat.vy);
+            sat.traveled += sat.speed;
 
             if (sat.traveled >= sat.maxDist) return false;
 
