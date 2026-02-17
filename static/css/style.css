@@ -152,6 +152,7 @@ p {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(63, 186, 80, 0.3);
     transform: translateY(-2px);
+    text-decoration: none;
     box-shadow: 
         0 8px 24px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(63, 186, 80, 0.1);
@@ -365,36 +366,31 @@ figure {
     margin-right: 0;
 }
 
-a:link,
-.nav-top a:link {
+a:link {
     /* unvisited */
     color: #4DD85E;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
-a:visited,
-.nav-top a:visited {
+a:visited {
     color: #4DD85E;
     text-decoration: none;
 }
 
-a:hover,
-.nav-top a:hover {
+a:hover {
     color: #94F3A6;
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
 }
 
-a:active,
-.nav-top a:active {
+a:active {
     /* click and hold */
     color: #EB21EE;
 }
 
-a.active,
-.nav-top a.active {
+a.active {
     color: #4DD85E;
 }
 
@@ -523,6 +519,10 @@ a.active,
     transform: translateX(-50%);
 }
 
+.nav-top a:hover {
+    text-decoration: none;
+}
+
 .nav-top a:hover::after {
     width: 80%;
 }
@@ -550,6 +550,7 @@ a.active,
 .words-entry:hover {
     background: rgba(255, 255, 255, 0.02);
     padding-left: 0.5rem;
+    text-decoration: none;
 }
 
 .words-date {
