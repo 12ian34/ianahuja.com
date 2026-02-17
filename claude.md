@@ -34,7 +34,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 - `layouts/shortcodes/figure.html` — Custom figure shortcode
 - `layouts/shortcodes/youtube.html` — Responsive YouTube embed (16:9). Usage: `{{</* youtube VIDEO_ID "optional title" */>}}`
 - `.pages.yml` — Pages CMS config (words, supper clubs, recipes collections + media)
-- `static/js/geometric-visualizer.js` — Background stars canvas (220 particles with depth-based parallax, subtle color tints, constellation lines between nearby stars, occasional shooting stars, satellite passes, nova flares, drifting nebula wisps, mouse repulsion, scroll interaction)
+- `static/js/geometric-visualizer.js` — Background stars canvas (400 particles with depth-based parallax, subtle color tints, occasional shooting stars, satellite passes, nova flares, drifting nebula wisps, mouse repulsion, scroll interaction). Container opacity 0.45, screen blend mode.
 - `static/js/black-hole.js` — WebGL black hole (Schwarzschild ray tracing in fragment shader, 350 steps/pixel, accretion disk with Doppler shift, procedural starfield with 3×3 cell neighborhood). Default view: 40 Rs, 85° inclination. Slider 3–40 Rs + mouse/touch orbit + arrow keys. KaTeX for equations in the explainer.
 
 ## Netlify Functions
@@ -93,8 +93,9 @@ og_image: "/images/foo.png"  # optional social preview
 Config: `.pages.yml` at repo root. Three collections (words, supper clubs, recipes) + media (`static/images` → `/images`). Use https://app.pagescms.org to edit content. Changes commit directly to GitHub → Netlify rebuilds.
 
 ## Recent changes
+- 2026-02-17: Layout polish — left-aligned recipe cards/filters, left-aligned black hole equations (fit-to-content containers) and stats (single-column), matched black hole body text size to rest of site, capped blog post images at 400px, removed "words" h1 from blog listing, changed homepage title from `<p>` to `<h1>`, added top padding to black hole page to match other pages' spacing.
 - 2026-02-17: Aligned nav and body content — moved nav visual styles (glass background, blur, border, shadow) to `.nav-wrap` (full-width), constrained `.nav-top` links to `max-width: 800px` centered with `flex-start` on desktop, matched `main` to same 800px max-width. Nav links and body content now share the same left edge.
-- 2026-02-17: Enhanced background stars — depth-based parallax, color tints, constellation lines, shooting stars, plus new rare events: nova flares (random star brightens with halo then fades), satellite passes (steady dot crossing sky), drifting nebula wisps (faint colored clouds). Container opacity 0.3→0.35, blend mode overlay→screen.
+- 2026-02-17: Enhanced background stars — 400 particles with depth-based parallax, color tints, shooting stars, satellite passes, nova flares, drifting nebula wisps. Removed constellation lines for performance. Container opacity 0.45, screen blend mode.
 - 2026-02-17: Blog groundwork — unhid words in nav, rebuilt list layout (dates, descriptions, newest-first, draft filtering), rebuilt single layout (reading time, proper typography, back link, blockquote/code/image styles), added YouTube embed shortcode (`layouts/shortcodes/youtube.html`), updated `.pages.yml` (keywords, description, draft, og_image fields, view config, exclude `_index.md`), added words-specific CSS.
 - 2026-02-17: Left-aligned homepage and music page — removed `centered-content` wrapper divs from `_index.md` and `music.md`, changed `.homepage-title` and `h1` to `text-align: left`, left-aligned `<hr>` elements (`margin: 20px 0` instead of `auto`).
 - 2026-02-13: Miniti v1.5.1 release updates — updated DOWNLOAD_URL (Proton Drive), added iOS TestFlight link to download email, updated miniti page tagline/features for iOS, added privacy & terms page (`/miniti/privacy`), updated changelog through v1.5.1.
