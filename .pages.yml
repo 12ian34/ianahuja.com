@@ -3,11 +3,22 @@ content:
     label: "words"
     name: "words"
     path: "content/words"
+    filename: "{primary}.md"
+    exclude: [_index.md]
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
     fields:
-      - { label: "Title", name: "title", type: "string" }
-      - { label: "Publish date", name: "date", type: "date" }
-      - { label: "Description", name: "description", type: "string" }
-      - { label: "Tags", name: "tags", type: "select"}
+      - { label: "Title", name: "title", type: "string", required: true }
+      - { label: "Publish date", name: "date", type: "date", required: true }
+      - { label: "Description", name: "description", type: "string", description: "Short summary for the listing page and social previews.", options: { maxlength: 200 } }
+      - { label: "Keywords", name: "keywords", type: "string", description: "Comma-separated keywords for SEO." }
+      - { label: "Draft", name: "draft", type: "boolean", default: false }
+      - { label: "OG image", name: "og_image", type: "image", description: "Optional social preview image (1200x630)." }
       - { label: "Body", name: "body", type: "rich-text" }
   - type: collection
     label: "supper clubs"

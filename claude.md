@@ -17,7 +17,7 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 | Section | Path | Layout | Notes |
 |---|---|---|---|
 | Home | `content/_index.md` | `_default/single.html` | Personal landing page |
-| Words (blog) | `content/words/` | `words/list.html`, `words/single.html` | Permalink: `/words/:year/:month/:slug/` |
+| Words (blog) | `content/words/` | `words/list.html`, `words/single.html` | Permalink: `/words/:year/:month/:slug/`. Listing shows date + description, newest first. Single has reading time, back link. Supports images in body, YouTube embeds via `{{</* youtube VIDEO_ID */>}}` shortcode. Managed via Pages CMS. |
 | Miniti | `content/miniti.md` | `miniti/single.html` | Product page — gallery, signup form, changelog |
 | Miniti privacy | `content/miniti-privacy.md` | `_default/single.html` | Privacy policy, terms of use, copyright (`/miniti/privacy`) |
 | Supper clubs | `content/supperclubs/` | `supperclubs/list.html`, `supperclubs/single.html` | Event pages with shared info partial |
@@ -32,6 +32,8 @@ Personal site for Ian Ahuja — projects, blog, supper clubs, recipes, music.
 - `layouts/partials/nav.html` — Horizontal scrolling nav with active state + edge fade
 - `layouts/partials/stars.html` — Decorative background partial
 - `layouts/shortcodes/figure.html` — Custom figure shortcode
+- `layouts/shortcodes/youtube.html` — Responsive YouTube embed (16:9). Usage: `{{</* youtube VIDEO_ID "optional title" */>}}`
+- `.pages.yml` — Pages CMS config (words, supper clubs, recipes collections + media)
 - `static/js/geometric-visualizer.js` — JS used on the site
 - `static/js/black-hole.js` — WebGL black hole (Schwarzschild ray tracing in fragment shader, 350 steps/pixel, accretion disk with Doppler shift, procedural starfield with 3×3 cell neighborhood). Default view: 40 Rs, 85° inclination. Slider 3–40 Rs + mouse/touch orbit + arrow keys. KaTeX for equations in the explainer.
 
@@ -77,7 +79,21 @@ netlify dev             # local dev with functions
 - Goldmark renderer with `unsafe = true` (allows raw HTML in markdown)
 - Taxonomies disabled (`disableKinds = ['taxonomy', 'term']`)
 
+## Words (blog) frontmatter
+```yaml
+title: "post title"        # required
+date: 2026-02-17            # required, publish date
+description: "short summary" # listing page + OG meta
+keywords: "comma, separated" # SEO keywords
+draft: true                  # hide from listing (default false)
+og_image: "/images/foo.png"  # optional social preview
+```
+
+## Pages CMS
+Config: `.pages.yml` at repo root. Three collections (words, supper clubs, recipes) + media (`static/images` → `/images`). Use https://app.pagescms.org to edit content. Changes commit directly to GitHub → Netlify rebuilds.
+
 ## Recent changes
+- 2026-02-17: Blog groundwork — unhid words in nav, rebuilt list layout (dates, descriptions, newest-first, draft filtering), rebuilt single layout (reading time, proper typography, back link, blockquote/code/image styles), added YouTube embed shortcode (`layouts/shortcodes/youtube.html`), updated `.pages.yml` (keywords, description, draft, og_image fields, view config, exclude `_index.md`), added words-specific CSS.
 - 2026-02-17: Left-aligned homepage and music page — removed `centered-content` wrapper divs from `_index.md` and `music.md`, changed `.homepage-title` and `h1` to `text-align: left`, left-aligned `<hr>` elements (`margin: 20px 0` instead of `auto`).
 - 2026-02-13: Miniti v1.5.1 release updates — updated DOWNLOAD_URL (Proton Drive), added iOS TestFlight link to download email, updated miniti page tagline/features for iOS, added privacy & terms page (`/miniti/privacy`), updated changelog through v1.5.1.
 - 2026-02-12: Black hole page refinements — nav label "black hole", removed page heading, KaTeX equations (13 equations including Schwarzschild metric, geodesic, Doppler, beaming), M87* real-world stats, default 40 Rs / 85° view, 350 ray steps for accuracy at distance, 3×3 starfield cell neighborhood to fix grid artifacts, removed galactic band glow.

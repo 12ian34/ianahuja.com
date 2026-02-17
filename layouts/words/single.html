@@ -1,7 +1,19 @@
 {{ define "main" }}
-  <p>
+<article class="words-post">
+  <header class="words-header">
     <h1>{{ .Title }}</h1>
-    <p><em>{{ .Date.Format "2006-01-02" }}</em></p>
+    <div class="words-meta">
+      <time>{{ .Date.Format "2006-01-02" }}</time>
+      <span class="words-reading-time">{{ .ReadingTime }} min read</span>
+    </div>
+  </header>
+
+  <div class="words-content">
     {{ .Content }}
-  </article>
+  </div>
+
+  <footer class="words-footer">
+    <a href="/words/">&larr; all words</a>
+  </footer>
+</article>
 {{ end }}

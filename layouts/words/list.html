@@ -1,14 +1,13 @@
 {{ define "main" }}
-<br>
-<br>
-  <ul>
-    {{ range .Pages.ByDate }}
-      <li>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-        <p>{{ .Summary }}</p>
-        <hr>
-        <br>
-      </li>
-    {{ end }}
-  </ul>
+<h1>words</h1>
+
+<div class="words-list">
+  {{ range where .Pages.ByDate.Reverse "Params.draft" "ne" true }}
+  <a href="{{ .Permalink }}" class="words-entry">
+    <time class="words-date">{{ .Date.Format "2006-01-02" }}</time>
+    <span class="words-title">{{ .Title }}</span>
+    {{ with .Description }}<span class="words-description">{{ . }}</span>{{ end }}
+  </a>
+  {{ end }}
+</div>
 {{ end }}
