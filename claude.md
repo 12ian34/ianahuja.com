@@ -93,6 +93,8 @@ og_image: "/images/foo.png"  # optional social preview
 Config: `.pages.yml` at repo root. Three collections (words, supper clubs, recipes) + media (`static/images` → `/images`). Use https://app.pagescms.org to edit content. Changes commit directly to GitHub → Netlify rebuilds.
 
 ## Recent changes
+- 2026-02-18: Updated homepage live projects — added lightdash, ianahuja.com, and 13 other repos with descriptions. Removed laterbase section (all projects now under live). Replaced local links with GitHub/site URLs.
+- 2026-02-18: Miniti v1.6.0 changelog + roadmap section above changelog (offline mode, follow-up questions, in-room diarization, docs copilot, model manager, hybrid mode, CRM sync, Windows app, custom templates). Green "next" tags on near-term items.
 - 2026-02-17: Layout polish — left-aligned recipe cards/filters, left-aligned black hole equations (fit-to-content containers) and stats (single-column), matched black hole body text size to rest of site, capped blog post images at 400px, removed "words" h1 from blog listing, changed homepage title from `<p>` to `<h1>`, added top padding to black hole page to match other pages' spacing.
 - 2026-02-17: Aligned nav and body content — moved nav visual styles (glass background, blur, border, shadow) to `.nav-wrap` (full-width), constrained `.nav-top` links to `max-width: 800px` centered with `flex-start` on desktop, matched `main` to same 800px max-width. Nav links and body content now share the same left edge.
 - 2026-02-17: Enhanced background stars — 400 particles with depth-based parallax, color tints, shooting stars, satellite passes, nova flares, drifting nebula wisps. Removed constellation lines for performance. Container opacity 0.45, screen blend mode.

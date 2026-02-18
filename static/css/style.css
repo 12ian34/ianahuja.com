@@ -26,6 +26,57 @@ main {
     margin: 20px 0;      /* Adds spacing */
 }
 
+.projects {
+    margin-bottom: 0.6rem;
+}
+
+.project {
+    font-family: 'Work Sans', sans-serif;
+    font-size: clamp(1.2em, 3vw, 1.2em);
+    color: #CCCCCC;
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+    display: grid;
+    grid-template-columns: 1.5em 1fr;
+    gap: 0 0.25em;
+}
+
+.project-emoji {
+    grid-row: 1;
+}
+
+.project-name {
+    grid-row: 1;
+}
+
+.project-desc {
+    grid-column: 2;
+    color: #888;
+}
+
+@media (max-width: 600px) {
+    .project-desc {
+        display: block;
+        font-size: 0.8em;
+        margin-bottom: 0.3rem;
+    }
+}
+
+@media (min-width: 601px) {
+    .project {
+        grid-template-columns: 1.5em auto 1fr;
+    }
+
+    .project-name {
+        grid-column: 2;
+    }
+
+    .project-desc {
+        grid-column: 3;
+        padding-left: 0.4em;
+    }
+}
+
 .last-updated {
     font-size: 0.75em;
     color: #555;
@@ -1060,6 +1111,40 @@ body:has(.miniti-page) main {
     width: auto;
     height: auto;
     border-radius: 8px;
+}
+
+.miniti-roadmap {
+    text-align: left;
+    max-width: 38em;
+    margin: 3rem auto 0;
+}
+
+.miniti-roadmap h2 {
+    text-align: center;
+    font-size: clamp(1.5em, 4vw, 2em);
+    color: #CCCCCC;
+    margin-bottom: 1.5rem;
+}
+
+.roadmap-item {
+    font-family: 'Work Sans', sans-serif;
+    color: #999;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.roadmap-item strong {
+    color: #CCCCCC;
+}
+
+.roadmap-cta {
+    margin-top: 1.5rem;
+    color: #777;
+}
+
+.roadmap-cta a {
+    color: #4ade80;
 }
 
 .miniti-changelog {
