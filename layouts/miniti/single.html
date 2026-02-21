@@ -90,7 +90,39 @@
   <div class="miniti-changelog">
     <h2>changelog</h2>
     <div class="changelog-entry">
-      <h3>2026-02-20 - v1.6.1 (current)</h3>
+      <h3>2026-02-22 - v1.7.1 (current)</h3>
+      <div class="changelog-items">
+        - Fix mic test on iOS home screen causing layout jump — waveform area always reserves space<br>
+        - Start button on iOS shows "starting..." with spinner instead of flashing the recording screen<br>
+        - Fix iOS recording header and controls jumping when toggling stop/resume — all elements stay in place using opacity transitions<br>
+        - Rearrange iOS controls: stop and resume share the same center position, discard on left, save on right; home and copy in the header<br>
+        - Display topics in square brackets instead of hashtags
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <h3>2026-02-21 - v1.7.0</h3>
+      <div class="changelog-items">
+        - Move iOS recording controls to bottom of the screen for easier thumb reach<br>
+        - Fix iOS buttons jumping when stop/resume changes — main action button stays centered<br>
+        - Fix momentary flash of stopped-state buttons when starting a new recording<br>
+        - Add discard button with confirmation when a recording is stopped<br>
+        - Fix MEDDPICC insights not saving on iOS — standard mode no longer overwrites MEDDPICC data, and both standard + MEDDPICC are always generated on stop<br>
+        - Generate insights for past meetings — "generate" button on history recordings that have no insights<br>
+        - Show MEDDPICC data in meeting history detail view<br>
+        - Collapse consecutive same-speaker segments into one block in saved meeting transcripts<br>
+        - Remove sparkles badge from iOS history meeting rows<br>
+        - Fix topics display on iOS — proper wrapping layout with consistent terminal-style tags<br>
+        - Edit notes on saved meetings in history<br>
+        - Remove Settings tab on iOS — settings accessible via gear icon on home screen<br>
+        - Replace iOS insights mode picker with custom tab bar matching the section picker style (lowercase, no descriptions)<br>
+        - Replace always-on mic waveform on iOS home with optional "test mic" button<br>
+        - Make all iOS section picker labels lowercase (transcript/insights/notes)<br>
+        - Replace native segmented picker in iOS history detail with custom dark tab bar<br>
+        - Fix iOS history navigation sometimes redirecting back to active recording
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <h3>2026-02-20 - v1.6.1</h3>
       <div class="changelog-items">
         - Fix iOS update banner linking to Proton Drive DMG instead of TestFlight<br>
         - Auto-save recording every 30 seconds so transcript, insights, and notes are continuously preserved<br>
