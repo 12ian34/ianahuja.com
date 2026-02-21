@@ -90,7 +90,16 @@
   <div class="miniti-changelog">
     <h2>changelog</h2>
     <div class="changelog-entry">
-      <h3>2026-02-18 - v1.6.0 (current)</h3>
+      <h3>2026-02-20 - v1.6.1 (current)</h3>
+      <div class="changelog-items">
+        - Fix iOS update banner linking to Proton Drive DMG instead of TestFlight<br>
+        - Auto-save recording every 30 seconds so transcript, insights, and notes are continuously preserved<br>
+        - Resume interrupted recordings on launch — if the app was killed while recording, reopening restores your session (transcript, insights, notes) so you can continue or save<br>
+        - Fix orphaned Live Activity when app was killed while recording — stale Live Activities are cleaned up on launch
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <h3>2026-02-18 - v1.6.0</h3>
       <div class="changelog-items">
         - Send platform identifier (macOS/iOS) with all backend requests for admin dashboard tracking<br>
         - Show "account disabled" message when a device has been disabled by admin<br>
