@@ -101,7 +101,24 @@
   <div class="miniti-changelog">
     <h2>changelog</h2>
     <div class="changelog-entry">
-      <h3>2026-02-23 - v1.8.0 (current)</h3>
+      <h3>2026-02-23 - v1.8.1 (current)</h3>
+      <div class="changelog-items">
+        - Fix audio cutting out when Bluetooth headphones switch modes mid-session (e.g. AirPods joining a Zoom call)<br>
+        - Filler words like "um" and "uh" now appear in transcripts and get counted in training mode<br>
+        - Training mode shows per-word filler frequency sorted by count for each speaker; grouped "others" shows totals only<br>
+        - On iOS, each speaker's filler breakdown shown individually (no artificial grouping without a "You" speaker)<br>
+        - MEDDPICC tab shows only MEDDPICC fields — no more summary, actions, or topics mixed in<br>
+        - MEDDPICC fields displayed as clean separate sections with consistent styling across all views on both platforms<br>
+        - MEDDPICC section labels cleaned up — lowercase with spaces instead of underscores<br>
+        - MEDDPICC tab added to macOS meeting history<br>
+        - Save and discard buttons on macOS stopped recordings (matching iOS)<br>
+        - Discussion section added to macOS history and stopped-session insights<br>
+        - Fix topics wrapping in macOS history<br>
+        - Fix discussion color mismatch in iOS history
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <h3>2026-02-23 - v1.8.0</h3>
       <div class="changelog-items">
         <strong>overall:</strong><br>
         - Training mode — new insights tab with real-time speech analytics: filler words (per type/speaker/minute), talk ratio, pace, longest monologue, questions asked, clarity score. Purely local computation, no API keys needed. External speakers collapsed into "others" for readability<br>

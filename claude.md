@@ -93,6 +93,7 @@ og_image: "/images/foo.png"  # optional social preview
 Config: `.pages.yml` at repo root. Three collections (words, supper clubs, recipes) + media (`static/images` → `/images`). Use https://app.pagescms.org to edit content. Changes commit directly to GitHub → Netlify rebuilds.
 
 ## Recent changes
+- 2026-02-23: Added miniti v1.8.1 changelog entry (Bluetooth audio fix, filler words in transcripts/training, per-speaker filler frequency, MEDDPICC tab cleanup and macOS history, save/discard on macOS stopped recordings, discussion section in macOS history, iOS fixes).
 - 2026-02-23: Added miniti v1.8.0 changelog entry (training mode with local speech analytics, mode tabs in history, editable titles, macOS keyboard shortcuts, iOS desktop-style insights). Added training mode to features list.
 - 2026-02-22: Added miniti v1.7.1 and v1.7.0 changelog entries (iOS controls rework, discard button, MEDDPICC history, retroactive insight generation, UI polish).
 - 2026-02-20: Added miniti v1.6.1 changelog entry (auto-save, recording recovery, Live Activity cleanup, iOS update banner fix).
