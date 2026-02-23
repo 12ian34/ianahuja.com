@@ -10,6 +10,7 @@
     <li>live speaker identification</li>
     <li>live AI-generated summaries and action items</li>
     <li>live MEDDPICC analysis</li>
+    <li>training mode - local speech analytics (filler words, talk ratio, pace, clarity)</li>
     <li>meeting history browser</li>
     <li>dynamic island + lock screen live activity on iOS</li>
     <li>background recording on iOS</li>
@@ -90,7 +91,40 @@
   <div class="miniti-changelog">
     <h2>changelog</h2>
     <div class="changelog-entry">
-      <h3>2026-02-22 - v1.7.1 (current)</h3>
+      <h3>2026-02-23 - v1.8.0 (current)</h3>
+      <div class="changelog-items">
+        <strong>overall:</strong><br>
+        - Training mode — new insights tab with real-time speech analytics: filler words (per type/speaker/minute), talk ratio, pace, longest monologue, questions asked, clarity score. Purely local computation, no API keys needed. External speakers collapsed into "others" for readability<br>
+        - Training mode styling and layout refined to match other insights tabs (section headers, lowercase labels)<br>
+        - Historical meeting insights with mode tabs (standard / MEDDPICC / training); training stats computed locally from saved transcripts<br>
+        - Meeting duration shown in history lists<br>
+        - Live MEDDPICC mode is standalone (no summary/actions/topics mixed in)<br>
+        - Generate/update actions hidden in training mode to keep it local-only (no hidden AI calls)<br>
+        - "miniti free" / usage status styled as indicator instead of clickable button<br>
+        - Fix pause/resume time tracking so duration and managed-mode usage minutes stay accurate<br>
+        - Editable meeting titles in history; new meetings default to title "new"; title separator kept as " - " with backward compatibility for em-dash<br>
+        <br>
+        <strong>macOS:</strong><br>
+        - Entire insights tab/button area is clickable (not just text)<br>
+        - "update" button in live insights panel with ⌘⇧I shortcut; respects selected mode for completed recordings (MEDDPICC can be generated for finished meetings)<br>
+        - ⌘1 / ⌘2 / ⌘3 switch insight tabs in live + history views<br>
+        - Model selectors (transcription + insights) moved to Settings — home and recording views are cleaner<br>
+        - Start button shows "starting..." with spinner instead of flashing recording screen<br>
+        - Fix Escape not closing Settings window<br>
+        - Menu bar icon toggle in Settings (default on)<br>
+        - Refreshed keyboard shortcuts help overlay<br>
+        <br>
+        <strong>iOS:</strong><br>
+        - All insights views (live + history) use plain desktop-style section blocks instead of card layouts<br>
+        - Historical insights headers match desktop styling (no markdown headings)<br>
+        - "update" button in live recording insights for Standard and MEDDPICC modes<br>
+        - "discussion" section added to live Standard insights (matching macOS)<br>
+        - "MEDDPICC" label casing in live mode picker (matching desktop)<br>
+        - Generate/update controls for saved meeting insights (including MEDDPICC)
+      </div>
+    </div>
+    <div class="changelog-entry">
+      <h3>2026-02-22 - v1.7.1</h3>
       <div class="changelog-items">
         - Fix mic test on iOS home screen causing layout jump — waveform area always reserves space<br>
         - Start button on iOS shows "starting..." with spinner instead of flashing the recording screen<br>
