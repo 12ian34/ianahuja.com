@@ -11,6 +11,7 @@
     <li>live AI-generated summaries and action items</li>
     <li>live MEDDPICC analysis</li>
     <li>training mode - local speech analytics (filler words, talk ratio, pace, clarity)</li>
+    <li>send meeting data to Attio (CRM integration)</li>
     <li>meeting history browser</li>
     <li>dynamic island + lock screen live activity on iOS</li>
     <li>background recording on iOS</li>
@@ -100,8 +101,42 @@
 
   <div class="miniti-changelog">
     <h2>changelog</h2>
-    <div class="changelog-entry">
-      <h3>2026-02-23 - v1.8.1 (current)</h3>
+    <details class="changelog-entry" open>
+      <summary>2026-02-24 - v1.9.0 (current)</summary>
+      <div class="changelog-items">
+        <strong>Attio CRM integration (macOS):</strong><br>
+        - Send saved meeting summaries to Attio: connect your account, search people/companies, and push summaries, discussion flow, action items, decisions, topics, MEDDPICC, and notes (transcript and training metrics excluded by default)<br>
+        - Optionally create Attio tasks from action items<br>
+        - Enable/hide in Settings → General → Integrations; target selection remembered per meeting<br>
+        - Search shows full email/domain, scope-aware placeholder, and results collapse after selection<br>
+        - Improved task sync reliability and clearer messaging when Attio returns zero tasks<br>
+        <br>
+        <strong>macOS layout & navigation:</strong><br>
+        - Sidebar collapses to a compact icon/status rail (<code>⌘[</code>); history section is collapsible<br>
+        - Insights pane collapses to a slim rail (<code>⌘]</code>)<br>
+        - Session controls show shortcut hints (<code>⌘S</code> save / <code>⌘⌫</code> discard); both safely stop recording first if used mid-session, and save opens the meeting in history<br>
+        - <code>⌘N</code> / menu-bar New Session starts a fresh session cleanly even while browsing history<br>
+        - Escape closes the debug log sheet and Settings window; debug log also has an explicit close button<br>
+        <br>
+        <strong>reliability & polish:</strong><br>
+        - Resume/start shows a "starting..." spinner and blocks repeat taps while reconnecting in managed mode (macOS and iOS)<br>
+        - Live MEDDPICC updates retry automatically on transient failures and throttle refresh cadence in managed mode<br>
+        - Live transcript merges same-speaker streaming fragments until sentence boundaries, reducing choppy line breaks<br>
+        - Markdown transcript export preserves actual speaker labels (like "You") instead of generic numbered headings<br>
+        <br>
+        <strong>training mode & formatting:</strong><br>
+        - Training UI is cleaner and easier to scan, with simplified metric rows and filler counts<br>
+        - Each training metric has an info popup with plain-English guidance and coaching ranges<br>
+        - Clarity helper text standardized across all views: "lower = clearer = better"<br>
+        - iOS training info bubbles use a centered floating popup card with dim backdrop and tap-to-dismiss<br>
+        - Labels and topic tags use human-readable spaces instead of underscores across macOS and iOS<br>
+        <br>
+        <strong>bug fixes:</strong><br>
+        - Fix a macOS crash when reactivating the app window after it sat in the background (especially after finishing a meeting)
+      </div>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-23 - v1.8.1</summary>
       <div class="changelog-items">
         - Fix audio cutting out when Bluetooth headphones switch modes mid-session (e.g. AirPods joining a Zoom call)<br>
         - Filler words like "um" and "uh" now appear in transcripts and get counted in training mode<br>
@@ -116,9 +151,9 @@
         - Fix topics wrapping in macOS history<br>
         - Fix discussion color mismatch in iOS history
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-23 - v1.8.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-23 - v1.8.0</summary>
       <div class="changelog-items">
         <strong>overall:</strong><br>
         - Training mode — new insights tab with real-time speech analytics: filler words (per type/speaker/minute), talk ratio, pace, longest monologue, questions asked, clarity score. Purely local computation, no API keys needed. External speakers collapsed into "others" for readability<br>
@@ -149,9 +184,9 @@
         - "MEDDPICC" label casing in live mode picker (matching desktop)<br>
         - Generate/update controls for saved meeting insights (including MEDDPICC)
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-22 - v1.7.1</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-22 - v1.7.1</summary>
       <div class="changelog-items">
         - Fix mic test on iOS home screen causing layout jump — waveform area always reserves space<br>
         - Start button on iOS shows "starting..." with spinner instead of flashing the recording screen<br>
@@ -159,9 +194,9 @@
         - Rearrange iOS controls: stop and resume share the same center position, discard on left, save on right; home and copy in the header<br>
         - Display topics in square brackets instead of hashtags
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-21 - v1.7.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-21 - v1.7.0</summary>
       <div class="changelog-items">
         - Move iOS recording controls to bottom of the screen for easier thumb reach<br>
         - Fix iOS buttons jumping when stop/resume changes — main action button stays centered<br>
@@ -181,18 +216,18 @@
         - Replace native segmented picker in iOS history detail with custom dark tab bar<br>
         - Fix iOS history navigation sometimes redirecting back to active recording
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-20 - v1.6.1</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-20 - v1.6.1</summary>
       <div class="changelog-items">
         - Fix iOS update banner linking to Proton Drive DMG instead of TestFlight<br>
         - Auto-save recording every 30 seconds so transcript, insights, and notes are continuously preserved<br>
         - Resume interrupted recordings on launch — if the app was killed while recording, reopening restores your session (transcript, insights, notes) so you can continue or save<br>
         - Fix orphaned Live Activity when app was killed while recording — stale Live Activities are cleaned up on launch
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-18 - v1.6.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-18 - v1.6.0</summary>
       <div class="changelog-items">
         - Send platform identifier (macOS/iOS) with all backend requests for admin dashboard tracking<br>
         - Show "account disabled" message when a device has been disabled by admin<br>
@@ -203,15 +238,15 @@
         - Cleaner Dynamic Island and Lock Screen Live Activity layout<br>
         - Fix Live Activity showing active recording after stopping – timer now freezes and everything goes gray
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-13 - v1.5.1</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-13 - v1.5.1</summary>
       <div class="changelog-items">
         - Notify users when a new version is available with a download link on the home screen
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-13 - v1.5.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-13 - v1.5.0</summary>
       <div class="changelog-items">
         - App version now sent with all backend requests for better diagnostics<br>
         - Fix "Generate Insights" button not working for Early Adopter users<br>
@@ -220,9 +255,9 @@
         - Fix crash during long recordings caused by rapid transcript updates overwhelming the UI<br>
         - Reduce main thread load during recording by sending audio data without blocking the UI
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-10 - v1.4.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-10 - v1.4.0</summary>
       <div class="changelog-items">
         - iPhone and iPad app with live transcription, AI insights, and meeting history<br>
         - Live Activity on Dynamic Island and Lock Screen showing recording status, timer, and latest transcript<br>
@@ -230,34 +265,34 @@
         - Fix recording timer drifting when the app is backgrounded<br>
         - MEDDPICC grid adapts to screen size (1 column on iPhone, 2 on iPad/Mac)
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-07 - v1.3.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-07 - v1.3.0</summary>
       <div class="changelog-items">
         - Unified color system across the entire app<br>
         - Fix transcript not saving correctly when resuming a paused recording<br>
         - Remove distracting focus rings from sidebar buttons
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-06 - v1.2.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-06 - v1.2.0</summary>
       <div class="changelog-items">
         - First-launch setup: choose Early Adopter (500 free min/month) or Bring Your Own Keys mode<br>
         - Improved audio capture with better mic/system audio separation and automatic volume balancing<br>
         - Renamed app to lowercase "miniti"<br>
         - DMG installer for easy macOS distribution
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-05 - v1.1.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-05 - v1.1.0</summary>
       <div class="changelog-items">
         - Live audio waveforms on the home screen to verify mic and system audio before recording<br>
         - Info tooltips explaining what each API key is used for in settings<br>
         - macOS code signing for distribution
       </div>
-    </div>
-    <div class="changelog-entry">
-      <h3>2026-02-05 - v1.0.0</h3>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-05 - v1.0.0</summary>
       <div class="changelog-items">
         - Initial release: record meetings with live transcription and AI-generated summaries, action items, and topics<br>
         - API key setup on the home screen with status indicators<br>
@@ -265,7 +300,7 @@
         - Resizable notes section during recording<br>
         - macOS app icon
       </div>
-    </div>
+    </details>
   </div>
 
   <p class="miniti-privacy-link"><a href="/miniti/privacy">privacy & terms</a></p>

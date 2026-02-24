@@ -1160,14 +1160,41 @@ body:has(.miniti-page) main {
     margin-bottom: 1.5rem;
 }
 
-.changelog-entry {
+details.changelog-entry {
     margin-bottom: 1.5rem;
 }
 
-.changelog-entry h3 {
+details.changelog-entry > summary {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
     font-size: 1em;
     color: #CCCCCC;
     margin-bottom: 0.4rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+details.changelog-entry > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.changelog-entry > summary::before {
+    content: '▸';
+    display: inline-block;
+    transition: transform 0.15s ease;
+    font-size: 0.8em;
+    color: #777;
+}
+
+details.changelog-entry[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+details.changelog-entry > .changelog-items {
+    padding-top: 0.4rem;
 }
 
 .changelog-items {
