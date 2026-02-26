@@ -1,12 +1,23 @@
 [build]
   publish = "public"
   command = "hugo"
-  functions = "netlify/functions"
 
 [context.production.environment]
   HUGO_VERSION = "v0.154.0"
   HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
+
+[[redirects]]
+  from = "/miniti/privacy"
+  to = "https://miniti.app/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/miniti/*"
+  to = "https://miniti.app"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/*"
