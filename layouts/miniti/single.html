@@ -102,7 +102,19 @@
   <div class="miniti-changelog">
     <h2>changelog</h2>
     <details class="changelog-entry" open>
-      <summary>2026-02-24 - v1.9.0 (current)</summary>
+      <summary>2026-02-26 - v1.9.1 (current)</summary>
+      <div class="changelog-items">
+        - macOS home screen no longer captures audio by default; use the "test audio" button to verify mic and system audio before recording (matching iOS behavior)<br>
+        - MEDDPICC fields now display as bullet-pointed lists instead of semicolon-separated text, across all views on both platforms<br>
+        - Insight mode tabs (standard/MEDDPICC/training) use a single shared component with consistent pill styling across live and historical views; tabs truncate gracefully at narrow widths and show <code>⌘1</code>/<code>⌘2</code>/<code>⌘3</code> shortcuts<br>
+        - Live recording waveforms use the same sensitivity and noise-gate settings as the home screen test audio waveforms<br>
+        - All sidebar tiles (live session, new session, history items) are fully clickable across the entire tile area<br>
+        - Sidebar and insights pane collapse/expand buttons now show their keyboard shortcut hints (<code>⌘[</code> and <code>⌘]</code>)<br>
+        - Fix a macOS crash when switching between historical meetings in the sidebar
+      </div>
+    </details>
+    <details class="changelog-entry">
+      <summary>2026-02-24 - v1.9.0</summary>
       <div class="changelog-items">
         <strong>Attio CRM integration (macOS):</strong><br>
         - Send saved meeting summaries to Attio: connect your account, search people/companies, and push summaries, discussion flow, action items, decisions, topics, MEDDPICC, and notes (transcript and training metrics excluded by default)<br>
