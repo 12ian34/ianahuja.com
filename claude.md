@@ -63,6 +63,7 @@ og_image: "/images/foo.png"  # optional social preview
 Config: `.pages.yml` at repo root. Three collections (words, supper clubs, recipes) + media (`static/images` → `/images`). Use https://app.pagescms.org to edit content. Changes commit directly to GitHub → Netlify rebuilds.
 
 ## Recent changes
+- 2026-03-07: Added synapse (https://github.com/jawciu/synapse) to homepage live projects list with description "personal ai coach".
 - 2026-02-26: Removed all miniti content from ianahuja.com — miniti has moved to miniti.app. Deleted content pages, layout, Netlify Functions (request-download.js, verify-download.js), and 11 miniti images. Nav link now points to https://miniti.app. Added /miniti/* → miniti.app 301 redirects in netlify.toml. Removed miniti CSS from style.css. Homepage project link updated to miniti.app.
 - 2026-02-18: Updated homepage live projects — added lightdash, ianahuja.com, and 13 other repos with descriptions. Removed laterbase section (all projects now under live). Replaced local links with GitHub/site URLs.
 - 2026-02-17: Layout polish — left-aligned recipe cards/filters, left-aligned black hole equations (fit-to-content containers) and stats (single-column), matched black hole body text size to rest of site, capped blog post images at 400px, removed "words" h1 from blog listing, changed homepage title from `<p>` to `<h1>`, added top padding to black hole page to match other pages' spacing.
