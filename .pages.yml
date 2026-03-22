@@ -27,10 +27,17 @@ content:
     fields:
       - { label: "Title", name: "title", type: "string" }
       - { label: "Publish date", name: "date", type: "date" }
-      - { label: "Event type", name: "eventtype", type: "select" }
+      - name: eventtype
+        label: "Event type"
+        type: select
+        options:
+          values:
+            - name: supperclub
+              label: Supper Club
+            - name: picnic
+              label: Picnic
       - { label: "Description", name: "description", type: "string" }
       - { label: "Active", name: "active", type: "boolean" }
-      - { label: "Tags", name: "tags", type: "select"}
       - { label: "Body", name: "body", type: "rich-text" }
   - type: collection
     label: "recipes"
@@ -50,3 +57,6 @@ content:
 media:
   input: "static/images"
   output: "/images"
+settings:
+  content:
+    merge: true
