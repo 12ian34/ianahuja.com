@@ -38,6 +38,7 @@ live projects
 <div class="projects">
 <div class="project"><span class="project-emoji">⚡</span><span class="project-name"><a href="https://lightdash.com">lightdash</a></span><span class="project-desc">agentic analytics platform (YC, Series A)</span></div>
 <div class="project"><span class="project-emoji">🎙️</span><span class="project-name"><a href="https://miniti.app">miniti</a></span><span class="project-desc">native AI meeting assistant for macOS and iOS</span></div>
+<div class="project"><span class="project-emoji">🏠</span><span class="project-name"><a href="https://github.com/12ian34/loclocloc">loclocloc</a></span><span class="project-desc">finding a new place in london</span></div>
 <div class="project"><span class="project-emoji">🧠</span><span class="project-name"><a href="https://github.com/jawciu/synapse">synapse</a></span><span class="project-desc">personal ai coach</span></div>
 <div class="project"><span class="project-emoji">🎹</span><span class="project-name"><a href="https://m-oonquake.bandcamp.com/">moonquake</a></span><span class="project-desc">synthesizer experiments</span></div>
 <div class="project"><span class="project-emoji">🍽️</span><span class="project-name"><a href="https://ianahuja.com/supperclubs/">ahuja supper clubs</a></span><span class="project-desc">london supper clubs and picnics</span></div>
