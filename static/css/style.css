@@ -695,11 +695,11 @@ a.active {
 }
 
 .words-content img {
-    max-width: 400px;
+    max-width: 100%;
     width: 100%;
     height: auto;
     border-radius: 6px;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 .words-content pre {
