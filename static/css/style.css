@@ -1164,3 +1164,52 @@ input:user-invalid, textarea:user-invalid {
     background: #1a1a1a;
     color: #CCCCCC;
 }
+
+/* ---- Relativity page: narrow screens ---- */
+
+.relativity-controls {
+    flex-wrap: wrap;
+}
+
+#distance-slider,
+#spin-slider {
+    min-width: 6rem;
+}
+
+@media (max-width: 620px) {
+    .relativity-hud {
+        font-size: 0.62rem;
+        padding: 6px 8px;
+        line-height: 1.5;
+    }
+
+    .hud-label {
+        margin-right: 0.2em;
+    }
+
+    /* The spin readout is three facts wide; give it its own line rather than
+       letting it force the control row past the viewport. */
+    #spin-label {
+        min-width: 0;
+        width: 100%;
+        text-align: left;
+        order: 3;
+    }
+
+    .control-label,
+    .relativity-hint,
+    #relativity-fullscreen,
+    #mass-select {
+        font-size: 0.68rem;
+    }
+
+    .relativity-controls {
+        gap: 0.4rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .relativity-hud {
+        font-size: 0.55rem;
+    }
+}

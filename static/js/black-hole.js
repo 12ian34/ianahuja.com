@@ -92,6 +92,8 @@
     'uniform float uHorizon;',  // outer horizon r+ = M + sqrt(M^2 - a^2)
     'uniform float uOutward;',  // 1 once the camera has turned to face away
     'uniform float uExposure;', // observer's auto-exposure, see the JS side
+    'uniform float uSteps;',    // integration budget, lowered on slow devices
+    'uniform float uMwOct;',    // Milky Way fBm octaves, likewise
     '',
     '#define PI 3.14159265359',
     '#define MM 0.5',           // mass, chosen so that Rs = 2M = 1
@@ -121,10 +123,10 @@
     '  return mix(a, b, f.z);',
     '}',
     '',
-    'float fbm(vec3 p, const int oct) {',
+    'float fbm(vec3 p, float oct) {',
     '  float s = 0.0, a = 0.5;',
     '  for (int i = 0; i < 4; i++) {',
-    '    if (i >= oct) break;',
+    '    if (float(i) >= oct) break;',
     '    s += a * vnoise(p);',
     '    p *= 2.03;',
     '    a *= 0.5;',
@@ -144,8 +146,8 @@
     '  float halo  = exp(-b * b / 0.110);',           // thick disc
     '  float bulge = exp(-lon * lon / 0.30 - b * b / 0.045);',
     '',
-    '  float n = fbm(d * 14.0, 4);',
-    '  float dust = fbm(d * 22.0 + 21.0, 3);',
+    '  float n = fbm(d * 14.0, uMwOct);',
+    '  float dust = fbm(d * 22.0 + 21.0, min(uMwOct, 3.0));',
     '',
     '  float v = band * (0.45 + 0.85 * n) + halo * 0.12 + bulge * 0.50;',
     '  v *= mix(1.0, 0.18, smoothstep(0.40, 0.72, dust));',  // dark dust lanes
@@ -262,7 +264,7 @@
     '  float w = kepler(r) * DISK_SPIN;',
     '  float ph = ang + w * uTime;',
     '  vec3 q = vec3(cos(ph) * r, sin(ph) * r, w * uTime * 0.64) * 0.62;',
-    '  col *= 0.42 + 1.20 * fbm(q, 3);',
+    '  col *= 0.42 + 1.20 * fbm(q, min(uMwOct, 3.0));',
     '  col *= 0.88 + 0.12 * sin(r * 6.0 + 1.7);',
     '',
     '  col *= smoothstep(DISK_OUT, DISK_OUT - 2.5, r);',
@@ -388,6 +390,7 @@
     '  float rStop = uHorizon * 1.0006;',
     '',
     '  for (int i = 0; i < STEPS; i++) {',
+    '    if (float(i) >= uSteps) break;',
     '    rmin = min(rmin, y.x);',
     '    if (y.x < rStop) { hit = true; break; }',
     '    if (y.x > 90.0) { escaped = true; break; }',
@@ -869,6 +872,15 @@
   var FOV_MIN = Math.atan(0.5 / 1.5);     // 18.4 deg, the original framing
   var FOV_MAX = 1.62;                     // 93 deg
   var SPIN_MAX = 0.998;                   // Thorne limit for an accreting hole
+  // Closest approach is limited by two different things, and whichever binds
+  // first wins. Delta going to zero is where Boyer-Lindquist loses conditioning.
+  // Separately the integrator needs enough coordinate room above the horizon to
+  // climb out inside its step budget, and for a slow spin r+ and r- nearly
+  // coincide, so the same Delta leaves a far smaller gap. Spin buys depth: at
+  // a* = 0 this bottoms out around 10 minutes per minute, at the Thorne limit
+  // around 22, and the difference is the gap, not the arithmetic.
+  var DELTA_FLOOR = 0.002;
+  var GAP_FLOOR = 0.01;
 
   var spinStar = 0;                       // a*
   var spinA = 0;                          // a
@@ -907,13 +919,17 @@
   // For any stationary axisymmetric metric this is just grad(ln alpha), and at
   // a = 0 it reproduces the textbook GM/r^2 / sqrt(1 - Rs/r) exactly.
   function properAccel(r, th, a) {
-    var h = 1e-5;
+    // Step scaled to the gap above the horizon. A fixed step straddles it near
+    // the horizon, where lapseAt returns zero, and log(0) makes the readout
+    // report an infinite thrust.
+    var h = Math.min(1e-4, 0.05 * Math.max(r - horizonAt(a), 1e-6));
     var dr = (Math.log(lapseAt(r + h, th, a)) - Math.log(lapseAt(r - h, th, a))) / (2 * h);
     var dt = (Math.log(lapseAt(r, th + h, a)) - Math.log(lapseAt(r, th - h, a))) / (2 * h);
     var c = Math.cos(th);
     var Sig = r * r + a * a * c * c;
     var Del = r * r - 2 * GM * r + a * a;
-    return Math.sqrt(Math.max((Del / Sig) * dr * dr + dt * dt / Sig, 0));
+    var v = Math.sqrt(Math.max((Del / Sig) * dr * dr + dt * dt / Sig, 0));
+    return isFinite(v) ? v : 0;
   }
 
   // Angular radius of the shadow, as sin(theta) = b_crit * alpha / varpi. Exact
@@ -966,7 +982,9 @@
     // floor is the radius where Delta is still 0.01. That lands at 1.01 Rs for a
     // non-rotating hole and 0.60 Rs at the Thorne limit, and both give about ten
     // minutes of dilation per minute here: the same payoff, from either geometry.
-    MIN_DIST = 0.5 * (1 + Math.sqrt(Math.max(1 - 4 * (spinA * spinA - 0.01), 0)));
+    MIN_DIST = Math.max(
+      0.5 * (1 + Math.sqrt(Math.max(1 - 4 * (spinA * spinA - DELTA_FLOOR), 0))),
+      rHorizon + GAP_FLOOR);
     camDistTarget = Math.max(MIN_DIST, Math.min(MAX_DIST, camDistTarget));
     camDist = Math.max(MIN_DIST, Math.min(MAX_DIST, camDist));
     resetAccum();
@@ -1178,21 +1196,29 @@
     running = false;
   });
 
-  // ─── Adaptive resolution ───
-  var frameMs = 16, tuneCooldown = 0;
+  // ─── Adaptive quality ───
+  // One knob in [0,1]. The Kerr integrator is four derivative evaluations per
+  // step and dominates everything else, so the step budget is the first thing
+  // traded away, then resolution, then the noise octaves. Dropping steps costs a
+  // slightly thicker shadow edge (rays that run out are treated as captured),
+  // which is cheaper visually than the aliasing that a big resolution cut brings.
+  var perf = 1, frameMs = 16, tuneCooldown = 0;
+
+  function stepBudget() { return Math.round(90 + 110 * perf); }
+  function mwOctaves() { return perf > 0.55 ? 4 : 2; }
+  function targetScale() { return maxScale * (0.45 + 0.55 * perf); }
 
   function tuneQuality(dtMs) {
     frameMs += (dtMs - frameMs) * 0.05;
     if (tuneCooldown > 0) { tuneCooldown--; return; }
-    if (frameMs > 26 && scale > 0.55) {
-      scale = Math.max(0.55, scale * 0.8);
-    } else if (frameMs < 11 && scale < maxScale) {
-      scale = Math.min(maxScale, scale * 1.15);
-    } else {
-      return;
-    }
+    var next = perf;
+    if (frameMs > 26) next = Math.max(0, perf - 0.2);
+    else if (frameMs < 11) next = Math.min(1, perf + 0.1);
+    if (next === perf) return;
+    perf = next;
     tuneCooldown = 90;
     frameMs = 16;
+    scale = targetScale();
     resize();
   }
 
@@ -1230,6 +1256,8 @@
     // the last radius before the horizon is a featureless white screen.
     var gRef = Math.pow(1 / Math.max(lapseAt(camDist, camTheta, spinA), 1e-4), 4);
     gl.uniform1f(u.uExposure, 1 / Math.max(1, gRef / 30));
+    gl.uniform1f(u.uSteps, stepBudget());
+    gl.uniform1f(u.uMwOct, mwOctaves());
     gl.activeTexture(gl.TEXTURE0);
 
     if (!hdr) {
@@ -1392,6 +1420,27 @@
 
   // ─── Init ───
   canvas.setAttribute('tabindex', '0');
+
+  // highp is only guaranteed 2^-16 by the GLSL ES spec, not IEEE single. Below
+  // 23 bits the near-horizon arithmetic is not trustworthy at any spin, so stay
+  // further out rather than render something quietly wrong.
+  var precFmt = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
+  var weakPrecision = !precFmt || precFmt.precision < 23;
+  if (weakPrecision) {
+    DELTA_FLOOR = 0.02;
+    GAP_FLOOR = 0.05;
+    console.warn('black hole: highp is ' + (precFmt ? precFmt.precision : '?') +
+      ' bits, holding further from the horizon');
+  }
+
+  // Open conservatively on anything phone-shaped or precision-limited. The
+  // controller raises quality within a second or two if the device copes, which
+  // beats opening at full quality and stuttering through the first impression.
+  if (weakPrecision || Math.min(screen.width, screen.height) <= 500) {
+    perf = 0.35;
+    scale = targetScale();
+  }
+
   setSpin(0);
   refreshLabels();
   resize();
