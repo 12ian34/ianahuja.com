@@ -861,6 +861,9 @@ input:user-invalid, textarea:user-invalid {
 .relativity-canvas-wrap {
     position: relative;
     margin-bottom: 1.5rem;
+    /* Lift above .geometric-container (fixed, z-index 0, mix-blend-mode: screen)
+       so the decorative starfield isn't screened over the ray-traced one. */
+    z-index: 1;
 }
 
 #relativity-canvas {
@@ -869,10 +872,30 @@ input:user-invalid, textarea:user-invalid {
     border-radius: 6px;
     background: #000;
     cursor: grab;
+    touch-action: none;
+    outline: none;
 }
 
 #relativity-canvas:active {
     cursor: grabbing;
+}
+
+#relativity-canvas:focus-visible {
+    outline: 2px solid #94F3A6;
+    outline-offset: 2px;
+}
+
+.relativity-canvas-wrap.is-fullscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #000;
+    margin-bottom: 0;
+    padding: 0 1rem;
+}
+
+.relativity-canvas-wrap.is-fullscreen #relativity-canvas {
+    border-radius: 0;
 }
 
 .relativity-hud {
@@ -926,7 +949,7 @@ input:user-invalid, textarea:user-invalid {
     outline: none;
 }
 
-#velocity-slider::-webkit-slider-thumb {
+#distance-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 16px;
@@ -937,13 +960,36 @@ input:user-invalid, textarea:user-invalid {
     border: none;
 }
 
-#velocity-slider::-moz-range-thumb {
+#distance-slider::-moz-range-thumb {
     width: 16px;
     height: 16px;
     border-radius: 50%;
     background: #94F3A6;
     cursor: pointer;
     border: none;
+}
+
+#distance-slider:focus-visible {
+    outline: 2px solid #94F3A6;
+    outline-offset: 4px;
+}
+
+#relativity-fullscreen {
+    flex: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+#relativity-fullscreen:hover {
+    color: #94F3A6;
+    border-color: #94F3A6;
 }
 
 .relativity-hint {
@@ -1035,6 +1081,7 @@ input:user-invalid, textarea:user-invalid {
     width: fit-content;
     max-width: 100%;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 .equation .katex {
@@ -1050,4 +1097,70 @@ input:user-invalid, textarea:user-invalid {
 
 .equation .katex-display > .katex {
     text-align: left !important;
+}
+
+.hud-note {
+    color: #E5A03C;
+    margin-top: 0.2rem;
+}
+
+#spin-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: #333;
+    outline: none;
+}
+
+#spin-slider::-webkit-slider-thumb,
+#mass-select:focus-visible {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#spin-slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #94F3A6;
+    cursor: pointer;
+    border: none;
+}
+
+#spin-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #94F3A6;
+    cursor: pointer;
+    border: none;
+}
+
+#spin-slider:focus-visible {
+    outline: 2px solid #94F3A6;
+    outline-offset: 4px;
+}
+
+#spin-label {
+    min-width: 15em;
+    text-align: right;
+}
+
+#mass-select {
+    flex: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #94F3A6;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.4rem;
+    cursor: pointer;
+}
+
+#mass-select option {
+    background: #1a1a1a;
+    color: #CCCCCC;
 }

@@ -2,33 +2,52 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
 <div class="relativity-page">
   <div class="relativity-canvas-wrap">
-    <canvas id="relativity-canvas"></canvas>
+    <canvas id="relativity-canvas" tabindex="0" role="img"
+            aria-label="interactive ray-traced kerr black hole. drag to orbit, scroll or pinch to change distance, and adjust spin and mass below."></canvas>
     <div class="relativity-hud">
       <div class="relativity-hud-left">
         <div class="hud-row"><span class="hud-label">distance</span> <span id="hud-distance">40.0 Rs</span></div>
         <div class="hud-row"><span class="hud-label">time dilation</span> <span id="hud-dilation">0.987</span></div>
+        <div class="hud-row"><span class="hud-label">1 min here</span> <span id="hud-clock">1m 01s out there</span></div>
+        <div class="hud-row hud-note" id="hud-note"></div>
       </div>
       <div class="relativity-hud-right">
         <div class="hud-row"><span class="hud-label">viewing angle</span> <span id="hud-angle">85°</span></div>
+        <div class="hud-row"><span class="hud-label">field of view</span> <span id="hud-fov">37°</span></div>
+        <div class="hud-row"><span class="hud-label">thrust to hover</span> <span id="hud-thrust">0.2 g</span></div>
       </div>
     </div>
     <div class="relativity-controls">
-      <span class="control-label">3 Rs</span>
-      <input type="range" id="distance-slider" min="30" max="400" value="400" step="1" />
+      <span class="control-label" id="dist-min-label">1.01 Rs</span>
+      <input type="range" id="distance-slider" min="0" max="1000" value="1000" step="1"
+             aria-label="distance from the black hole, in schwarzschild radii" />
       <span class="control-label">40 Rs</span>
+      <button type="button" id="relativity-fullscreen" aria-pressed="false">fullscreen</button>
     </div>
-    <p class="relativity-hint">drag to orbit · slider or ↑↓ to approach · ←→ to rotate</p>
+    <div class="relativity-controls">
+      <span class="control-label">spin</span>
+      <input type="range" id="spin-slider" min="0" max="998" value="0" step="1"
+             aria-label="black hole spin, as a fraction of the maximum" />
+      <span class="control-label" id="spin-label">a* 0.000 &middot; ISCO 3.00 Rs</span>
+      <select id="mass-select" aria-label="black hole mass">
+        <option value="0">10 M&odot;</option>
+        <option value="1">Sgr A*</option>
+        <option value="2" selected>M87*</option>
+      </select>
+    </div>
+    <p class="relativity-hint">drag to orbit · scroll, pinch or slider to approach · spin changes the geometry, mass changes only the numbers</p>
   </div>
 
   <div class="relativity-explainer">
     <h2>the black hole</h2>
-    <p>this is a non-rotating (schwarzschild) black hole with the mass of M87* &mdash; 6.5 billion solar masses. the simulation is scale-free: every distance is measured in schwarzschild radii, so the physics is identical for any mass.</p>
+    <p>a rotating (kerr) black hole, ray traced from its metric. the spin slider runs from a non-rotating hole out to a* = 0.998, the fastest an accreting hole can realistically get. every distance is in schwarzschild radii.</p>
+
+    <p>the mass selector is the interesting one, because it changes nothing you can see. lensing, shadow shape, time dilation and the whole image depend only on <em>r</em>/R<sub>s</sub>, so a ten solar mass hole and M87* look pixel for pixel identical. what mass changes is what it would be like to be there:</p>
 
     <div class="explainer-stats">
-      <div class="stat"><span class="stat-label">mass</span><span class="stat-value">6.5 &times; 10<sup>9</sup> M<sub>&odot;</sub></span></div>
-      <div class="stat"><span class="stat-label">schwarzschild radius</span><span class="stat-value">1.9 &times; 10<sup>10</sup> km &asymp; 127 AU</span></div>
-      <div class="stat"><span class="stat-label">photon sphere</span><span class="stat-value">2.9 &times; 10<sup>10</sup> km &asymp; 191 AU</span></div>
-      <div class="stat"><span class="stat-label">innermost orbit</span><span class="stat-value">5.8 &times; 10<sup>10</sup> km &asymp; 382 AU</span></div>
+      <div class="stat"><span class="stat-label">10 M<sub>&odot;</sub></span><span class="stat-value">R<sub>s</sub> 30 km &middot; hover at 3 R<sub>s</sub> 2 &times; 10<sup>10</sup> g &middot; orbit 4.6 ms</span></div>
+      <div class="stat"><span class="stat-label">Sgr A*</span><span class="stat-value">R<sub>s</sub> 1.3 &times; 10<sup>7</sup> km &middot; hover 49,000 g &middot; orbit 33 min</span></div>
+      <div class="stat"><span class="stat-label">M87*</span><span class="stat-value">R<sub>s</sub> 1.9 &times; 10<sup>10</sup> km &middot; hover 32 g &middot; orbit 34 days</span></div>
     </div>
 
     <h2>the physics</h2>
@@ -53,7 +72,7 @@
 
     <div class="explainer-block">
       <strong>ray tracing acceleration</strong>
-      <p>the shader integrates this equivalent 3D form at every step. <em>h</em> is the photon's angular momentum, <em>r</em> its distance from the singularity. 350 steps per pixel, adaptive step size.</p>
+      <p>the shader integrates this equivalent 3D form at every step. <em>h</em> is the photon's angular momentum, <em>r</em> its distance from the singularity. because <em>h</em> is conserved along a geodesic it is computed once at the camera and reused, which leaves an acceleration that depends only on position. that makes velocity verlet the natural integrator: second-order accurate for the same cost as the first-order euler step it replaces. 300 steps per pixel, adaptive step size.</p>
       <div class="equation" data-eq="\vec{a} = -\frac{3}{2}\,\frac{h^2}{r^5}\,\vec{r} \qquad \text{where } h = |\vec{r} \times \vec{v}|"></div>
     </div>
 
@@ -61,6 +80,32 @@
       <strong>critical impact parameter</strong>
       <p>photons with impact parameter below this value are captured by the black hole. photons exactly at this value orbit forever on the photon sphere. this defines the size of the black hole's shadow.</p>
       <div class="equation" data-eq="b_{\text{crit}} = \frac{3\sqrt{3}}{2}\;R_s \approx 2.598\;R_s"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>spin: the kerr metric</strong>
+      <p>spin drags spacetime around with it. the horizon shrinks from 1 R<sub>s</sub> to 0.53 R<sub>s</sub> at the thorne limit, and the innermost stable orbit collapses from 3 R<sub>s</sub> all the way to 0.62 R<sub>s</sub>, so the disc reaches far closer in and orbits far faster. the shadow stops being a circle: it flattens on the side rotating toward you, because prograde photons can hold on closer than retrograde ones.</p>
+      <p>none of the schwarzschild shortcuts survive this. angular momentum about the axis is still conserved, but the trick of reducing everything to an acceleration that depends only on position is gone, so the shader integrates the hamiltonian equations directly, in boyer-lindquist coordinates, with runge-kutta.</p>
+      <div class="equation" data-eq="\Delta = r^2 - 2Mr + a^2, \qquad r_\pm = M \pm \sqrt{M^2 - a^2}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the carter constant</strong>
+      <p>kerr geodesics have a third conserved quantity beyond energy and angular momentum, which is what makes them integrable at all. it pins the polar motion exactly, and re-projecting onto it after every step is the only thing that keeps the spin axis stable: boyer-lindquist is singular there, and an integrator left to its own devices paints a fan of artefacts straight up it.</p>
+      <div class="equation" data-eq="p_\theta^2 = \Theta(\theta) = Q + \cos^2\theta\left(a^2E^2 - \frac{L^2}{\sin^2\theta}\right)"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>zero angular momentum observers</strong>
+      <p>the camera cannot be a static observer any more. inside the ergosphere nothing can hold still against the frame dragging, and for a fast spin the ergosphere swallows the ISCO and everything near it. so the camera is a ZAMO instead: the locally non-rotating frame, carried around with the hole, which stays valid right down to the horizon. at zero spin it is exactly the static observer and nothing changes.</p>
+      <p>the lapse &alpha; is that observer's clock rate against infinity, and it is what the dilation readout shows. it also appears in the ray setup, where the frame dragging term means which way you look changes the photon's energy at infinity.</p>
+      <div class="equation" data-eq="\alpha = \sqrt{\frac{\Sigma\Delta}{A}}, \qquad \omega = \frac{2Mar}{A}, \qquad E = \alpha + \omega L"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>turning around</strong>
+      <p>past the photon sphere the shadow covers more than half the sky, so pointing the camera at the hole shows nothing at all: the view is entirely black, correctly. the way out is behind you. the camera turns around at that point, and what you see is the whole outside universe crushed into a bright disc, shrinking as you descend, cut in half by the accretion disc seen edge on.</p>
+      <p>the sky is also violently blueshifted by then, by 1/&alpha;, with intensity going as the fourth power of that. near the horizon that is six orders of magnitude, which is both physically correct and completely unreadable, so the exposure adapts past about thirty times. it is the one place the render deliberately departs from the raw radiance, and the colour shift is left alone.</p>
     </div>
 
     <div class="explainer-block">
@@ -72,31 +117,57 @@
     <div class="explainer-block">
       <strong>accretion disk (ISCO)</strong>
       <p>the innermost stable circular orbit sets the inner edge of the disk. matter inside this radius spirals rapidly inward.</p>
-      <div class="equation" data-eq="r_{\text{isco}} = 3\;R_s"></div>
+      <div class="equation" data-eq="r_{\text{isco}} = 3\;R_s \ (a = 0) \qquad \longrightarrow \qquad 0.62\;R_s \ (a^* = 0.998)"></div>
     </div>
 
     <div class="explainer-block">
       <strong>disk temperature</strong>
-      <p>the accretion disk follows the shakura-sunyaev temperature profile. the inner edge glows white-hot; the outer edge fades to deep red.</p>
-      <div class="equation" data-eq="T(r) \propto r^{-3/4}"></div>
+      <p>the accretion disk follows the shakura-sunyaev temperature profile, with a zero-torque boundary at the inner edge. the bracketed term forces the temperature to zero at the ISCO, so the disk does not simply get hotter forever as you move inward. it peaks at <em>r</em> = (49/36) <em>r</em><sub>in</sub> &asymp; 4.1 R<sub>s</sub> and falls away on both sides.</p>
+      <div class="equation" data-eq="T(r) \propto r^{-3/4}\left[1 - \sqrt{\tfrac{r_{\text{in}}}{r}}\,\right]^{1/4}"></div>
     </div>
 
     <div class="explainer-block">
-      <strong>keplerian velocity</strong>
-      <p>matter in the disk orbits at this velocity. the inner disk orbits faster, which is why you see differential rotation in the ring patterns.</p>
-      <div class="equation" data-eq="v_{\text{orb}} = \sqrt{\frac{GM}{r}} = c\sqrt{\frac{R_s}{2r}}"></div>
+      <strong>turbulence and hot spots</strong>
+      <p>a real disc is not smooth. magnetorotational turbulence stirs it constantly while differential rotation shears every eddy into a trailing spiral, because the inner disc laps the outer one. the shader samples noise in the frame co-rotating with the gas, which produces that shearing for free, and decorrelates it at the local orbital rate so eddies live a fraction of an orbit. without that lifetime the shear accumulates forever and the disc slowly winds itself into infinitely thin stripes.</p>
+      <p>two brighter spots orbit at 4.4 and 7.1 R<sub>s</sub>, standing in for the flares seen from Sgr A*. they are hotter rather than merely brighter, so they run through the same <em>g</em> factor as everything else: the fourth power turns a 40% temperature rise into four times the brightness, and beaming multiplies it again as the spot swings toward you.</p>
+      <div class="equation" data-eq="\Omega(r) = \sqrt{\frac{GM}{r^3}} \qquad t_{\text{eddy}} \sim \Omega^{-1}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>orbital velocity</strong>
+      <p>the speed of disk matter as measured by a static observer sitting at that radius. the newtonian &radic;(GM/r) is not enough this close in; the correction in the denominator is what makes matter at the ISCO orbit at exactly half the speed of light.</p>
+      <div class="equation" data-eq="v_{\text{orb}} = c\sqrt{\frac{M}{r - 2M}} = c\sqrt{\frac{R_s}{2r - 2R_s}} \qquad v_{\text{isco}} = \tfrac{1}{2}c"></div>
     </div>
 
     <div class="explainer-block">
       <strong>relativistic doppler shift</strong>
-      <p>disk matter orbiting toward you is blue-shifted (brighter, hotter); matter receding is red-shifted (dimmer, cooler). this creates the dramatic asymmetry in the disk.</p>
-      <div class="equation" data-eq="f = \frac{1}{1 - \dfrac{\vec{v}_{\text{orb}} \cdot \hat{n}}{c}}"></div>
+      <p>disk matter orbiting toward you is blue-shifted, matter receding is red-shifted. the &gamma; factor in the denominator is transverse time dilation: at half the speed of light it red-shifts <em>both</em> sides of the disk, even the material moving exactly sideways.</p>
+      <div class="equation" data-eq="\frac{1}{\gamma\left(1 - \vec{\beta} \cdot \hat{n}\right)}, \qquad \gamma = \frac{1}{\sqrt{1 - \beta^2}}"></div>
     </div>
 
     <div class="explainer-block">
-      <strong>relativistic beaming</strong>
-      <p>brightness scales as the doppler factor cubed, so even a modest velocity difference makes one side of the disk dramatically brighter.</p>
-      <div class="equation" data-eq="I_{\text{obs}} \propto f^{\,3}\; I_{\text{emit}}"></div>
+      <strong>gravitational redshift</strong>
+      <p>separately from any motion, light climbing out of the gravity well loses energy. at the ISCO this alone costs a photon 18% of its frequency. at the horizon it costs all of it, which is why the shadow is black.</p>
+      <div class="equation" data-eq="\sqrt{1 - \frac{R_s}{r}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the redshift factor</strong>
+      <p>the two effects above combine into a single number <em>g</em>, the ratio of observed to emitted frequency. everything the disk looks like comes out of this one quantity. at the ISCO, edge-on, it ranges from 1.41 on the approaching side to 0.47 on the receding side: a factor of three in frequency across a single ring.</p>
+      <div class="equation" data-eq="g = \frac{\nu_{\text{obs}}}{\nu_{\text{emit}}} = \frac{\sqrt{1 - \dfrac{R_s}{r}}}{\gamma\left(1 - \vec{\beta} \cdot \hat{n}\right)}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>beaming, from one number</strong>
+      <p>specific intensity divided by frequency cubed is a relativistic invariant, so integrating over the spectrum gives a bolometric brightness that scales as <em>g</em> to the fourth. the temperature shifts by the same factor. put those together with the stefan-boltzmann law and the whole thing collapses: the observed brightness is just the observed temperature to the fourth power. beaming, gravitational dimming and colour shift all fall out of <em>g</em> at once, with nothing hand-tuned.</p>
+      <div class="equation" data-eq="I_{\text{obs}} = g^4 I_{\text{emit}} \propto \left(g\,T_{\text{emit}}\right)^4 = T_{\text{obs}}^{\,4}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>blackbody colour</strong>
+      <p>the disk colour is not a gradient chosen by eye. each pixel takes its observed temperature, evaluates planck's law along the planckian locus, and converts to linear sRGB. that factor of three in frequency across the ISCO becomes roughly 6500 K on the approaching limb and 2000 K on the receding one: blue-white grading to deep red, entirely from physics.</p>
+      <div class="equation" data-eq="B_\lambda(T) = \frac{2hc^2}{\lambda^5}\,\frac{1}{e^{hc/\lambda k_B T} - 1}"></div>
+      <p>one honest caveat: a real thin disk around a 6.5 billion solar mass black hole peaks in the far ultraviolet, and a literal render would be a featureless blue-white. the temperature scale here is shifted down into the visible band so the structure is actually legible.</p>
     </div>
 
     <div class="explainer-block">
@@ -106,9 +177,60 @@
     </div>
 
     <div class="explainer-block">
+      <strong>the shadow grows as you approach</strong>
+      <p>the shadow is not a fixed object with a fixed size. its angular radius for an observer hovering at <em>r</em> follows from the critical impact parameter, and it grows fast: 3.7&deg; from 40 R<sub>s</sub>, 14&deg; at 10, 45&deg; at 3, and exactly 90&deg; at the photon sphere, where the hole swallows precisely half of everything you can see. inside that, more than half the sky is black.</p>
+      <div class="equation" data-eq="\sin\theta_{\text{sh}} = \frac{b_{\text{crit}}}{r}\sqrt{1 - \frac{R_s}{r}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>your own frame is stretched</strong>
+      <p>a hovering observer's radial ruler is stretched by 1/&radic;(1 &minus; R<sub>s</sub>/<em>r</em>), so the angle you measure between a ray and the straight-down direction is not the coordinate angle the geodesic integrator works in. matching impact parameters converts one to the other. far away it is the identity and nothing changes; close in it is what makes the shadow come out the right size.</p>
+      <div class="equation" data-eq="\sin\psi_{\text{coord}} = \frac{\sin\psi_{\text{local}}}{\sqrt{1 - \dfrac{R_s}{r} + \dfrac{\sin^2\psi_{\text{local}}}{r}}}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the sky blueshifts as you descend</strong>
+      <p>light falling toward you gains energy on the way down, which is the same effect as gravitational redshift read backwards. the entire outside universe shifts blue by the reciprocal of the dilation factor and brightens by its fourth power: at 2 R<sub>s</sub> the sky arrives 41% bluer and four times brighter. this is the same <em>g</em> factor as the disc, applied to the background instead.</p>
+      <div class="equation" data-eq="g_{\text{sky}} = \left(1 - \frac{R_s}{r}\right)^{-1/2}, \qquad I_{\text{obs}} \propto g_{\text{sky}}^{\,4}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>what it would take to hover</strong>
+      <p>the readout in the corner is the proper acceleration you would need to hold station, which is the newtonian value divided by the dilation factor. it diverges at the horizon, but for a hole this big it stays surprisingly mild for a surprisingly long time: 0.2 g at 40 R<sub>s</sub>, about a fifth of standing on earth. 2.5 g at 10 R<sub>s</sub>. 33 g at the innermost stable orbit, which would kill you, and 85 g at 2 R<sub>s</sub>.</p>
+      <div class="equation" data-eq="a = \frac{GM}{r^2}\left(1 - \frac{R_s}{r}\right)^{-1/2}"></div>
+      <p>tides are the opposite story. the stretch across a two-metre body at 3 R<sub>s</sub> is about 2 &times; 10<sup>&minus;11</sup> m/s<sup>2</sup>, roughly a trillionth of a g, because tidal force falls as 1/<em>r</em><sup>3</sup> while R<sub>s</sub> grows with mass. spaghettification is a small-black-hole problem. here the thrust would crush you long before the tides noticed you.</p>
+    </div>
+
+    <div class="explainer-block">
       <strong>gravitational lensing angle</strong>
       <p>the weak-field deflection angle for a photon grazing a mass at distance <em>b</em>. near the black hole the deflection is much larger, and this formula breaks down as rays wrap fully around.</p>
       <div class="equation" data-eq="\alpha = \frac{4GM}{c^2\,b}"></div>
+    </div>
+
+    <h2>how it's rendered</h2>
+
+    <div class="explainer-block">
+      <strong>the background is the real sky</strong>
+      <p>15,598 stars from the HYG catalogue, everything down to magnitude 7, a little past the naked-eye limit. each star's colour is its catalogued B-V index converted to an effective temperature and then run through the same planck curve the disc uses, so sirius arrives at 10,000 K and blue-white, betelgeuse at 3,800 K and red, with nothing chosen by hand.</p>
+      <p>the catalogue is baked into a cube map rather than an equirectangular image, because the geodesics sweep the entire sphere and equirect would put its seam and its pole singularity exactly where rays are bent hardest. the milky way is layered on procedurally in galactic coordinates, so its band runs where the catalogue's stars are genuinely dense. all of it is lensed: orbit around and you can watch real constellations stretch into arcs as they pass behind the hole.</p>
+      <div class="equation" data-eq="T_{\text{eff}} \approx 4600\left[\frac{1}{0.92\,(B\!-\!V) + 1.7} + \frac{1}{0.92\,(B\!-\!V) + 0.62}\right]\ \text{K}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the lens has to open up</strong>
+      <p>a rectilinear lens, the kind that keeps straight lines straight, cannot show a field much past 120&deg;: the projection runs off to infinity at a right angle. but the shadow passes 90&deg; before you reach the photon sphere, so a fixed narrow lens pointed at the hole goes completely black long before you arrive, which is the least interesting possible view of a black hole.</p>
+      <p>so the camera uses an equidistant projection, where distance from the centre of the frame is proportional to angle rather than to a tangent, and the field of view opens as you descend to track the shadow. 37&deg; at 40 R<sub>s</sub>, 88&deg; at 6, 170&deg; at 3 and closer. the distortion is real and worth knowing about, but it is the honest trade: it is the only way to keep the whole thing in frame.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>progressive accumulation</strong>
+      <p>one geodesic per pixel per frame is not enough to resolve the photon ring without aliasing. each frame jitters the sample point within its pixel using a low-discrepancy sequence and blends into a half-float buffer, converging on a 16-sample anti-aliased image whenever the camera settles.</p>
+      <p>accumulation only works on frames that line up, so how much history is kept is tied to how far the image actually slid: a still camera converges deeply, a slow drift keeps a few frames, and a drag falls back to a single sample and stays responsive.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>tone mapping</strong>
+      <p>the disk spans about two and a half orders of magnitude in brightness between its approaching and receding limbs, which no display can show directly. the render is kept in linear light throughout, bloomed above a threshold, then mapped through an ACES filmic curve. the glow around the bright limb is the physical dynamic range, not an effect layered on top.</p>
     </div>
   </div>
 </div>
