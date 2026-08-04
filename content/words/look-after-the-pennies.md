@@ -17,7 +17,7 @@ A year later in August 2023, we're growing quickly, customers are happy and GTM 
 
 Naturally, we look elsewhere and Attio comes out of the blue. London-based ✅, beautiful UI ✅ a CRM people actually would want to use ✅ and guess what, literally all the things we needed from a CRM at a third of the price for the startup plan we had with Hubspot.
 
-Within 2 weeks, I'd already spoke to Frank Mayfield and Matthew Fischer, had 100% of my Hubspot content fully migrated and we were using it across the whole company.
+Within 2 weeks, I'd already spoke to Frank Mayfield and Matthew Fischer, who helped me get 100% of my Hubspot content and workflows fully migrated and we were using it across the whole company.
 
 Another benefit is that I could provide FULL transparency to our whole company without worrying about juggling licenses. This took a huge burden off me with regards to Reporting and ad hoc questions about prospects and customers.
 
