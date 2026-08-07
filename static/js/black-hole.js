@@ -643,8 +643,20 @@
     gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
     var ok = gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+    // Do not let the first accumulation pass sample an uninitialised half-float
+    // texture. Firefox on Apple GPUs can expose those texels as NaN; even with a
+    // blend weight of 1, the NaN then poisons every accumulated frame and the
+    // composite stays black. WebGL normally zero-initialises texture storage,
+    // but clearing explicitly also makes the first frame deterministic.
+    if (ok) {
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+    }
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-    return ok ? { tex: tex, fbo: fbo, w: w, h: h } : null;
+    if (ok) return { tex: tex, fbo: fbo, w: w, h: h };
+    gl.deleteTexture(tex);
+    gl.deleteFramebuffer(fbo);
+    return null;
   }
 
   function freeTarget(t) {
