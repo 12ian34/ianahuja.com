@@ -22,7 +22,7 @@ No test suite, linter, or build toolchain beyond Hugo itself.
 
 ## Architecture
 
-**Layout hierarchy**: `layouts/_default/baseof.html` wraps all pages (nav, stars background, main content block). Section-specific layouts in `layouts/{words,recipes,supperclubs,black-hole}/`.
+**Layout hierarchy**: `layouts/_default/baseof.html` wraps all pages (nav, stars background, main content block). Section-specific layouts in `layouts/{words,recipes,supperclubs,black-hole,lensing}/`.
 
 **Content sections**:
 
@@ -33,13 +33,14 @@ No test suite, linter, or build toolchain beyond Hugo itself.
 | Supper clubs | `content/supperclubs/*.md` | Event pages with shared info partial |
 | Recipes | `content/recipes/*.md` | Grid layout with client-side cuisine/diet filtering |
 | Black hole | `content/black-hole.md` | WebGL Schwarzschild ray tracing + KaTeX equations |
+| Lensing | `content/lensing.md` | WebGL gravitational lens over real Hubble images (`static/images/lensing/`, ESA/Hubble CC BY 4.0) + KaTeX |
 | Music | `content/music.md` | Standalone page |
 
 **Partials**: `head.html` (OG/Twitter meta with per-page override), `nav.html` (glass-morphism horizontal scroll nav), `stars.html` (decorative background canvas).
 
 **Shortcodes**: `figure.html` (image + caption), `youtube.html` (responsive 16:9 embed — usage: `{{</* youtube VIDEO_ID "optional title" */>}}`).
 
-**JS assets**: `static/js/geometric-visualizer.js` (400-particle parallax starfield with shooting stars, nebula wisps, mouse repulsion) and `static/js/black-hole.js` (WebGL fragment shader ray tracer with orbit controls).
+**JS assets**: `static/js/geometric-visualizer.js` (400-particle parallax starfield with shooting stars, nebula wisps, mouse repulsion), `static/js/black-hole.js` (WebGL fragment shader ray tracer with orbit controls) and `static/js/lensing.js` (thin-lens ray shooting shader: point mass / SIS / SIE / cluster, marching-squares critical curves and caustics on a 2D overlay, config mirrored in the URL hash).
 
 ## Conventions
 

@@ -1,0 +1,241 @@
+{{ define "main" }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+<div class="relativity-page lensing-page">
+  <div class="relativity-canvas-wrap lens-wrap">
+    <div class="lens-stage">
+      <canvas id="lens-canvas" tabindex="0" role="img"
+              aria-label="interactive gravitational lens. a real hubble image of a galaxy sits behind a lens; drag to move the galaxy, scroll or pinch to resize it, and change the lens with the controls below."></canvas>
+      <canvas id="lens-overlay" aria-hidden="true"></canvas>
+      <div class="relativity-hud">
+        <div class="relativity-hud-left">
+          <div class="hud-row"><span class="hud-label">einstein radius</span> <span id="hud-theta">1.75″</span></div>
+          <div class="hud-row"><span class="hud-label">mass inside it</span> <span id="hud-mass">—</span></div>
+          <div class="hud-row" id="hud-sigma-row"><span class="hud-label">velocity dispersion</span> <span id="hud-sigma">—</span></div>
+          <div class="hud-row"><span class="hud-label">total magnification</span> <span id="hud-mag">—</span></div>
+          <div class="hud-row hud-note" id="hud-note"></div>
+        </div>
+        <div class="relativity-hud-right">
+          <div class="hud-row"><span class="hud-label">lens</span> <span id="hud-zl">z 0.5</span></div>
+          <div class="hud-row"><span class="hud-label">source</span> <span id="hud-zs">z 2.0</span></div>
+          <div class="hud-row"><span class="hud-label">field of view</span> <span id="hud-fov">10″</span></div>
+          <div class="hud-row"><span class="hud-label">μ under cursor</span> <span id="hud-cursor">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relativity-controls">
+      <span class="control-label">lens</span>
+      <select id="lens-model" class="lens-select" aria-label="lens mass model or real object">
+        <optgroup label="models">
+          <option value="m0">point mass</option>
+          <option value="m1">isothermal sphere</option>
+          <option value="m2" selected>isothermal ellipsoid</option>
+          <option value="m3">galaxy cluster</option>
+        </optgroup>
+        <optgroup label="real objects">
+          <option value="q2237">einstein cross (q2237+0305)</option>
+          <option value="horseshoe">cosmic horseshoe (j1148+1930)</option>
+          <option value="q0957">twin quasar (q0957+561)</option>
+          <option value="jackpot">the jackpot (j0946+1006)</option>
+          <option value="a1689">abell 1689</option>
+          <option value="macs1149">macs j1149 (refsdal)</option>
+          <option value="m87">m87* black hole</option>
+          <option value="sgra">sgr a* black hole</option>
+          <option value="sun">a sun-like star</option>
+        </optgroup>
+      </select>
+      <span class="control-label">source</span>
+      <select id="lens-source" class="lens-select" aria-label="background image">
+        <optgroup label="galaxies">
+          <option value="m51" selected>whirlpool galaxy</option>
+          <option value="ngc1300">ngc 1300</option>
+          <option value="m101">pinwheel galaxy</option>
+          <option value="m81">bode’s galaxy</option>
+          <option value="m106">messier 106</option>
+          <option value="sombrero">sombrero galaxy</option>
+          <option value="m82">cigar galaxy</option>
+          <option value="ngc1275">ngc 1275</option>
+        </optgroup>
+        <optgroup label="interacting">
+          <option value="antennae">antennae galaxies</option>
+          <option value="ngc2207">ngc 2207 and ic 2163</option>
+          <option value="arp273">arp 273</option>
+          <option value="stephan">stephan’s quintet</option>
+        </optgroup>
+        <optgroup label="other">
+          <option value="hudf">hubble ultra deep field</option>
+          <option value="star">a star</option>
+        </optgroup>
+      </select>
+      <button type="button" id="lens-play" class="lens-btn" aria-pressed="true">pause</button>
+      <button type="button" id="lens-random" class="lens-btn">randomise</button>
+      <button type="button" id="lens-fullscreen" class="lens-btn" aria-pressed="false">fullscreen</button>
+    </div>
+
+    <div class="relativity-controls">
+      <span class="control-label">einstein radius</span>
+      <input type="range" id="lens-theta" class="lens-slider" min="50" max="750" value="350" step="5"
+             aria-label="einstein radius" />
+      <span class="control-label lens-value" id="lens-theta-label">θE 1.75″</span>
+      <span class="control-label">source size</span>
+      <input type="range" id="lens-size" class="lens-slider" min="60" max="3000" value="500" step="10"
+             aria-label="angular size of the background galaxy" />
+      <span class="control-label lens-value" id="lens-size-label">2.5″</span>
+    </div>
+
+    <div class="relativity-controls">
+      <span class="control-label">ellipticity</span>
+      <input type="range" id="lens-ellip" class="lens-slider" min="0" max="600" value="300" step="5"
+             aria-label="lens ellipticity, one minus the axis ratio" />
+      <span class="control-label lens-value" id="lens-ellip-label">q 0.70</span>
+      <span class="control-label">angle</span>
+      <input type="range" id="lens-angle" class="lens-slider" min="0" max="180" value="30" step="1"
+             aria-label="orientation of the lens major axis" />
+      <span class="control-label lens-value" id="lens-angle-label">30°</span>
+      <span class="control-label">shear</span>
+      <input type="range" id="lens-shear" class="lens-slider" min="0" max="300" value="0" step="5"
+             aria-label="external shear" />
+      <span class="control-label lens-value" id="lens-shear-label">γ 0.00</span>
+    </div>
+
+    <div class="relativity-controls lens-toggles">
+      <label class="lens-toggle"><input type="checkbox" id="lens-crit" checked /> critical curve</label>
+      <label class="lens-toggle"><input type="checkbox" id="lens-caust" checked /> caustic</label>
+      <label class="lens-toggle"><input type="checkbox" id="lens-ghost" /> unlensed source</label>
+      <label class="lens-toggle"><input type="checkbox" id="lens-gal" checked /> lens galaxy</label>
+    </div>
+
+    <p class="relativity-hint">drag to move the galaxy behind the lens · scroll, pinch or slider to resize it · dotted grey is the critical curve, dashed grey the caustic · play drifts the source and swaps it every so often</p>
+    <p class="relativity-hint lens-credit" id="lens-credit"></p>
+  </div>
+
+  <div class="relativity-explainer">
+    <h2>the lens</h2>
+    <p>a foreground mass at redshift 0.5, a real hubble galaxy behind it at redshift 2, and one evaluation of the lens equation per pixel. the images are the genuine hubble frames, only ever sampled through the map from where light arrives to where it left. nothing is painted on: the arcs, the einstein ring, the multiple images and the mirror flips all fall out of one equation.</p>
+
+    <p>the lens menu has four free models and nine real objects. the real ones load their published einstein radius, shape, shear and distances, rounded from the literature, and the readouts recompute from those: pick the cosmic horseshoe and the mass and velocity dispersion in the corner are its. the point masses go the other way, from a mass and two distances to an einstein radius, which is how a black hole and a single star end up in the same list as a galaxy cluster.</p>
+
+    <p>the caustic is the dashed curve. it lives in the source plane, so it marks where the <em>unlensed</em> galaxy would have to sit to be maximally distorted. drag the galaxy across it and watch two new images appear from nothing on the dotted critical curve, then peel apart. the lens galaxy in the middle is a foreground object, so it is drawn unlensed, with the same shape and orientation as the mass.</p>
+
+    <div class="explainer-stats">
+      <div class="stat"><span class="stat-label">einstein cross</span><span class="stat-value">quasar at z 1.7 behind the bulge of a barred spiral at z 0.04; four images 0.9″ out</span></div>
+      <div class="stat"><span class="stat-label">cosmic horseshoe</span><span class="stat-value">near-complete ring 10″ across around a huge red galaxy at z 0.44</span></div>
+      <div class="stat"><span class="stat-label">twin quasar</span><span class="stat-value">the first lens found, 1979; images 6″ apart, strong shear from the host cluster, 417 day delay</span></div>
+      <div class="stat"><span class="stat-label">the jackpot</span><span class="stat-value">a double einstein ring, two sources at different distances; only the inner one is modelled</span></div>
+      <div class="stat"><span class="stat-label">abell 1689</span><span class="stat-value">over a hundred arcs; einstein radius near 45″ for distant sources</span></div>
+      <div class="stat"><span class="stat-label">macs j1149</span><span class="stat-value">supernova refsdal appeared four times in 2014 and once more in 2015, on schedule</span></div>
+      <div class="stat"><span class="stat-label">m87*</span><span class="stat-value">6.5 billion solar masses at 16.8 Mpc; a galaxy 100 Mpc behind it would ring at 1.6″</span></div>
+      <div class="stat"><span class="stat-label">sgr a*</span><span class="stat-value">4.3 million solar masses; a star 500 pc behind it would ring at half an arcsecond</span></div>
+      <div class="stat"><span class="stat-label">a sun-like star</span><span class="stat-value">halfway to the bulge, einstein radius one milliarcsecond: microlensing</span></div>
+    </div>
+
+    <div class="explainer-stats">
+      <div class="stat"><span class="stat-label">point mass</span><span class="stat-value">two images always, or a ring when aligned</span></div>
+      <div class="stat"><span class="stat-label">isothermal sphere</span><span class="stat-value">two images inside θ<sub>E</sub>, one outside, ring when aligned</span></div>
+      <div class="stat"><span class="stat-label">isothermal ellipsoid</span><span class="stat-value">up to four images, the einstein cross, arcs along the caustic</span></div>
+      <div class="stat"><span class="stat-label">galaxy cluster</span><span class="stat-value">giant arcs, and the deep field stretched into a tangential swirl</span></div>
+    </div>
+
+    <h2>the physics</h2>
+
+    <div class="explainer-block">
+      <strong>the lens equation</strong>
+      <p>the whole thing. a ray that arrives at the telescope from direction <em>θ</em> actually left the source at <em>β</em>, displaced by the deflection <em>α</em>. every pixel on the canvas is a <em>θ</em>; the shader computes its <em>β</em> and looks up the galaxy there. because the equation runs backwards, from image to source, it never has to find the images: any <em>θ</em> whose <em>β</em> lands on the galaxy simply shows it.</p>
+      <div class="equation" data-eq="\vec{\beta} = \vec{\theta} - \vec{\alpha}(\vec{\theta})"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>deflection by a point mass</strong>
+      <p>einstein's 1915 result, twice the newtonian value, for a ray passing at impact parameter <em>b</em>. the reduced deflection that appears in the lens equation scales it by the ratio of distances between lens, source and observer, which is why the same mass lenses more strongly when it sits roughly halfway to the source.</p>
+      <div class="equation" data-eq="\hat{\alpha} = \frac{4GM}{c^2\, b}, \qquad \vec{\alpha} = \frac{D_{ds}}{D_s}\,\hat{\alpha} = \theta_E^2\,\frac{\vec{\theta}}{|\vec{\theta}|^2}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the einstein radius</strong>
+      <p>the one number that sets the scale of everything. a source exactly behind the lens is imaged into a ring of this angular radius; everything else is measured against it. the mass readout inverts this: whatever the model, the mean mass inside the einstein radius is fixed by θ<sub>E</sub> and the distances alone, which is why lensing is the cleanest way there is to weigh a galaxy.</p>
+      <div class="equation" data-eq="\theta_E = \sqrt{\frac{4GM}{c^2}\,\frac{D_{ds}}{D_d D_s}}, \qquad M(<\theta_E) = \frac{c^2}{4G}\,\frac{D_d D_s}{D_{ds}}\,\theta_E^2"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>singular isothermal sphere</strong>
+      <p>a galaxy is not a point. its stars and dark matter move with roughly constant velocity dispersion <em>σ</em>, which gives a density falling as 1/<em>r</em>² and a deflection of constant magnitude, pointing straight at the centre regardless of distance. the einstein radius then measures <em>σ</em> directly, and that is the velocity dispersion readout in the corner: a typical lens galaxy comes out at 200 to 300 km/s.</p>
+      <div class="equation" data-eq="\vec{\alpha} = \theta_E\,\frac{\vec{\theta}}{|\vec{\theta}|}, \qquad \theta_E = 4\pi\,\frac{\sigma^2}{c^2}\,\frac{D_{ds}}{D_s}"></div>
+      <p>inside the einstein radius a source gets two images at <em>β</em> ± θ<sub>E</sub>, one each side of the lens, the inner one flipped. outside it gets one. the caustic has shrunk to a single point at the centre, which is why a round lens makes a full ring only when the alignment is perfect.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>singular isothermal ellipsoid</strong>
+      <p>flatten the mass and the deflection stops pointing at the centre. kormann, schneider and bartelmann found this closed form in 1994, written here in the frame of the lens with the major axis along <em>x</em>, and it is what the shader evaluates for the ellipsoid and the cluster. the ellipticity slider is 1 − <em>q</em>; as <em>q</em> → 1 both branches collapse to the sphere.</p>
+      <div class="equation" data-eq="\alpha_x = \frac{\theta_E\sqrt{q}}{\sqrt{1-q^2}}\,\arctan\!\left(\frac{\sqrt{1-q^2}\,x}{\psi}\right), \quad \alpha_y = \frac{\theta_E\sqrt{q}}{\sqrt{1-q^2}}\,\operatorname{artanh}\!\left(\frac{\sqrt{1-q^2}\,y}{\psi}\right), \quad \psi = \sqrt{q^2x^2+y^2}"></div>
+      <p>the point caustic opens into an astroid with four cusps. a source inside it has four images, the einstein cross; a source between the astroid and the outer cut has two; beyond that, one. near a cusp two of the four images merge into a single bright arc, which is the configuration most giant arcs in cluster images are.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>external shear</strong>
+      <p>a real lens is never alone. neighbouring galaxies and the large-scale structure along the line of sight add a tidal stretch that is nearly uniform across the lens, and is the standard extra term in any lens model. here it is aligned with the horizontal axis; even a few percent visibly reshapes the caustic, which is why it is so hard to constrain from images alone.</p>
+      <div class="equation" data-eq="\vec{\alpha}_\gamma = \begin{pmatrix} \gamma_1 & \gamma_2 \\ \gamma_2 & -\gamma_1 \end{pmatrix}\vec{\theta}"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>magnification</strong>
+      <p>lensing conserves surface brightness, so an image is never brighter per pixel than the source. what changes is its area, and the jacobian of the lens map says by how much. the convergence <em>κ</em> is the scaled surface density and stretches isotropically; the shear <em>γ</em> stretches along one axis and squeezes the other, which is what turns a round galaxy into an arc. the magnification is the reciprocal of the determinant.</p>
+      <div class="equation" data-eq="A = \frac{\partial\vec{\beta}}{\partial\vec{\theta}} = \begin{pmatrix} 1-\kappa-\gamma_1 & -\gamma_2 \\ -\gamma_2 & 1-\kappa+\gamma_1 \end{pmatrix}, \qquad \mu = \frac{1}{\det A}"></div>
+      <p>the cursor readout is this local <em>μ</em>. where it is negative the determinant has flipped sign and the image is a mirror image of the source: look for the reversed spiral arms on the inner images. the total magnification in the corner is the lensed flux over the unlensed flux of the whole galaxy, integrated across the frame.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>critical curves and caustics</strong>
+      <p>where det <em>A</em> = 0 the magnification is formally infinite. those points form the critical curves in the image plane, dotted, and their images under the lens equation form the caustics in the source plane, dashed. crossing a caustic changes the number of images by two, always: a pair is born together on the critical curve and separates as the source moves further in. the image count is odd for any non-singular lens; the missing central image here is simply demagnified out of existence by the singular core, as it is in real lenses.</p>
+      <div class="equation" data-eq="\det A(\vec{\theta}) = 0 \quad\longrightarrow\quad \vec{\beta}_{\text{caustic}} = \vec{\theta}_{\text{crit}} - \vec{\alpha}(\vec{\theta}_{\text{crit}})"></div>
+      <p>the sphere and the point mass each have one circular critical curve, at the einstein radius, and a caustic that has collapsed to a point. the ellipsoid keeps the ring, now slightly deformed, and inflates the point into the astroid. the tangential critical curve is where arcs form: an image that straddles it is stretched enormously along the curve and not at all across it.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>time delay</strong>
+      <p>the images are not simultaneous. each corresponds to a stationary point of the arrival-time surface, which has a geometric part for the longer path and a gravitational part for the shapiro delay through the potential. for a galaxy-scale lens the difference between images is days to months, and because it scales with the distances it scales with 1/<em>H</em><sub>0</sub>: a lensed supernova or quasar that flickers is a measurement of the expansion rate, as refsdal proposed in 1964 and as has now been done.</p>
+      <div class="equation" data-eq="\tau(\vec{\theta}) = \frac{(1+z_d)}{c}\,\frac{D_d D_s}{D_{ds}}\left[\tfrac{1}{2}|\vec{\theta}-\vec{\beta}|^2 - \psi(\vec{\theta})\right]"></div>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the numbers</strong>
+      <p>the readouts assume a flat universe with <em>H</em><sub>0</sub> = 70 km/s/Mpc and Ω<sub>m</sub> = 0.3. the free models put the lens at redshift 0.5 and the source at redshift 2, with a field of view of 10 arcseconds for the galaxy lenses and 160 for the cluster; the real objects carry their own redshifts, or straight distances for the ones inside the milky way, and a field of view sized to their einstein radius. the angular diameter distances are integrated numerically from those. an einstein radius of 1.75″ then holds about 7 × 10<sup>11</sup> solar masses and needs a velocity dispersion near 310 km/s, which is a massive elliptical; the cluster setting reaches 10<sup>14</sup>. the controls are mirrored into the page url, so a configuration can be linked.</p>
+    </div>
+
+    <h2>how it's rendered</h2>
+
+    <div class="explainer-block">
+      <strong>ray shooting</strong>
+      <p>the fragment shader takes four sub-pixel positions per pixel, converts each to an angle <em>θ</em>, evaluates the deflection analytically and samples the hubble image at <em>β</em>. there is no integrator, no geodesic and no iteration: in the thin-lens limit all of general relativity has been folded into the deflection formula. that makes it cheap enough to run at full resolution with the source dragging live, where the black hole page needs hundreds of integration steps per pixel.</p>
+      <p>the galaxy images are feathered to black at their edges so the frame boundary does not lens into a visible rectangle. the deep field is tiled with mirrored repeats instead, so the lens can be panned across it forever without a seam.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>finding the curves</strong>
+      <p>the critical curves are contours of det <em>A</em> = 0. the page samples the determinant on a grid over the image plane, with the jacobian taken by central differences of the same deflection function, and runs marching squares to extract the zero contour as line segments. pushing each vertex through the lens equation gives the caustic for free. both are drawn on a 2d canvas layered over the webgl one, so they can be toggled without touching the render.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the lens galaxy</strong>
+      <p>a de vaucouleurs profile with the axis ratio and position angle of the mass, in the yellow of an old stellar population at redshift 0.5, and effective radius set to a fraction of the einstein radius. it is added after lensing because it is in front of the lens, not behind it. in the cluster mode eight smaller members are scattered through the field and each one also deflects, which is what gives the giant arcs their kinks.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>what is left out</strong>
+      <p>a single lens plane: the deep field galaxies are really at every redshift from 0.5 to 10 and would each be lensed differently. no cosmological dimming or colour shift of the source. no microlensing by individual stars in the lens galaxy, which in real systems makes the image fluxes disagree with any smooth model. and the cluster is a smooth ellipsoid plus a handful of members, where a real one has substructure at every scale. the hubble frames are also far more resolved than any lensed galaxy at redshift 2 could ever be, which is precisely what makes the distortion legible.</p>
+    </div>
+
+    <div class="explainer-block">
+      <strong>the images</strong>
+      <p>the thirteen photographs are from the <a href="https://esahubble.org/images/" rel="noopener">esa/hubble</a> archive, used under CC BY 4.0. most are hubble heritage team images credited to NASA, ESA and STScI/AURA: the whirlpool (heic0506a), ngc 1300 (opo0501a), the pinwheel (heic0602a), bode’s galaxy (heic0710a), messier 106 (heic1302a), the sombrero (opo0328a), the cigar galaxy (heic0604a), the antennae (heic0615a), ngc 2207 (opo9941a) and arp 273 (heic1107a). ngc 1275 (heic0817a) is credited to NASA, ESA and Andy Fabian; stephan’s quintet (heic0910i) to NASA, ESA and the hubble SM4 ERO team; and the 2014 ultra deep field (heic1411a) to NASA, ESA, H. Teplitz and M. Rafelski (IPAC/Caltech), A. Koekemoer (STScI), R. Windhorst (Arizona State University) and Z. Levay (STScI). the star is a procedural limb-darkened disc, there because a galaxy behind a single star makes no physical sense. the full credit line for whichever image is loaded sits under the canvas.</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script>
+<script>
+document.querySelectorAll('.equation[data-eq]').forEach(function(el) {
+  katex.render(el.getAttribute('data-eq'), el, { displayMode: true, throwOnError: false });
+});
+</script>
+<script src="/js/lensing.js"></script>
+{{ end }}

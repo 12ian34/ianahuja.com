@@ -1232,3 +1232,167 @@ input:user-invalid, textarea:user-invalid {
         font-size: 0.55rem;
     }
 }
+
+/* ---- Lensing page ---- */
+
+.lens-stage {
+    position: relative;
+}
+
+#lens-canvas {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    background: #000;
+    cursor: grab;
+    touch-action: none;
+    outline: none;
+}
+
+#lens-canvas:active {
+    cursor: grabbing;
+}
+
+#lens-canvas:focus-visible {
+    outline: 2px solid #94F3A6;
+    outline-offset: 2px;
+}
+
+#lens-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: 6px;
+}
+
+.relativity-canvas-wrap.is-fullscreen #lens-canvas,
+.relativity-canvas-wrap.is-fullscreen #lens-overlay {
+    border-radius: 0;
+}
+
+.lens-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    min-width: 5rem;
+    height: 4px;
+    border-radius: 2px;
+    background: #333;
+    outline: none;
+}
+
+.lens-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #94F3A6;
+    cursor: pointer;
+    border: none;
+}
+
+.lens-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #94F3A6;
+    cursor: pointer;
+    border: none;
+}
+
+.lens-slider:disabled {
+    opacity: 0.3;
+}
+
+.lens-slider:disabled::-webkit-slider-thumb {
+    cursor: default;
+}
+
+.lens-slider:focus-visible {
+    outline: 2px solid #94F3A6;
+    outline-offset: 4px;
+}
+
+.lens-value {
+    color: #94F3A6;
+    min-width: 4.5em;
+}
+
+.lens-select,
+.lens-btn {
+    flex: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.lens-select {
+    color: #94F3A6;
+}
+
+.lens-select option {
+    background: #1a1a1a;
+    color: #CCCCCC;
+}
+
+.lens-btn {
+    color: #888;
+}
+
+.lens-btn:hover,
+.lens-btn[aria-pressed="true"] {
+    color: #94F3A6;
+    border-color: #94F3A6;
+}
+
+.lens-toggles {
+    gap: 1rem;
+}
+
+.lens-toggle {
+    color: #888;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.lens-toggle input {
+    accent-color: #94F3A6;
+    margin: 0;
+}
+
+.lens-credit {
+    color: #555;
+}
+
+.lens-credit a {
+    color: #777;
+}
+
+@media (max-width: 620px) {
+    .lens-select,
+    .lens-btn,
+    .lens-toggle,
+    .lens-value {
+        font-size: 0.68rem;
+    }
+
+    .lens-toggles {
+        gap: 0.6rem;
+    }
+}
+
+.lensing-page .relativity-hud {
+    text-shadow: 0 0 3px #000, 0 0 8px #000, 0 1px 2px #000;
+}
