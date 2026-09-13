@@ -153,17 +153,17 @@ the weekday clock is what keeps this week's deals moving.
 
 ## full tooling
 
-- CRM (@attio)
+- CRM ([attio.com](https://attio.com))
 - email (gmail)
 - messaging service (slack)
 - calendar (google)
-- call recordings / notes (fathom + attio + @minitiapp)
-- a work board for prospecting tickets (@linear)
-- an outbound sequencer (@ReplyAppTeam)
-- product usage / billing data (@lightdash_devs + @getmeasure)
+- call recordings / notes (fathom + attio + [miniti.app](https://miniti.app))
+- a work board for prospecting tickets ([linear.app](https://linear.app))
+- an outbound sequencer ([reply.io](https://reply.io))
+- product usage / billing data ([lightdash.com](https://lightdash.com) + [getmeasure.com](https://getmeasure.com))
 - version control (github)
-- agent chats with scheduled routines (grok @bot)
-- a coding agent that can open draft PRs against the repo (@cursor_ai)
+- agent chats with scheduled routines ([grok.com](https://grok.com))
+- a coding agent that can open draft PRs against the repo ([cursor.com](https://cursor.com))
 
 ## prep
 
