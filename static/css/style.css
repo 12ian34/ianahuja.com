@@ -682,6 +682,25 @@ a.active {
     margin-bottom: 0.6rem;
 }
 
+.words-content ul,
+.words-content ol {
+    text-align: left;
+    display: block;
+    margin: 0 0 1.2rem;
+    padding-left: 1.5em;
+}
+
+.words-content li {
+    font-size: inherit;
+    line-height: 1.7;
+    list-style-type: disc;
+    margin-bottom: 0.35rem;
+}
+
+.words-content ol li {
+    list-style-type: decimal;
+}
+
 .words-content blockquote {
     border-left: 3px solid rgba(148, 243, 166, 0.4);
     padding: 0.4rem 1rem;
