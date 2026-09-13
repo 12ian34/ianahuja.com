@@ -61,11 +61,12 @@ live projects
 ---
 
 current attention  
-<span class="last-updated">last updated 2026-02-07</span>
+<span class="last-updated">last updated 2026-09-13</span>
 
 🤖 AI  
 💼 enterprise sales  
 📈 scaling revenue post PMF  
+🔁 self-improving sales OS  
 🍎 native mac/iOS development  
 📊 financial markets  
 🏛️ politics  
@@ -80,4 +81,4 @@ current attention
 
 ---
 
-[linkedin](https://www.linkedin.com/in/ianahuja) | [github](https://github.com/12ian34) | [lichess](https://lichess.org/@/ahujjj/)
+[linkedin](https://www.linkedin.com/in/ianahuja) | [github](https://github.com/12ian34) | [x](https://x.com/12ian34) | [lichess](https://lichess.org/@/ahujjj/)

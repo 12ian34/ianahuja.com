@@ -21,11 +21,11 @@ specialised agents run the weekday grind, draft in our voice, and fold learnings
 - operators
 - self-learning
 
-## ledger - CRM (Attio)
+## ledger - CRM (attio)
 
 system of record for companies, deals, people, tasks, live status
 
-## playbook - gtm repo (GitHub)
+## playbook - gtm repo (github)
 
 the living brain with ~20 folders and 50+ skills
 
@@ -34,7 +34,7 @@ the living brain with ~20 folders and 50+ skills
 - competitors/: landscape + battlecards
 - legal/: contracts, DPAs, NDAs, POC licenses, partner agreements
 - outbound/: ICP, sequences, campaign learnings, cold-call / email playbooks
-- ops/: Attio data model, quoting, call-learning, win/loss, self-heal loops
+- ops/: attio data model, quoting, call-learning, win/loss, self-heal loops
 - enablement/: tone of voice, customer proof, founding-sales reference
 - partners/: partner context and program planning
 - marketing/: messaging, decks, collaterals, events
@@ -44,7 +44,7 @@ the living brain with ~20 folders and 50+ skills
 - design/: design system for decks and deliverables
 - leads/, reports/, forecasts/, updates/, scripts/, mcp/: lists, analysis, dated updates, automation, external context bundle
 
-## operators - grok bot + Cursor
+## operators - grok bot + cursor
 
 they read ledger + playbook, do the day's work, and update the CRM.
 
@@ -188,4 +188,4 @@ the weekday clock is what keeps this week's deals moving.
 - every approved draft and every learning PR improves next week's output
 - the team stops re-deriving the same objection answers
 - new AEs inherit a living sales brain
-- knowledge stops dying in Slack threads and one-off chats
+- knowledge stops dying in slack threads and one-off chats
