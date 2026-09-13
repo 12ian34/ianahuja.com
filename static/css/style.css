@@ -1396,3 +1396,64 @@ input:user-invalid, textarea:user-invalid {
 .lensing-page .relativity-hud {
     text-shadow: 0 0 3px #000, 0 0 8px #000, 0 1px 2px #000;
 }
+
+.lens-random-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.lens-random-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1.8rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #94F3A6 0%, #5fd98a 55%, #94F3A6 100%);
+    background-size: 200% 200%;
+    color: #0f1210;
+    font-family: 'Courier New', monospace;
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px rgba(148, 243, 166, 0.35), 0 0 24px rgba(148, 243, 166, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background-position 0.6s ease;
+}
+
+.lens-random-btn:hover,
+.lens-random-btn:focus-visible {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 0 1px rgba(148, 243, 166, 0.6), 0 0 40px rgba(148, 243, 166, 0.5);
+    background-position: 100% 0;
+    outline: none;
+}
+
+.lens-random-btn:active {
+    transform: translateY(1px) scale(0.96);
+    box-shadow: 0 0 0 1px rgba(148, 243, 166, 0.6), 0 0 12px rgba(148, 243, 166, 0.35);
+}
+
+.lens-random-die {
+    display: inline-block;
+    font-size: 1.3em;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.lens-random-btn:hover .lens-random-die {
+    transform: rotate(-20deg) scale(1.15);
+}
+
+.lens-random-btn:active .lens-random-die {
+    transform: rotate(340deg) scale(0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lens-random-btn,
+    .lens-random-die {
+        transition: none;
+    }
+}
